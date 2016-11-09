@@ -1,0 +1,9 @@
+{% if latest_ads_list %}
+    <ul>
+    {% for ad in latest_ads_list %}
+        <li>{{ad.musician_name}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No ads are available.</p>
+{% endif %}
