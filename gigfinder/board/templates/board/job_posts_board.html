@@ -1,0 +1,9 @@
+{% if latest_posts_list %}
+    <ul>
+    {% for post in latest_posts_list %}
+        <li>{{post.posting_name}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No jobs are available.</p>
+{% endif %}
