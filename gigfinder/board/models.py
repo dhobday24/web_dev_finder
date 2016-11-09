@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class Event(models.Model):
     event_name = models.CharField(max_length = 200)
-    event_description_short = models.CharField(max_length = 400)
+    event_description_short = models.CharField(max_length = 400, blank = True)
     event_description_long = models.CharField(max_length = 2000)
     pub_date = models.DateTimeField('date published')
     event_date = models.DateTimeField()
@@ -14,7 +14,7 @@ class Event(models.Model):
 
 class Job_Posting(models.Model):
     posting_name = models.CharField(max_length = 200)
-    job_description_short = models.CharField(max_length = 400)
+    job_description_short = models.CharField(max_length = 400, blank = True)
     job_description_long = models.CharField(max_length = 2000)
     pub_date = models.DateTimeField('date published')
     start_date = models.DateTimeField()
@@ -25,7 +25,7 @@ class Job_Posting(models.Model):
 
 class Musician_Advertisement(models.Model):
     musician_name = models.CharField(max_length = 200)
-    ad_description_short = models.CharField(max_length = 400)
+    ad_description_short = models.CharField(max_length = 400, blank = True)
     ad_description_long = models.CharField(max_length = 2000)
     pub_date = models.DateTimeField('date published')
     start_availability = models.DateTimeField()
