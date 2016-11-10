@@ -31,3 +31,11 @@ def musician_ads(request):
 def long_description_event(request, event_id):
     event = get_object_or_404(Event, pk = event_id)
     return render(request, 'board/event_long.html', {'event': event})
+
+def long_description_job(request, job_id):
+    job = get_object_or_404(Job_Posting, pk = job_id)
+    return render(request, 'board/job_long.html', {'job': job})
+
+def long_description_musad(request, ad_id):
+    ad = get_object_or_404(Musician_Advertisement, pk = ad_id)
+    return render(request, 'board/ad_long.html', {'ad': ad})
