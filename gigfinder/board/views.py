@@ -27,3 +27,7 @@ def musician_ads(request):
         'latest_ads_list': latest_ads_list,
     }
     return render(request, 'board/musician_ads_board.html', context)
+
+def long_description_event(request, event_id):
+    event = get_object_or_404(Event, pk = event_id)
+    return render(request, 'board/event_long.html', {'event': event})
