@@ -4,6 +4,9 @@ from django.template import loader
 from .models import Event, Job_Posting, Musician_Advertisement
 # Create your views here.
 
+def board(request):
+    return render(request, 'board/board.html')
+
 def events(request):
     latest_events_list = Event.objects.order_by('-pub_date')[:5]
     context = {
