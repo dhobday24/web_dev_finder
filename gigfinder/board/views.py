@@ -33,13 +33,22 @@ def long_description_event(request, event_id):
     name = event.event_name
     long_description = event.event_description_long
     date = event.event_date
-    return render(request, 'board/event_long.html', {'name': name,
+    return render(request, 'board/event_long.html', {'name' : name,
                                                      'long_description' : long_description,
-                                                     'event_date' : date})
+                                                     'date' : date})
 
 def long_description_job(request, job_id):
     job = get_object_or_404(Job_Posting, pk = job_id)
-    return render(request, 'board/job_long.html', {'job': job})
+    name = job.posting_name
+    long_description = job.job_description_long
+    start_date = job.start_date
+    end_date = job.end_date
+    pay = job.pay
+    return render(request, 'board/job_long.html', {'name' : name,
+                                                   'long_description' : long_description,
+                                                   'start_date' : start_date,
+                                                   'end_date' : end_date,
+                                                   'pay' : pay})
 
 def long_description_musad(request, ad_id):
     ad = get_object_or_404(Musician_Advertisement, pk = ad_id)
