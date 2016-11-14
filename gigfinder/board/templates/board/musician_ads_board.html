@@ -1,7 +1,7 @@
 {% if latest_ads_list %}
     <ul>
     {% for ad in latest_ads_list %}
-        <li>{{ad.musician_name}}</li>
+        <li><a href = "/board/talent_ads/{{ad.id}}/">{{ad.musician_name}}</a></li>
     {% endfor %}
     </ul>
     <p>
