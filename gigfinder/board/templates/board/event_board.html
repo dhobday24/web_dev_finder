@@ -1,9 +1,15 @@
 {% if latest_events_list %}
     <ul>
     {% for event in latest_events_list %}
-        <li>{{event.event_name}}</li>
+        <li><a href = "/board/events/{{event.id}}/">{{event.event_name}}</a></li>
     {% endfor %}
     </ul>
+    <p>
+      <a href="/board">Go Back to Boards</a>
+    </p>
 {% else %}
     <p>No events are available.</p>
+    <p>
+      <a href="/board">Go Back to Boards</a>
+    </p>
 {% endif %}

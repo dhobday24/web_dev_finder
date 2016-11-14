@@ -1,9 +1,15 @@
 {% if latest_posts_list %}
     <ul>
     {% for post in latest_posts_list %}
-        <li>{{post.posting_name}}</li>
+        <li><a href = "/board/job_posts/{{post.id}}/">{{post.posting_name}}</a></li>
     {% endfor %}
     </ul>
+    <p>
+      <a href="/board">Go Back to Boards</a>
+    </p>
 {% else %}
     <p>No jobs are available.</p>
+    <p>
+      <a href="/board">Go Back to Boards</a>
+    </p>
 {% endif %}
