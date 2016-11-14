@@ -52,4 +52,11 @@ def long_description_job(request, job_id):
 
 def long_description_musad(request, ad_id):
     ad = get_object_or_404(Musician_Advertisement, pk = ad_id)
-    return render(request, 'board/ad_long.html', {'ad': ad})
+    name = ad.musician_name
+    long_description = ad.ad_description_long
+    start_availability = ad.start_availability
+    end_availability = ad.end_availability
+    return render(request, 'board/ad_long.html', {'name' : name,
+                                                  'long_description' : long_description,
+                                                  'start_availability' : start_availability,
+                                                  'end_availability' : end_availability})
