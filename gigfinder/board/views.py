@@ -2,10 +2,19 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from .models import Event, Job_Posting, Musician_Advertisement
+from .forms import EventForm, JobForm, AdForm
 # Create your views here.
 
 def board(request):
-    return render(request, 'board/board.html')
+    form_event = EventForm(request.POST or None)
+    form_job = JobForm(request.POST or None)
+    form_ad = AdForm(request.POST or None)
+    context = {
+        'form_event': form_event,
+        'form_job': form_job,
+        'form_ad': form_ad,
+    }
+    return render(request, 'board/board.html', context)
 
 def events(request):
     latest_events_list = Event.objects.order_by('-pub_date')[:5]
