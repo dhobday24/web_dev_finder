@@ -12,6 +12,10 @@ html {
 body {
   margin: 0;
 }
+#top_bar{
+  background-color: (teal)
+}
+
 article,
 aside,
 details,
