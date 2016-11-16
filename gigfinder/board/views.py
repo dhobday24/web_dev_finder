@@ -5,6 +5,9 @@ from .models import Event, Job_Posting, Musician_Advertisement
 from .forms import EventForm, JobForm, AdForm
 # Create your views here.
 
+def index(request):
+    return HttpResponse ('landing Page') 
+
 def board(request):
     form_event = EventForm(request.POST or None)
     form_job = JobForm(request.POST or None)
