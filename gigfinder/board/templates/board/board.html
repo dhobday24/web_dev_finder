@@ -9,7 +9,18 @@
 <p>
   <a href="/board/talent_ads">Talent Ads</a>
 </p>
+
+  <form method="POST" action=""> {% csrf_token %}
   {{form_event.as_p}}
-  <input type = "submit" value = "Create Event" /></br>
-  {{form_job.as_p}}</br>
+  <input type = "submit" value = "Create Event" />
+  </form></br>
+
+  <form method="POST" action=""> {% csrf_token %}
+  {{form_job.as_p}}
+  <input type = "submit" value = "Create Event" />
+  </form></br>
+
+  <form method="POST" action=""> {% csrf_token %}
   {{form_ad.as_p}}
+  <input type = "submit" value = "Create Event" />
+  </form></br>
