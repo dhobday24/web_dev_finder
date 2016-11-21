@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Pitch</title>
+        
+        <!--<link rel="stylesheet" href="{% static 'css/blog.css' %}"> -->
+    </head>
+    <body>
+        <div id="topbar" style="background-color: orange;" >
+            <p>
+                <a href="/">pitch</a>
+                <a href="#">Login </a>
+                <a href="#">SignUp</a>
+            </p>
+        </div>
+
+        <div class="content container" style="margin: auto; background-color: green">
+            <div class="row">
+                <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <footer style="background-color: grey; position: absolute;  bottom: 0; width: 100%; text-align: center;">
+            <a href="#"> Contact Pitch</a>
+            
+        </footer>
+    </body>
