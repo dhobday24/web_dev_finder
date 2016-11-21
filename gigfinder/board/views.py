@@ -9,15 +9,29 @@ def index(request):
     return render(request, 'board/index.html')
 
 def board(request):
+
+    return render(request, 'board/board.html')
+
+def event_submit(request):
     form_event = EventForm(request.POST or None)
-    form_job = JobForm(request.POST or None)
-    form_ad = AdForm(request.POST or None)
     context = {
         'form_event': form_event,
+    }
+    return render(request, 'board/event_submit.html', context)
+
+def job_submit(request):
+    form_job = JobForm(request.POST or None)
+    context = {
         'form_job': form_job,
+    }
+    return render(request, 'board/job_submit.html', context)
+
+def ad_submit(request):
+    form_ad = AdForm(request.POST or None)
+    context = {
         'form_ad': form_ad,
     }
-    return render(request, 'board/board.html', context)
+    return render(request, 'board/ad_submit.html', context)
 
 def events(request):
     latest_events_list = Event.objects.order_by('-pub_date')[:5]
