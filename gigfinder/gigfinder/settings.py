@@ -23,6 +23,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [STATIC_DIR, ]
 STATIC_URL = '/static/'
 
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'authentication/templates/')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -63,7 +64,7 @@ ROOT_URLCONF = 'gigfinder.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': [TEMPLATE_DIR, "templates",],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

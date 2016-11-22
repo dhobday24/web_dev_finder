@@ -21,5 +21,5 @@ from django.contrib.auth import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^board/', include('board.urls')),
-    #url(r'^authentication/templates', include('authentication.urls')),
+    url(r'^', include('authentication.urls')),
 ]

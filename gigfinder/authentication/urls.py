@@ -1,13 +1,14 @@
-from django.conf.urls import url, patterns, include
+from django.conf.urls import include, url
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
-
 from authentication import views
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
-    url(r'^register/$', auth_views.register, name='register'),
-    url(r'^login/$', auth_views.user_login, name='login'),
-    url(r'^logout/$', auth_views.user_logout, name='logout'),
-    url(r'^register/success/$', auth_views.register_success, name='register_success'),
-    ]
+    url(r'^board/', include('board.urls')),
+    url(r'^admin/', admin.site.urls),
+    url(r'^$', views.home),
+    url(r'^home/$', views.home),
+    url(r'^register/$', views.register),
+    url(r'^register/success/$', views.register_success),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    url(r'^logout/$', views.logout_page),
+]
