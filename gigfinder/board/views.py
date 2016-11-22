@@ -5,11 +5,9 @@ from .models import Event, Job_Posting, Musician_Advertisement
 from .forms import EventForm, JobForm, AdForm
 # Create your views here.
 
-def index(request):   
-    return render(request, 'board/index.html')
+
 
 def board(request):
-
     return render(request, 'board/board.html')
 
 def event_submit(request):
