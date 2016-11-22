@@ -12,6 +12,10 @@ from django.http import JsonResponse
 
 # Create your views here.
 
+@login_required(login_url="login/")
+def home(request):
+    return render(request,"home.html")
+
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -21,7 +25,7 @@ def register(request):
             user.set_password(user.password)
             user.save()
             registered = True
-            return HttpResponseRedirect('/hackathon/login/')
+            return HttpResponseRedirect('/registration/login/')
         else:
             print user_form.errors
     else:
@@ -29,7 +33,7 @@ def register(request):
 
 
     return render(request,
-            'hackathon/register.html',
+            'registration/register.html',
             {'user_form': user_form, 'registered': registered} )
 
 def user_login(request):
@@ -50,8 +54,11 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
 
     else:
-        return render(request, 'hackathon/login.html', {})
+        return render(request, 'registration/login.html', {})
 
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect('/hackathon/login/')
+    return HttpResponseRedirect('/registration/login/')
+
+def register_success(request):
+    return render_to_response('registration/success.html')
