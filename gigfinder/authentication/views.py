@@ -4,13 +4,16 @@ from django.shortcuts import render
 from authentication.forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 
-@csrf_protect
+def index(request):   
+    return render(request, 'index.html')
+
+@csrf_exempt
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
