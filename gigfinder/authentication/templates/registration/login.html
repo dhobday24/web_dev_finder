@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} Pitch:GigFinder Login {% endblock %}
+{% block head %} Pitch:GigFinder Login {% endblock %}
+{% block content %}
+
+{% if form.errors %}
+<h2>Your Username and Password did not match! Please try again.</h2>
+{% endif %}
+
+<form class="form" method="post">
+  {% csrf_token %}
+    <input type="text" placeholder="Username" name="username">
+    <input type="password" placeholder="Password" name="password">
+    <button type="submit" value="Login" id="login-button">Login</button>
+    <button type="button" onclick="window.location.href='/register/' ">Register</button>
+</form>
+
+{% endblock %}
