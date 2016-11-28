@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 
-def index(request):   
+def index(request):
     return render(request, 'index.html')
 
 @csrf_exempt
