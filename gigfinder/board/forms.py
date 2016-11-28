@@ -12,10 +12,10 @@ class JobForm(forms.ModelForm):
     class Meta:
         model = Job_Posting
         fields = '__all__'
-        exclude = ['pub_date',]
+        exclude = []
 
 class AdForm(forms.ModelForm):
     class Meta:
         model = Musician_Advertisement
         fields = '__all__'
-        exclude = ['pub_date',]
+        exclude = []

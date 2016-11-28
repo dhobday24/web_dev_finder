@@ -69,7 +69,7 @@ def long_description_event(request, event_id):
     date = event.event_date
     return render(request, 'board/event_long.html', {'name' : name,
                                                      'long_description' : long_description,
-                                                     'date' : date})
+                                                     'date' : date,})
 
 def long_description_job(request, job_id):
     job = get_object_or_404(Job_Posting, pk = job_id)
