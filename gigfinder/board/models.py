@@ -9,7 +9,7 @@ class Event(models.Model):
     event_description_long = models.CharField(max_length = 2000)
     pub_date = models.DateTimeField('date published', auto_now_add = True)
     event_date = models.DateField()
-    event_time = models.TimeField()
+    event_time = models.TimeField(null = True)
     def __str__(self):
         return self.event_name
 
