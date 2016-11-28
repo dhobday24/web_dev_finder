@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .models import Event, Job_Posting, Musician_Advertisement
 from .forms import EventForm, JobForm, AdForm
+from django.views.decorators.csrf import csrf_protect
 # Create your views here.
 
 
@@ -12,6 +13,10 @@ def board(request):
 
 def event_submit(request):
     form_event = EventForm(request.POST or None)
+    if form_event.is_valid():
+        instance = form_event.save(commit = False)
+        instance.save()
+        return redirect('board')
     context = {
         'form_event': form_event,
     }
@@ -19,6 +24,10 @@ def event_submit(request):
 
 def job_submit(request):
     form_job = JobForm(request.POST or None)
+    if form_job.is_valid():
+        instance = form_job.save(commit = False)
+        instance.save()
+        return redirect('board')
     context = {
         'form_job': form_job,
     }
@@ -26,6 +35,10 @@ def job_submit(request):
 
 def ad_submit(request):
     form_ad = AdForm(request.POST or None)
+    if form_ad.is_valid():
+        instance = form_ad.save(commit = False)
+        instance.save()
+        return redirect('board')
     context = {
         'form_ad': form_ad,
     }
@@ -59,7 +72,7 @@ def long_description_event(request, event_id):
     date = event.event_date
     return render(request, 'board/event_long.html', {'name' : name,
                                                      'long_description' : long_description,
-                                                     'date' : date})
+                                                     'date' : date,})
 
 def long_description_job(request, job_id):
     job = get_object_or_404(Job_Posting, pk = job_id)
