@@ -7,11 +7,16 @@ class Event(models.Model):
     event_name = models.CharField(max_length = 200)
     event_description_short = models.CharField(max_length = 400, blank = True)
     event_description_long = models.CharField(max_length = 2000)
-    pub_date = models.DateTimeField('date published', auto_now_add = True)
+    pub_date = models.DateTimeField()
     event_date = models.DateField()
     event_time = models.TimeField(null = True)
     def __str__(self):
         return self.event_name
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        if not self.id:
+            self.pub_date = timezone.now()
+        return super(Event, self).save(*args, **kwargs)
 
 class Job_Posting(models.Model):
     posting_name = models.CharField(max_length = 200)
