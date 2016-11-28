@@ -8,7 +8,6 @@ from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
-from django.core.urlresolvers import reverse
 
 def index(request):
     return render(request, 'index.html')
@@ -44,7 +43,4 @@ def logout_page(request):
 
 @login_required
 def home(request):
-    return render_to_response(
-    'home.html',
-    { 'user': request.user }
-    )
+    return render_to_response('home.html', { 'user': request.user })
