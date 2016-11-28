@@ -1,6 +1,9 @@
 import floppyforms.__future__ as forms
+#from django import forms
+from django.forms.widgets import DateInput
 from django.contrib.admin.widgets import AdminDateWidget
 from .models import Event, Job_Posting, Musician_Advertisement
+
 
 class EventForm(forms.ModelForm):
     class Meta:
