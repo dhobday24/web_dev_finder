@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Welcome to Pitch: Find Your Gigs Here{% endblock %}
+{% block title %}Login to Find Your Gigs Here{% endblock %}
 {% block head %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/base.css '%}" />
 {% endblock %}
 {% block content %}
 
-<h1> Welcome {{ user.username }} !!! </h1>
 
+
+<h1> Welcome {{ user.username }} !!! </h1>
 <button type="button" onclick="window.location.href='/logout/' ">Logout</button> {% endblock %}
