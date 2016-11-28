@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .models import Event, Job_Posting, Musician_Advertisement
@@ -16,6 +16,7 @@ def event_submit(request):
     if form_event.is_valid():
         instance = form_event.save(commit = False)
         instance.save()
+        return redirect('board')
     context = {
         'form_event': form_event,
     }
@@ -26,6 +27,7 @@ def job_submit(request):
     if form_job.is_valid():
         instance = form_job.save(commit = False)
         instance.save()
+        return redirect('board')
     context = {
         'form_job': form_job,
     }
@@ -36,6 +38,7 @@ def ad_submit(request):
     if form_ad.is_valid():
         instance = form_ad.save(commit = False)
         instance.save()
+        return redirect('board')
     context = {
         'form_ad': form_ad,
     }
