@@ -6,7 +6,7 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = '__all__'
-        exclude = ['pub_date',]
+        exclude = []
 
 class JobForm(forms.ModelForm):
     class Meta:
