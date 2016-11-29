@@ -24,7 +24,7 @@ def event_submit(request):
     return render(request, 'board/event_submit.html', context)
 
 def job_submit(request):
-    form_job = JobForm(request.POST or None)
+    form_job = JobForm(request.POST or None, request.FILES or None)
     if form_job.is_valid():
         instance = form_job.save(commit = False)
         instance.save()
@@ -35,7 +35,7 @@ def job_submit(request):
     return render(request, 'board/job_submit.html', context)
 
 def ad_submit(request):
-    form_ad = AdForm(request.POST or None)
+    form_ad = AdForm(request.POST or None, request.FILES or None)
     if form_ad.is_valid():
         instance = form_ad.save(commit = False)
         instance.save()
