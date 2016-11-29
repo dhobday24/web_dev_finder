@@ -13,7 +13,7 @@ def board(request):
     return render(request, 'board/board.html')
 
 def event_submit(request):
-    form_event = EventForm(request.POST or None)
+    form_event = EventForm(request.POST or None, request.FILES or None)
     if form_event.is_valid():
         instance = form_event.save(commit = False)
         instance.save()
