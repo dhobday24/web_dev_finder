@@ -1,3 +1,10 @@
+{% extends 'board/base.html'%}
+{% load staticfiles %}
+{% block content%}
+<head>
+  <link href="{% static 'css/board.css'%} " rel="stylesheet">
+</head>
+<body>
 <p>
   {{name}}
 </p>
@@ -13,3 +20,5 @@
 <p>
     <a href="/board/talent_ads">Go Back to Musician Ads</a>
   </p>
+</body>
+{% endblock %}

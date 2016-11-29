@@ -1,4 +1,13 @@
+{% extends 'board/base.html'%}
+{% load staticfiles %}
+{% block content%}
+<head>
+  <link href="{% static 'css/board.css'%} " rel="stylesheet">
+</head>
+<body>
 <form method="POST" action=""> {% csrf_token %}
 {{form_ad.as_p}}
 <input type = "submit" value = "Create Event" />
 </form></br>
+</body>
+{% endblock %}
