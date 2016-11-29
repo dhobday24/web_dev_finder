@@ -39,7 +39,7 @@ def register_success(request):
 
 def logout_page(request):
     logout(request)
-    return HttpResponseRedirect('/')
+    return render_to_response('registration/logout.html')
 
 @login_required
 def home(request):
