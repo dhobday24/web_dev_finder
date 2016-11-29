@@ -4,10 +4,11 @@ from django.template import loader
 from .models import Event, Job_Posting, Musician_Advertisement
 from .forms import EventForm, JobForm, AdForm
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-
+@login_required
 def board(request):
     return render(request, 'board/board.html')
 
