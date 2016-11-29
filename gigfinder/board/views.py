@@ -4,10 +4,11 @@ from django.template import loader
 from .models import Event, Job_Posting, Musician_Advertisement
 from .forms import EventForm, JobForm, AdForm
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-
+@login_required
 def board(request):
     return render(request, 'board/board.html')
 
@@ -70,9 +71,12 @@ def long_description_event(request, event_id):
     name = event.event_name
     long_description = event.event_description_long
     date = event.event_date
+    pub_date = event.pub_date
+    event_image = event.event_image
     return render(request, 'board/event_long.html', {'name' : name,
                                                      'long_description' : long_description,
-                                                     'date' : date,})
+                                                     'date' : date,
+                                                     'event_image' : event_image})
 
 def long_description_job(request, job_id):
     job = get_object_or_404(Job_Posting, pk = job_id)
@@ -81,11 +85,13 @@ def long_description_job(request, job_id):
     start_date = job.start_date
     end_date = job.end_date
     pay = job.pay
+    job_image = job.job_image
     return render(request, 'board/job_long.html', {'name' : name,
                                                    'long_description' : long_description,
                                                    'start_date' : start_date,
                                                    'end_date' : end_date,
-                                                   'pay' : pay})
+                                                   'pay' : pay,
+                                                   'job_image' : job_image})
 
 def long_description_musad(request, ad_id):
     ad = get_object_or_404(Musician_Advertisement, pk = ad_id)
@@ -93,7 +99,9 @@ def long_description_musad(request, ad_id):
     long_description = ad.ad_description_long
     start_availability = ad.start_availability
     end_availability = ad.end_availability
+    ad_image = ad.ad_image
     return render(request, 'board/ad_long.html', {'name' : name,
                                                   'long_description' : long_description,
                                                   'start_availability' : start_availability,
-                                                  'end_availability' : end_availability})
+                                                  'end_availability' : end_availability,
+                                                  'ad_image' : ad_image})

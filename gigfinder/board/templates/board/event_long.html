@@ -1,3 +1,10 @@
+{% extends 'board/base.html'%}
+{% load staticfiles %}
+{% block content%}
+<head>
+  <link href="{% static 'css/board.css'%} " rel="stylesheet">
+</head>
+<body>
 <p>
   {{name}}
 </p>
@@ -8,5 +15,10 @@
   {{date}}
 </p>
 <p>
+  {{event_image}}
+</p>
+<p>
     <a href="/board/events">Go Back to Events</a>
   </p>
+</body>
+{% endblock %}

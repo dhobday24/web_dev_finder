@@ -1,1 +1,4 @@
 Django==1.10.3
+django-floppyforms==1.7.0
+Jinja2==2.8
+Pillow==3.4.2

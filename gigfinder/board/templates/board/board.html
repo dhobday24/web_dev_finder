@@ -1,6 +1,10 @@
 {% extends 'board/base.html'%}
+{% load staticfiles %}
 {% block content%}
-
+<head>
+  <link href="{% static 'css/board.css'%} " rel="stylesheet">
+</head>
+<body>
 <h1> Board Page </h1>
 
 <p>
@@ -21,4 +25,5 @@
 <p>
   <a href="/board/ad_submit">Submit a new Ad</a>
 </p>
+</body>
 {% endblock %}
