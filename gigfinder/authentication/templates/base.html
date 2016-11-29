@@ -46,10 +46,17 @@
                         <a href="/home">Profile</a>
                     </li>
                     <li>
-                        <a href="/register">Register</a>
+                        {% if user.is_authenticated %}
+                          <a href="/logout">Logout</a>
+                          {% else %}
+                          <a href="/register">Register</a>
+                        {% endif %}
                     </li>
                     <li>
-                        <a href="/accounts/login">Login</a>
+                      {% if user.is_authenticated %}
+                        {% else %}
+                          <a href="/accounts/login">Login</a>
+                      {% endif %}
                     </li>
                     <li>
                         <a href="/board">Board</a>
