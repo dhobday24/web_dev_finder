@@ -10,6 +10,7 @@ class Event(models.Model):
     pub_date = models.DateTimeField(auto_now_add = True)
     event_date = models.DateField()
     event_time = models.TimeField(null = True)
+    event_image = models.ImageField(null = True)
     def __str__(self):
         return self.event_name
 
