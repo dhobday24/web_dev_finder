@@ -29,34 +29,35 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top " style="position: fixed; background: black">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top " style="position: fixed;
+    background: #43C6AC; background: -webkit-linear-gradient(to left, #43C6AC , #191654);
+    background: linear-gradient(to left, #43C6AC , #191654);">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="/">FIND YOUR PITCH</a>
-            </div>
+            <a class="navbar-brand" href="/">FIND YOUR PITCH</a>
+        </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/home">Profile</a>
-                    </li>
-                    <li>
-                        <a href="/register">Register</a>
-                    </li>
-                    <li>
-                        <a href="/accounts/login">Login</a>
-                    </li>
-                    <li>
-                        <a href="/board">Board</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/home">Profile</a>
+                </li>
+                <li>
+                    <a href="/register">Register</a>
+                </li>
+                <li>
+                    <a href="/accounts/login">Login</a>
+                </li>
+                <li>
+                    <a href="/board">Board</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
         </div>
     </nav>
 
@@ -79,22 +80,22 @@
     <div class="wrapper">
         <div class="container">
             <div class="post-preview">
-               <h1>{% block head %}{% endblock %}</h1> {% block content %}{% endblock %}
+                <h1>{% block head %}{% endblock %}</h1> {% block content %}{% endblock %}
             </div>
         </div>
     </div>
 </body>
 
 <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-                    <p class="copyright text-muted"> Question or comments, contact us at <em>email</em></p>
-                </div>
+                <p class="copyright text-muted"> Question or comments, contact us at <em>email</em></p>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
 </html>
