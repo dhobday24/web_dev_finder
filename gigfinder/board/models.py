@@ -10,7 +10,7 @@ class Event(models.Model):
     pub_date = models.DateTimeField(auto_now_add = True)
     event_date = models.DateField()
     event_time = models.TimeField(null = True)
-    event_image = models.ImageField(null = True)
+    event_image = models.ImageField(null = True, blank = True)
     def __str__(self):
         return self.event_name
 
@@ -22,6 +22,8 @@ class Job_Posting(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     pay = models.IntegerField(default = 0)
+    job_image = models.ImageField(null = True, blank = True)
+
     def __str__(self):
         return self.posting_name
 
@@ -32,5 +34,7 @@ class Musician_Advertisement(models.Model):
     pub_date = models.DateTimeField(auto_now_add = True)
     start_availability = models.DateField()
     end_availability = models.DateField()
+    ad_image = models.ImageField(null = True, blank = True)
+
     def __str__(self):
         return self.musician_name
