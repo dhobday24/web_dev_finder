@@ -1,29 +1,29 @@
-{% extends 'board/base.html'%}
-{% load staticfiles %}
-{% block content%}
+{% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
+
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
 </head>
+
 <body>
-<p>
-  {{name}}
-</p>
-<p>
-  {{long_description}}
-</p>
-<p>
-  {{start_date}}
-</p>
-<p>
-  {{end_date}}
-</p>
-<p>
-  {{pay}}
-</p>
-<p>
-  <img src = "{{job_image.url}}"  />
-</p>
-<p>
+  <p>
+    {{name}}
+  </p>
+  <p>
+    {{long_description}}
+  </p>
+  <p>
+    {{start_date}}
+  </p>
+  <p>
+    {{end_date}}
+  </p>
+  <p>
+    {{pay}}
+  </p>
+  <p>
+    <img src="{{job_image.url}}" />
+  </p>
+  <p>
     <a href="/board/job_posts">Go Back to Jobs</a>
   </p>
 </body>

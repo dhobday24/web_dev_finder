@@ -69,7 +69,7 @@ ROOT_URLCONF = 'gigfinder.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR, "templates",],
+        'DIRS': [TEMPLATE_DIR, "templates", ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

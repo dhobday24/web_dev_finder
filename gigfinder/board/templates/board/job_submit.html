@@ -1,14 +1,14 @@
-{% extends 'board/base.html'%}
-{% load staticfiles %}
-{% block content%}
+{% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
+
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
 </head>
+
 <body>
-<form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %}
-{{form_job.as_p}}
-<input type = "submit" value = "Create Event" />
-</form></br>
-<a href="/board">Go Back to Boards</a>
+  <form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %} {{form_job.as_p}}
+    <input type="submit" value="Create Event" />
+  </form>
+  </br>
+  <a href="/board">Go Back to Boards</a>
 </body>
 {% endblock %}

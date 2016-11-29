@@ -1,24 +1,22 @@
-{% extends 'board/base.html'%}
-{% load staticfiles %}
-{% block content%}
-{% if latest_events_list %}
+{% extends 'board/base.html'%} {% load staticfiles %} {% block content%} {% if latest_events_list %}
+
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
 </head>
+
 <body>
-    <ul>
+  <ul>
     {% for event in latest_events_list %}
-        <li><a href = "/board/events/{{event.id}}/">{{event.event_name}}</a></li>
+    <li><a href="/board/events/{{event.id}}/">{{event.event_name}}</a></li>
     {% endfor %}
-    </ul>
-    <p>
-      <a href="/board">Go Back to Boards</a>
-    </p>
-{% else %}
-    <p>No events are available.</p>
-    <p>
-      <a href="/board">Go Back to Boards</a>
-    </p>
+  </ul>
+  <p>
+    <a href="/board">Go Back to Boards</a>
+  </p>
+  {% else %}
+  <p>No events are available.</p>
+  <p>
+    <a href="/board">Go Back to Boards</a>
+  </p>
 </body>
-{% endif %}
-{% endblock %}
+{% endif %} {% endblock %}

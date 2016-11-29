@@ -1,23 +1,23 @@
-{% extends 'board/base.html'%}
-{% load staticfiles %}
-{% block content%}
+{% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
+
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
 </head>
+
 <body>
-<p>
-  {{name}}
-</p>
-<p>
-  {{long_description}}
-</p>
-<p>
-  {{date}}
-</p>
-<p>
-  <img src = "{{event_image.url}}"  />
-</p>
-<p>
+  <p>
+    {{name}}
+  </p>
+  <p>
+    {{long_description}}
+  </p>
+  <p>
+    {{date}}
+  </p>
+  <p>
+    <img src="{{event_image.url}}" />
+  </p>
+  <p>
     <a href="/board/events">Go Back to Events</a>
   </p>
 </body>

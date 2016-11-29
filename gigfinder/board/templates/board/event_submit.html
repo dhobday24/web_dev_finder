@@ -1,16 +1,16 @@
-{% extends 'board/base.html'%}
-{% load staticfiles %}
-{% block content%}
-{% load floppyforms %}
+{% extends 'board/base.html'%} {% load staticfiles %} {% block content%} {% load floppyforms %}
+
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
 </head>
+
 <body>
-<form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %}
-<!--{{form_event.as_p}}-->
-{% form form_event using "floppyforms/layouts/p.html" %}
-<input type = "submit" value = "Create Event" />
-</form></br>
-<a href="/board">Go Back to Boards</a>
+  <form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %}
+    <!--{{form_event.as_p}}-->
+    {% form form_event using "floppyforms/layouts/p.html" %}
+    <input type="submit" value="Create Event" />
+  </form>
+  </br>
+  <a href="/board">Go Back to Boards</a>
 </body>
 {% endblock %}
