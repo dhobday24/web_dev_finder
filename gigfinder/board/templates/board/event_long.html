@@ -14,9 +14,11 @@
   <p>
     {{date}}
   </p>
+  {% if event_image %}
   <p>
     <img src="{{event_image.url}}" />
   </p>
+  {% endif %}
   <p>
     <a href="/board/events">Go Back to Events</a>
   </p>

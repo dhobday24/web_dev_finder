@@ -50,25 +50,25 @@ def ad_submit(request):
 
 
 def events(request):
-    latest_events_list = Event.objects.order_by('-pub_date')[:5]
+    all_events = Event.objects.all()
     context = {
-        'latest_events_list': latest_events_list,
+        'all_events': all_events,
     }
     return render(request, 'board/event_board.html', context)
 
 
 def job_posts(request):
-    latest_posts_list = Job_Posting.objects.order_by('-pub_date')[:5]
+    all_jobs = Job_Posting.objects.all()
     context = {
-        'latest_posts_list': latest_posts_list,
+        'all_jobs': all_jobs,
     }
     return render(request, 'board/job_posts_board.html', context)
 
 
 def musician_ads(request):
-    latest_ads_list = Musician_Advertisement.objects.order_by('-pub_date')[:5]
+    all_ads = Musician_Advertisement.objects.all()
     context = {
-        'latest_ads_list': latest_ads_list,
+        'all_ads': all_ads,
     }
     return render(request, 'board/musician_ads_board.html', context)
 

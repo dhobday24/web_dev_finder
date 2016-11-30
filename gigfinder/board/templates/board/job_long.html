@@ -20,9 +20,11 @@
   <p>
     {{pay}}
   </p>
+  {% if job_image %}
   <p>
     <img src="{{job_image.url}}" />
   </p>
+  {% endif %}
   <p>
     <a href="/board/job_posts">Go Back to Jobs</a>
   </p>

@@ -1,12 +1,12 @@
-{% extends 'board/base.html'%} {% load staticfiles %} {% block content%} {% if latest_ads_list %}
-
+{% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
 </head>
 
+{% if all_ads %}
 <body>
   <ul>
-    {% for ad in latest_ads_list %}
+    {% for ad in all_ads %}
     <li><a href="/board/talent_ads/{{ad.id}}/">{{ad.musician_name}}</a></li>
     {% endfor %}
   </ul>

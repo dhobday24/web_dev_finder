@@ -1,12 +1,14 @@
-{% extends 'board/base.html'%} {% load staticfiles %} {% block content%} {% if latest_events_list %}
+{% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
+
 
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
 </head>
 
+{% if all_events %}
 <body>
   <ul>
-    {% for event in latest_events_list %}
+    {% for event in all_events %}
     <li><a href="/board/events/{{event.id}}/">{{event.event_name}}</a></li>
     {% endfor %}
   </ul>

@@ -1,12 +1,13 @@
-{% extends 'board/base.html'%} {% load staticfiles %} {% block content%} {% if latest_posts_list %}
+{% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
 
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
 </head>
 
+{% if all_jobs %}
 <body>
   <ul>
-    {% for post in latest_posts_list %}
+    {% for post in all_jobs %}
     <li><a href="/board/job_posts/{{post.id}}/">{{post.posting_name}}</a></li>
     {% endfor %}
   </ul>
