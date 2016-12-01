@@ -114,3 +114,10 @@ def long_description_musad(request, ad_id):
                                                   'start_availability': start_availability,
                                                   'end_availability': end_availability,
                                                   'ad_image': ad_image})
+
+def search_results(request):
+    all_posts = Event.objects.all() + Job_Posting.objects.all() + Musician_Advertisement.objects.all()
+    context = {
+        'all_posts' : all_posts,
+    }
+    return render(request, 'board/search_results.html', context)

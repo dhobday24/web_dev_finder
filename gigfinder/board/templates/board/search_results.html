@@ -1,0 +1,7 @@
+{% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
+
+{% if all_posts %}
+<p>
+  {for post in all_posts %}
+    {{post}}
+</p>
