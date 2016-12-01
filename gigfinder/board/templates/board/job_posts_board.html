@@ -1,24 +1,23 @@
-{% extends 'board/base.html'%}
-{% load staticfiles %}
-{% block content%}
-{% if latest_posts_list %}
+{% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
+
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
 </head>
+
+{% if all_jobs %}
 <body>
-    <ul>
-    {% for post in latest_posts_list %}
-        <li><a href = "/board/job_posts/{{post.id}}/">{{post.posting_name}}</a></li>
+  <ul>
+    {% for post in all_jobs %}
+    <li><a href="/board/job_posts/{{post.id}}/">{{post.posting_name}}</a></li>
     {% endfor %}
-    </ul>
-    <p>
-      <a href="/board">Go Back to Boards</a>
-    </p>
-{% else %}
-    <p>No jobs are available.</p>
-    <p>
-      <a href="/board">Go Back to Boards</a>
-    </p>
+  </ul>
+  <p>
+    <a href="/board">Go Back to Boards</a>
+  </p>
+  {% else %}
+  <p>No jobs are available.</p>
+  <p>
+    <a href="/board">Go Back to Boards</a>
+  </p>
 </body>
-{% endif %}
-{% endblock %}
+{% endif %} {% endblock %}
