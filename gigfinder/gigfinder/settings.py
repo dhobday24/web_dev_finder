@@ -70,7 +70,7 @@ ROOT_URLCONF = 'gigfinder.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR, "templates",],
+        'DIRS': [TEMPLATE_DIR, "templates", ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,4 +116,5 @@ NOSE_ARGS = [
     '--with-coverage',
     ]
 
-
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+MEDIA_URL = '/media/'
