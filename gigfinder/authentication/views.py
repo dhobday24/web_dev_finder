@@ -12,13 +12,13 @@ from django.contrib.auth.models import User
 from .models import UserProfile
 from .forms import UserForm
 from django.forms.models import inlineformset_factory
-from djano.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied
 
 
 def index(request):
     return render(request, 'index.html')
 
-'''
+
 @csrf_exempt
 def register(request):
     if request.method == 'POST':
@@ -43,7 +43,7 @@ def register(request):
 
 
 def register_success(request):
-    return render_to_response('registration/success.html')'''
+    return render_to_response('registration/success.html')
 
 
 def logout_page(request):
@@ -53,7 +53,7 @@ def logout_page(request):
 
 @login_required
 def home(request):
-    return render_to_response('home.html', {'user': request.user})
+    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id})
 
 @login_required() # only logged in users should access this
 def edit_user(request, pk):
@@ -81,7 +81,7 @@ def edit_user(request, pk):
                     formset.save()
                     return HttpResponseRedirect('/accounts/profile/')
 
-        return render(request, "account/account_update.html", {
+        return render(request, "registration/update.html", {
             "noodle": pk,
             "noodle_form": user_form,
             "formset": formset,

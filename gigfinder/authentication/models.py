@@ -11,7 +11,7 @@ AVALABILITY = (
     ('AB', 'Already Booked'),
 )
 
-class MusicianUserProfile(models.Model):
+class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name = 'user')
     type_user = models.CharField(max_length=20, default='Musician',choices=PROFILE_TYPES)
     location = models.CharField(max_length=20, blank=True)

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 
-'''class RegistrationForm(forms.Form):
+class RegistrationForm(forms.Form):
 
     CHOICES = (
         ('Musician', 'Musician'),
@@ -19,7 +19,7 @@ from django.utils.translation import ugettext_lazy as _
         required=True, max_length=30, render_value=False)), label=_("Password"))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(
         required=True, max_length=30, render_value=False)), label=_("Password (again)"))
-    user_type = forms.ChoiceField(choices = CHOICES, required = True, label = 'User Type')
+    #user_type = forms.ChoiceField(choices = CHOICES, required = True, label = 'User Type')
 
     def clean_username(self):
         try:
@@ -35,9 +35,9 @@ from django.utils.translation import ugettext_lazy as _
             if self.cleaned_data['password1'] != self.cleaned_data['password2']:
                 raise forms.ValidationError(
                     _("Passwords did not match! Please Try Again."))
-        return self.cleaned_data'''
+        return self.cleaned_data
 
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['__all__']
+        fields = ['first_name', 'last_name', 'email']
