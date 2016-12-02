@@ -9,6 +9,31 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div id="venue_posts" style="border-style: dotted;">
+        {% if events %}
+
+            <ul>
+            <p style="">Upcoming Events</p>
+            {% for events in events %}
+              <li><a href="/board/events/{{event.id}}/">{{events.event_name}}</a></li>
+              <li><a href="/board/events/{{event.id}}/">{{events.event_date}}</a></li>
+              <li><a href="/board/events/{{event.id}}/">{{events.event_description_short }}</a></li>
+
+
+            {% endfor %}
+                </ul>
+                
+            {% else %}
+                <p>No Upcoming events</p>
+            {% endif %} 
+           
+      </div>
+
+      <div id="musician_posts" style="border-style: dotted;"">
+        <p>user = {{ user.username }}</p>
+      </div>
+    </div>
+
       <div class="slideshow">
         <figure>
           <img src="{%static 'images/slide1.jpg' %} " width="600" />
