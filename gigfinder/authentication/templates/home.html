@@ -1,8 +1,0 @@
-{% extends 'board/base.html'%} {% load staticfiles %} {% block title %}Login to Find Your Gigs Here{% endblock %} {% block head %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/base.css '%}" /> {% endblock %} {% block content %}
-
-
-
-<h1 style="margin-top: 100px;"> Welcome {{ user.username }} !!! </h1>
-<button type="button" onclick="window.location.href='/logout/' ">Logout</button> {% endblock %}
