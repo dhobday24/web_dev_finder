@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 
-class RegistrationForm(forms.Form):
+'''class RegistrationForm(forms.Form):
 
     CHOICES = (
         ('Musician', 'Musician'),
@@ -35,4 +35,9 @@ class RegistrationForm(forms.Form):
             if self.cleaned_data['password1'] != self.cleaned_data['password2']:
                 raise forms.ValidationError(
                     _("Passwords did not match! Please Try Again."))
-        return self.cleaned_data
+        return self.cleaned_data'''
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['__all__']
