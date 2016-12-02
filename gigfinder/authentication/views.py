@@ -8,10 +8,16 @@ from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
+from board.models import *
 
 
 def index(request):
-    return render(request, 'index.html')
+    events = Event.objects.all()
+    context = {
+        'events': events,
+    }
+    return render(request, 'index.html', context)
+
 
 
 @csrf_exempt

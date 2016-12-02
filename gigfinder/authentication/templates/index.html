@@ -3,18 +3,55 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/slideshow.css' %} ">
   -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %} ">
+
 
 
 <!-- Main Content -->
 <div class="container">
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    
+      <div id="venue_posts">
+        {% if events %}
+            <p style="margin-top: 0;">Upcoming Events</p>
+            
+            
+            {% for events in events %}
+              <ul>
+                <li>
+                  <p>{{events.event_date}} <em>@</em> {{events.event_name}} <br> {{events.event_description_short }}</p>
+                </li>
+              </ul>
+            {% endfor %}
+                              
+            {% else %}
+                <p>No Upcoming events</p>
+            {% endif %} 
+      </div>
+
+      <div id="musician_posts">
+        <p style="margin-top: 0;">Who's playing</p>
+        <p>{{ user.username }} @ </p>
+      </div>
+    </div>
+</div>
+    <center>
       <div class="slideshow">
         <figure>
-          <img src="{%static 'images/slide1.jpg' %} " width="600" />
+        <figure>
+          <img src="{%static 'images/band3.jpg' %} " />
           <figcaption>"band" at "venue" </figcaption>
         </figure>
+          <img src="{%static 'images/band1.jpg' %} " />
+          <figcaption>"band" at "venue" </figcaption>
+        </figure>
+        <figure>
+          <img src="{%static 'images/band2.jpg' %} " />
+          <figcaption>"band" at "venue" </figcaption>
+        </figure>
+        
       </div>
+      </center>
     </div>
   </div>
 </div>
