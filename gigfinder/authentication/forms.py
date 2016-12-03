@@ -1,18 +1,28 @@
-import re
+"""
+Authentication App forms
+"""
 from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 
 class RegistrationForm(forms.Form):
+    """
+    Registration Form
+    """
 
     CHOICES = (
         ('Musician', 'Musician'),
         ('Venue', 'Venue'),
     )
 
-    username = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_(
-        "Username"), error_messages={'invalid': _("This value must contain only letters, numbers and underscores.")})
+    username = forms.RegexField(regex=r'^\w+$',
+                                widget=forms.TextInput(attrs=dict(required=True,
+                                                                  max_length=30)),
+                                label=_("Username"),
+                                error_messages={'invalid':
+                                                _("This value must contain only letters,"
+                                                  +"numbers and underscores.")})
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(
         required=True, max_length=30)), label=_("Email address"))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(
@@ -22,6 +32,9 @@ class RegistrationForm(forms.Form):
     #user_type = forms.ChoiceField(choices = CHOICES, required = True, label = 'User Type')
 
     def clean_username(self):
+        """
+        Check if the user already exists
+        """
         try:
             user = User.objects.get(
                 username__iexact=self.cleaned_data['username'])
@@ -38,6 +51,9 @@ class RegistrationForm(forms.Form):
         return self.cleaned_data
 
 class UserForm(forms.ModelForm):
+    """
+    The default form for a user
+    """
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email']
