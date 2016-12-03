@@ -1,26 +1,35 @@
+"""
+Authentication App views
+"""
 from django.shortcuts import render
 
 # Create your views here.
-from authentication.forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.views.decorators.csrf import csrf_protect, csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
-from .models import UserProfile
-from .forms import UserForm
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
 
+from authentication.models import UserProfile
+from authentication.forms import UserForm, RegistrationForm
+
 
 def index(request):
+    """
+    Return the landing page
+    """
     return render(request, 'index.html')
 
 
 @csrf_exempt
 def register(request):
+    """
+    Register a new user onto the platform
+    """
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -42,21 +51,33 @@ def register(request):
     )
 
 
-def register_success(request):
+def register_success():
+    """
+    Render the registration success page
+    """
     return render_to_response('registration/success.html')
 
 
 def logout_page(request):
+    """
+    logout a user and display the logout page
+    """
     logout(request)
     return render_to_response('registration/logout.html')
 
 
 @login_required
 def home(request):
+    """
+    Render the home page for a logged in user
+    """
     return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id})
 
 @login_required() # only logged in users should access this
 def edit_user(request, pk):
+    """
+    Update the user profile
+    """
     # querying the User object with pk from url
     user = User.objects.get(pk=pk)
 
@@ -64,7 +85,15 @@ def edit_user(request, pk):
     user_form = UserForm(instance=user)
 
     # The sorcery begins from here, see explanation below
-    ProfileInlineFormset = inlineformset_factory(User, UserProfile, fields=('type_user', 'location', 'bio', 'website', 'phonenumber', 'genre', 'available'))
+    ProfileInlineFormset = inlineformset_factory(User,
+                                                 UserProfile,
+                                                 fields=('type_user',
+                                                         'location',
+                                                         'bio',
+                                                         'website',
+                                                         'phonenumber',
+                                                         'genre',
+                                                         'available'))
     formset = ProfileInlineFormset(instance=user)
 
     if request.user.is_authenticated() and request.user.id == user.id:
