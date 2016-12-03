@@ -31,6 +31,15 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+def create_profile(sender, **kwargs):
+    """
+    Basic user profile creation in database
+    """
+    user = kwargs["instance"]
+    if kwargs["created"]:
+        user_profile = UserProfile(user=user)
+        user_profile.save()
+post_save.connect(create_profile, sender=User)
 
 class VenueUserProfile(models.Model):
     """
@@ -46,13 +55,3 @@ class VenueUserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-def create_profile(sender, **kwargs):
-    """
-    Basic user profile creation in database
-    """
-    user = kwargs["instance"]
-    if kwargs["created"]:
-        user_profile = UserProfile(user=user)
-        user_profile.save()
-post_save.connect(create_profile, sender=User)
