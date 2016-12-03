@@ -6,6 +6,11 @@ from django.utils.translation import ugettext_lazy as _
 
 class RegistrationForm(forms.Form):
 
+    CHOICES = (
+        ('Musician', 'Musician'),
+        ('Venue', 'Venue'),
+    )
+
     username = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_(
         "Username"), error_messages={'invalid': _("This value must contain only letters, numbers and underscores.")})
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(
@@ -14,6 +19,7 @@ class RegistrationForm(forms.Form):
         required=True, max_length=30, render_value=False)), label=_("Password"))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(
         required=True, max_length=30, render_value=False)), label=_("Password (again)"))
+    #user_type = forms.ChoiceField(choices = CHOICES, required = True, label = 'User Type')
 
     def clean_username(self):
         try:
@@ -30,3 +36,8 @@ class RegistrationForm(forms.Form):
                 raise forms.ValidationError(
                     _("Passwords did not match! Please Try Again."))
         return self.cleaned_data
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
