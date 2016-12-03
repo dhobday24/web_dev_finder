@@ -1,3 +1,6 @@
+"""
+Models for the Authentication app
+"""
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -12,29 +15,44 @@ AVALABILITY = (
 )
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, related_name = 'user')
-    type_user = models.CharField(max_length=20, default='Musician',choices=PROFILE_TYPES)
+    """
+    Model for the Musician Profile
+    """
+    user = models.OneToOneField(User, related_name='user')
+    type_user = models.CharField(max_length=20, default='Musician', choices=PROFILE_TYPES)
     location = models.CharField(max_length=20, blank=True)
     bio = models.TextField(max_length=400, blank=True)
     website = models.CharField(max_length=50, blank='user@example.com')
-    phonenumber = models.CharField(max_length=13,default='999-999-9999')
+    phonenumber = models.CharField(max_length=13, default='999-999-9999')
     profile_pic = models.ImageField(null=True, blank=True)
     genre = models.CharField(max_length=30, blank=True)
-    available=models.CharField(choices=AVALABILITY, max_length=20, blank=True)
+    available = models.CharField(choices=AVALABILITY, max_length=20, blank=True)
+
+    def __unicode__(self):
+        return self.user
 
 
 class VenueUserProfile(models.Model):
+    """
+    Model for the Venue Profiles
+    """
     user = models.ForeignKey(User)
-    type_user = models.CharField(max_length=20, default='Venue',choices=PROFILE_TYPES)
+    type_user = models.CharField(max_length=20, default='Venue', choices=PROFILE_TYPES)
     location = models.CharField(max_length=20, blank=True)
     bio = models.TextField(max_length=400, blank=True)
     website = models.CharField(max_length=50, blank='user@example.com')
-    phonenumber = models.CharField(max_length=13,default='999-999-9999')
+    phonenumber = models.CharField(max_length=13, default='999-999-9999')
     profile_pic = models.ImageField(null=True, blank=True)
 
+    def __unicode__(self):
+        return self.user
+
 def create_profile(sender, **kwargs):
+    """
+    Basic user profile creation in database
+    """
     user = kwargs["instance"]
     if kwargs["created"]:
         user_profile = UserProfile(user=user)
         user_profile.save()
-post_save.connect(create_profile, sender = User)
+post_save.connect(create_profile, sender=User)
