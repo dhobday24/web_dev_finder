@@ -1,7 +1,11 @@
-from django.conf.urls import include, url
-from django.contrib import admin
-from authentication import views
+"""
+URL routes for the authentication app
+"""
+from django.conf.urls import url
 from django.contrib.auth import views as auth_views
+# from django.contrib import admin
+from authentication import views
+
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^register/$', views.register, name='register'),
