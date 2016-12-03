@@ -29,7 +29,7 @@ class UserProfile(models.Model):
     available = models.CharField(choices=AVALABILITY, max_length=20, blank=True)
 
     def __unicode__(self):
-        return self.user
+        return self.user.username
 
 
 class VenueUserProfile(models.Model):
@@ -45,7 +45,7 @@ class VenueUserProfile(models.Model):
     profile_pic = models.ImageField(null=True, blank=True)
 
     def __unicode__(self):
-        return self.user
+        return self.user.username
 
 def create_profile(sender, **kwargs):
     """
