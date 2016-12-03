@@ -19,7 +19,7 @@ class Event(models.Model):
     event_time = models.TimeField(null=True)
     event_image = models.ImageField(null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.event_name
 
 
@@ -36,7 +36,7 @@ class Job_Posting(models.Model):
     pay = models.IntegerField(default=0)
     job_image = models.ImageField(null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.posting_name
 
 
@@ -52,5 +52,5 @@ class Musician_Advertisement(models.Model):
     end_availability = models.DateField()
     ad_image = models.ImageField(null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.musician_name

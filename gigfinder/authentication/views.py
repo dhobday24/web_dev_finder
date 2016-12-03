@@ -51,7 +51,7 @@ def register(request):
     )
 
 
-def register_success():
+def register_success(request):
     """
     Render the registration success page
     """

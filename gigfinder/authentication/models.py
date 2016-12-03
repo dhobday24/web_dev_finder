@@ -28,7 +28,7 @@ class UserProfile(models.Model):
     genre = models.CharField(max_length=30, blank=True)
     available = models.CharField(choices=AVALABILITY, max_length=20, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.username
 
 
@@ -44,7 +44,7 @@ class VenueUserProfile(models.Model):
     phonenumber = models.CharField(max_length=13, default='999-999-9999')
     profile_pic = models.ImageField(null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.username
 
 def create_profile(sender, **kwargs):
