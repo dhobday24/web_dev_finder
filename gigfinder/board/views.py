@@ -4,10 +4,11 @@ Views for the board app
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.template import loader
-from .models import Event, Job_Posting, Musician_Advertisement
-from .forms import EventForm, JobForm, AdForm
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
+
+from board.models import Event, Job_Posting, Musician_Advertisement
+from board.forms import EventForm, JobForm, AdForm
 # Create your views here.
 
 
