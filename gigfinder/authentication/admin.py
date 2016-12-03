@@ -1,6 +1,9 @@
+'''
+Set up of the admin backend for authentication
+'''
 from django.contrib import admin
-from .models import *
+from authentication import models
 # Register your models here.
 
-admin.site.register(UserProfile)
-admin.site.register(VenueUserProfile)
+admin.site.register(models.UserProfile)
+admin.site.register(models.VenueUserProfile)
