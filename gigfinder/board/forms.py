@@ -1,12 +1,17 @@
-import floppyforms.__future__ as forms
-#from django import forms
+"""
+Board app forms based on models
+"""
+# from django import forms
 from django.forms.widgets import DateInput
 from django.contrib.admin.widgets import AdminDateWidget
-from .models import Event, Job_Posting, Musician_Advertisement
+import floppyforms.__future__ as forms
+from board.models import Event, Job_Posting, Musician_Advertisement
 
 
 class EventForm(forms.ModelForm):
-
+    """
+    Defines the form for the Event model
+    """
     class Meta:
         model = Event
         fields = '__all__'
@@ -14,7 +19,9 @@ class EventForm(forms.ModelForm):
 
 
 class JobForm(forms.ModelForm):
-
+    """
+    Defines the form for the Job Postings model
+    """
     class Meta:
         model = Job_Posting
         fields = '__all__'
@@ -22,7 +29,9 @@ class JobForm(forms.ModelForm):
 
 
 class AdForm(forms.ModelForm):
-
+    """
+    Defines the form for the Musician Advertisements model
+    """
     class Meta:
         model = Musician_Advertisement
         fields = '__all__'

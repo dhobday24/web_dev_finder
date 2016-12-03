@@ -1,3 +1,6 @@
+"""
+Models for the board app
+"""
 import datetime
 from django.db import models
 from django.utils import timezone
@@ -5,6 +8,9 @@ from django.utils import timezone
 
 
 class Event(models.Model):
+    """
+    Model for the one-time event postings
+    """
     event_name = models.CharField(max_length=200)
     event_description_short = models.CharField(max_length=400, blank=True)
     event_description_long = models.CharField(max_length=2000)
@@ -13,11 +19,14 @@ class Event(models.Model):
     event_time = models.TimeField(null=True)
     event_image = models.ImageField(null=True, blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.event_name
 
 
 class Job_Posting(models.Model):
+    """
+    Model for the regular job postings
+    """
     posting_name = models.CharField(max_length=200)
     job_description_short = models.CharField(max_length=400, blank=True)
     job_description_long = models.CharField(max_length=2000)
@@ -27,11 +36,14 @@ class Job_Posting(models.Model):
     pay = models.IntegerField(default=0)
     job_image = models.ImageField(null=True, blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.posting_name
 
 
 class Musician_Advertisement(models.Model):
+    """
+    Model for the advertisements for availability by musicians
+    """
     musician_name = models.CharField(max_length=200)
     ad_description_short = models.CharField(max_length=400, blank=True)
     ad_description_long = models.CharField(max_length=2000)
@@ -40,5 +52,5 @@ class Musician_Advertisement(models.Model):
     end_availability = models.DateField()
     ad_image = models.ImageField(null=True, blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.musician_name

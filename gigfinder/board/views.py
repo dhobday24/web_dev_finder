@@ -1,3 +1,6 @@
+"""
+Views for the board app
+"""
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.template import loader
@@ -10,10 +13,16 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def board(request):
+    """
+    Let a logged in user see the board page
+    """
     return render(request, 'board/board.html')
 
 
 def event_submit(request):
+    """
+    Allows for the submission for a one-time event listing
+    """
     form_event = EventForm(request.POST or None, request.FILES or None)
     if form_event.is_valid():
         instance = form_event.save(commit=False)
@@ -26,6 +35,9 @@ def event_submit(request):
 
 
 def job_submit(request):
+    """
+    Allows for the submission of a regular job posting
+    """
     form_job = JobForm(request.POST or None, request.FILES or None)
     if form_job.is_valid():
         instance = form_job.save(commit=False)
@@ -38,6 +50,9 @@ def job_submit(request):
 
 
 def ad_submit(request):
+    """
+    Allows a musician to post an ad on their availability
+    """
     form_ad = AdForm(request.POST or None, request.FILES or None)
     if form_ad.is_valid():
         instance = form_ad.save(commit=False)
@@ -50,6 +65,9 @@ def ad_submit(request):
 
 
 def events(request):
+    """
+    Renders a page with a list of all the events
+    """
     all_events = Event.objects.all()
     context = {
         'all_events': all_events,
@@ -58,6 +76,9 @@ def events(request):
 
 
 def job_posts(request):
+    """
+    Renders a page with all the regular job postings
+    """
     all_jobs = Job_Posting.objects.all()
     context = {
         'all_jobs': all_jobs,
@@ -66,6 +87,9 @@ def job_posts(request):
 
 
 def musician_ads(request):
+    """
+    Renders a page with all the musicians looking for gigs
+    """
     all_ads = Musician_Advertisement.objects.all()
     context = {
         'all_ads': all_ads,
@@ -74,6 +98,10 @@ def musician_ads(request):
 
 
 def long_description_event(request, event_id):
+    """
+    A deep dive into a specific event
+    Provides the user with a longer description of the event
+    """
     event = get_object_or_404(Event, pk=event_id)
     name = event.event_name
     long_description = event.event_description_long
@@ -87,6 +115,10 @@ def long_description_event(request, event_id):
 
 
 def long_description_job(request, job_id):
+    """
+    A deep dive into a job posting
+    Provides the user with a longer description of the job
+    """
     job = get_object_or_404(Job_Posting, pk=job_id)
     name = job.posting_name
     long_description = job.job_description_long
@@ -103,6 +135,10 @@ def long_description_job(request, job_id):
 
 
 def long_description_musad(request, ad_id):
+    """
+    A deep dive into a musician's ad
+    Provides the user with a longer description of the musician and a link to the musician's profile
+    """
     ad = get_object_or_404(Musician_Advertisement, pk=ad_id)
     name = ad.musician_name
     long_description = ad.ad_description_long
@@ -116,7 +152,10 @@ def long_description_musad(request, ad_id):
                                                   'ad_image': ad_image})
 
 def search_results(request):
-    all_posts = Event.objects.all() + Job_Posting.objects.all() + Musician_Advertisement.objects.all()
+    """
+    render a page with the search results
+    """
+    all_posts = Event.objects.all()+Job_Posting.objects.all()+Musician_Advertisement.objects.all()
     context = {
         'all_posts' : all_posts,
     }
