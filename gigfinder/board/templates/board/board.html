@@ -10,10 +10,11 @@
   <p>
     <a href="/board/events"><span style="font-size : 28px">Events Board</span></a>
   </p>
+{% if user.userprofile.type_user == 'Venue' %}
   <p>
     <a href="/board/event_submit">Submit a new Event</a>
   </p>
-
+{% endif %}
   <!--
   <p>
     <a href="/board/job_posts"><span style="font-size : 28px">Open Jobs</span></a>
@@ -26,8 +27,10 @@
 
     <a href="/board/talent_ads"><span style="font-size : 28px">Talent Ads</span></a>
   </p>
+{% if user.userprofile.type_user == 'Musician' %}
   <p>
     <a href="/board/ad_submit">Submit a new Ad</a>
   </p>
+{% endif %}
 </body>
 {% endblock %}
