@@ -121,6 +121,7 @@ def long_description_event(request, event_id):
     user_posted = event.event_user
     browsing_userid = request.user.id
     return render(request, 'board/event_long.html', {'name': name,
+                                                     'event': event,
                                                      'long_description': long_description,
                                                      'date': date,
                                                      'event_image': event_image,
@@ -184,8 +185,7 @@ def search_results(request):
 
 def apply_for_event(request):
     if request.method == 'POST':
-        user_id = request.user
-        Application.objects.create(user=user_id)
+        app_id = request.POST.get("app_event")
+        username = request.user
+        application = Application.objects.create(user=username, application_event = Event.objects.filter(id = app_id).get())
     return render(request, 'board/apply_for_event.html')
-
-   

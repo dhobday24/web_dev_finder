@@ -26,7 +26,7 @@
     <a href="/board/events">Go Back to Events</a>
   </p>
   <form action='/board/apply_for_event/' method='post'> {% csrf_token %}
-
+    <input type="hidden" name="app_event" value="{{event.id}}" />
     <input type="submit" value="Apply Now!" />
   </form>
 <!--   <form action="#" method="get">
