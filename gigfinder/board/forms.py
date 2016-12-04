@@ -39,4 +39,3 @@ class AdForm(forms.ModelForm):
         model = Musician_Advertisement
         fields = '__all__'
         exclude = ['pub_date', 'musician_name']
-
