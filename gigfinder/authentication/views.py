@@ -123,3 +123,7 @@ def update_success(request):
     Render the registration success page
     """
     return render_to_response('registration/update_success.html')
+
+def get_user_profile(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'user_profile.html', {"user":user})

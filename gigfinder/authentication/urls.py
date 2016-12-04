@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^home/$', views.home, name='home'),
     url(r'^home/profile/(?P<pk>[0-9]+)/$', views.edit_user, name='edit_user'),
     url(r'^home/update_success/(?P<pk>[0-9]+)/$', views.edit_user, name='edit_user'),
+    url(r'profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile)
 ]
