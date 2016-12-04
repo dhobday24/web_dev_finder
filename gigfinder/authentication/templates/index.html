@@ -1,34 +1,38 @@
 {%extends 'base.html' %} {% load staticfiles %} {% block content%}
-<!-- SLIDEDHOW CSS
-
-    <link rel="stylesheet" type="text/css" href="{% static 'css/slideshow.css' %} ">
-  -->
    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %} ">
 
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slideshow.css' %} ">
 
 <!-- Main Content -->
 <div class="container">
   <div class="row">
    
-         <div id="venue_posts">
+         <div id="venue_posts" style="back">
             {% if events %}
               <p>Upcoming Events</p>
-            {% for events in events %}
+            {% for events in events|slice:"5" %}
               <ul>
                 <li>
                  <p>on {{events.event_date}} <em>@</em> {{events.event_name}} <br> {{events.event_description_short }}</p>
                  
-                    <p>No upcoming events</p>
                 </li>
               </ul>
             {% endfor %}                              
-            
             {% endif %} 
       </div>
       <div id="musician_posts">
+        {% if users %}
         <p >Who's playing</p>
-        <p>{{ user.username }} @ </p>
+          {% for users in users %}
+        <ul>
+          <li>
+            <p>{{ users.user }} @ </p>
+            
+          </li>
+        </ul>
+        {% endfor %}
+        {%endif%}
+
       </div>
     </div>
 
@@ -39,8 +43,7 @@
         </figure>
       </div>
     </div>
-  </div>
-</div>
+
 
 
 {% endblock %}
