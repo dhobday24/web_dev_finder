@@ -7,7 +7,7 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 
-from .models import Event, Musician_Advertisement, Application
+from .models import Event, Musician_Advertisement, EventApplication, AdApplication
 #from board.models import Job_Posting
 from .forms import EventForm, AdForm
 #from board.forms import JobForm
@@ -165,6 +165,7 @@ def long_description_musad(request, ad_id):
     ad_image = ad.ad_image
     name = ad.musician_name
     return render(request, 'board/ad_long.html', {'name': name,
+                                                  'ad': ad,
                                                   'posting_name': posting_name,
                                                   'long_description': long_description,
                                                   'start_availability': start_availability,
@@ -187,5 +188,13 @@ def apply_for_event(request):
     if request.method == 'POST':
         app_id = request.POST.get("app_event")
         username = request.user
-        application = Application.objects.create(user=username, application_event = Event.objects.filter(id = app_id).get())
+        application = EventApplication.objects.create(user=username, event_name = Event.objects.filter(id = app_id).get())
     return render(request, 'board/apply_for_event.html')
+
+def request_musician(request):
+    if request.method == 'POST':
+        app_id = request.POST.get("app_ad")
+        username = request.user
+        print(app_id)
+        application = AdApplication.objects.create(user=username, ad_name = Musician_Advertisement.objects.filter(id = app_id).get())
+    return render(request, 'board/apply_for_ad.html')
