@@ -129,4 +129,5 @@ def update_success(request):
 
 def get_user_profile(request, username):
     user = User.objects.get(username=username)
-    return render(request, 'user_profile.html', {"user":user})
+    profile_pic = user.userprofile.profile_pic
+    return render(request, 'user_profile.html', {"user":user, 'profile_pic': profile_pic})
