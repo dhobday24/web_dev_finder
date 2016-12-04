@@ -5,7 +5,7 @@ Board app forms based on models
 from django.forms.widgets import DateInput
 from django.contrib.admin.widgets import AdminDateWidget
 import floppyforms.__future__ as forms
-from board.models import Event, Musician_Advertisement
+from models import Event, Musician_Advertisement
 #from board.models import Job_Posting
 
 
@@ -16,7 +16,7 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = '__all__'
-        exclude = ['pub_date', 'event_user']
+        exclude = ['pub_date', 'event_user', 'event_application']
 
 
 '''
@@ -39,3 +39,4 @@ class AdForm(forms.ModelForm):
         model = Musician_Advertisement
         fields = '__all__'
         exclude = ['pub_date', 'musician_name']
+

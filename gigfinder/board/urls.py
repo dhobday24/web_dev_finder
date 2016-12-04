@@ -20,4 +20,5 @@ urlpatterns = [
     #url(r'^job_submit/$', views.job_submit, name='job_submit'),
     url(r'^ad_submit/$', views.ad_submit, name='ad_submit'),
     url(r'^search_results/', views.search_results, name='search_results'),
+    url(r'^apply_for_event/$', views.apply_for_event, name='apply_for_event'),
 ]

@@ -7,9 +7,9 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 
-from board.models import Event, Musician_Advertisement
+from .models import Event, Musician_Advertisement, Application
 #from board.models import Job_Posting
-from board.forms import EventForm, AdForm
+from .forms import EventForm, AdForm
 #from board.forms import JobForm
 # Create your views here.
 
@@ -119,11 +119,13 @@ def long_description_event(request, event_id):
     pub_date = event.pub_date
     event_image = event.event_image
     user_posted = event.event_user
+    browsing_userid = request.user.id
     return render(request, 'board/event_long.html', {'name': name,
                                                      'long_description': long_description,
                                                      'date': date,
                                                      'event_image': event_image,
-                                                     'user_posted': user_posted})
+                                                     'user_posted': user_posted,
+                                                     'browser_id': browsing_userid})
 
 
 '''
@@ -178,3 +180,12 @@ def search_results(request):
         'all_posts' : all_posts,
     }
     return render(request, 'board/search_results.html', context)
+
+
+def apply_for_event(request):
+    if request.method == 'POST':
+        user_id = request.user
+        Application.objects.create(user=user_id)
+    return render(request, 'board/apply_for_event.html')
+
+   
