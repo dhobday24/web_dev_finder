@@ -99,19 +99,15 @@ def edit_user(request, pk):
     formset = ProfileInlineFormset(instance=user)
 
     if request.user.is_authenticated() and request.user.id == user.id:
-        print('hellooo')
         if request.method == "POST":
             user_form = UserForm(request.POST, request.FILES, instance=user)
             formset = ProfileInlineFormset(request.POST, request.FILES, instance=user)
-            print('block1')
             if user_form.is_valid():
                 created_user = user_form.save(commit=False)
                 formset = ProfileInlineFormset(request.POST, request.FILES, instance=created_user)
-                print('block2')
                 if formset.is_valid():
                     created_user.save()
                     formset.save()
-                    print('block3')
                     return HttpResponseRedirect('/home/')
 
         return render(request, "registration/update.html", {

@@ -7,8 +7,10 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 
-from board.models import Event, Job_Posting, Musician_Advertisement
-from board.forms import EventForm, JobForm, AdForm
+from board.models import Event, Musician_Advertisement
+#from board.models import Job_Posting
+from board.forms import EventForm, AdForm
+#from board.forms import JobForm
 # Create your views here.
 
 
@@ -27,6 +29,7 @@ def event_submit(request):
     form_event = EventForm(request.POST or None, request.FILES or None)
     if form_event.is_valid():
         instance = form_event.save(commit=False)
+        instance.event_user = request.user
         instance.save()
         return redirect('board')
     context = {
@@ -35,6 +38,7 @@ def event_submit(request):
     return render(request, 'board/event_submit.html', context)
 
 
+'''
 def job_submit(request):
     """
     Allows for the submission of a regular job posting
@@ -48,6 +52,7 @@ def job_submit(request):
         'form_job': form_job,
     }
     return render(request, 'board/job_submit.html', context)
+'''
 
 
 def ad_submit(request):
@@ -76,6 +81,7 @@ def events(request):
     return render(request, 'board/event_board.html', context)
 
 
+'''
 def job_posts(request):
     """
     Renders a page with all the regular job postings
@@ -85,6 +91,7 @@ def job_posts(request):
         'all_jobs': all_jobs,
     }
     return render(request, 'board/job_posts_board.html', context)
+'''
 
 
 def musician_ads(request):
@@ -109,12 +116,15 @@ def long_description_event(request, event_id):
     date = event.event_date
     pub_date = event.pub_date
     event_image = event.event_image
+    user_posted = event.event_user
     return render(request, 'board/event_long.html', {'name': name,
                                                      'long_description': long_description,
                                                      'date': date,
-                                                     'event_image': event_image})
+                                                     'event_image': event_image,
+                                                     'user_posted': user_posted})
 
 
+'''
 def long_description_job(request, job_id):
     """
     A deep dive into a job posting
@@ -133,6 +143,7 @@ def long_description_job(request, job_id):
                                                    'end_date': end_date,
                                                    'pay': pay,
                                                    'job_image': job_image})
+'''
 
 
 def long_description_musad(request, ad_id):
