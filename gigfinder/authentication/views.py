@@ -23,8 +23,10 @@ def index(request):
     Return the landing page
     """
     events = Event.objects.all()
+    users = UserProfile.objects.all()
     context = {
         'events': events,
+       'users':users,
     }
     return render(request, 'index.html', context)
 
