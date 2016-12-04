@@ -2,7 +2,7 @@
 Authentication App views
 """
 from django.shortcuts import render
-
+from board.models import *
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -22,7 +22,13 @@ def index(request):
     """
     Return the landing page
     """
-    return render(request, 'index.html')
+    events = Event.objects.all()
+    users = UserProfile.objects.all()
+    context = {
+        'events': events,
+       'users':users,
+    }
+    return render(request, 'index.html', context)
 
 
 @csrf_exempt

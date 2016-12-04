@@ -3,13 +3,21 @@
 
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
+   <style type="text/css">
+   li{
+    list-style-type: none;
+    text-align: left;
+    font-size: 18px;
+   }
+
+  </style>
 </head>
 
 {% if all_events %}
 <body>
   <ul>
     {% for event in all_events %}
-    <li><a href="/board/events/{{event.id}}/">{{event.event_name}}</a></li>
+    <li><a href="/profile/{{event.event_user}}">{{event.event_user}}</a> <em>posted </em><a href="/board/events/{{event.id}}/">{{event.event_name}}</a></li>
     {% endfor %}
   </ul>
   <p>

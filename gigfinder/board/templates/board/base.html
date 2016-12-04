@@ -1,81 +1,73 @@
 <!-- base.html -->
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<title>PITCH| {{user.username}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
 
-<head>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-family: "Lora", sans-serif;
+    }
+    body{
+        bottom: 0px;
+        height: 100%;
+    }
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    .w3-third img {
+        margin-bottom: -6px;
+        opacity: 0.8;
+        cursor: pointer
+    }
 
-  <title>PITCH </title>
 
-  <!-- Bootstrap Core CSS -->
-  <link href="{% static 'css/bootstrap/vendor/bootstrap/css/bootstrap.min.css'%} " rel="stylesheet">
 
-  <!-- Theme CSS -->
-  <link href="{% static 'css/bootstrap/css/clean-blog.min.css'%}" rel="stylesheet">
 
-  <!-- Custom Fonts -->
-  <link href="{% static 'css/bootstrap/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-  <script
-  src="https://code.jquery.com/jquery-3.1.1.js"
-  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-  crossorigin="anonymous"></script>
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-</head>
 
-<body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-default navbar-custom navbar-fixed-top " style="position: fixed;
-    background: #43C6AC; background: -webkit-linear-gradient(to left, #43C6AC , #191654);
-    background: linear-gradient(to left, #43C6AC , #191654);">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header page-scroll">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-      </button>
-      <a class="navbar-brand" href="/">FIND YOUR PITCH</a>
-    </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <form role="search" method="GET" action="#" style="margin-top : 4px">
-          <input type="text" name="q" value="" />
-          <button type="submit" class="btn btn-default">Search</button>
-          </form>
-        </li>
-        <li>
-          <a href="/home/{{pk}}">Profile</a>
-        </li>
-        <li>
-          {% if user.is_authenticated %}
-          <a href="/logout">Logout</a> {% else %}
-          <a href="/register">Register</a> {% endif %}
-        </li>
-        <li>
-          {% if user.is_authenticated %} {% else %}
-          <a href="/accounts/login">Login</a> {% endif %}
 
-        </li>
-        <li>
-          <a href="/board">Board</a>
-        </li>
-      </ul>
-    </div>
-    <!-- /.navbar-collapse -->
-    </div>
-  </nav>
+    .w3-third img:hover {
+        opacity: 1
+    }
+</style>
+
+
+<body class="w3-light-grey w3-content" style="max-width:1600px; margin-top: 20px; bottom: 0; min-height: 100%; 
+        background: #43C6AC; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: fill; bottom: 0px; height: 100%"">
+
+    <!-- Sidenav/menu -->
+    <nav class="w3-sidenav w3-white w3-animate-left w3-center w3-text-grey w3-collapse w3-top" style="z-index:3;width:300px;font-weight:bold" id="mySidenav"><br>
+        <h3 class="w3-padding-64">{{user.first_name}}<br> {{user.last_name}}</h3>
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-padding w3-hide-large">CLOSE</a>
+        <a href="/" onclick="w3_close()" class="w3-padding">PITCH</a>
+        <a href="/home/" onclick="w3_close()" class="w3-padding">HOME</a>
+        
+        
+  
+        <a href="/logout/" onclick="w3_close()" class="w3-padding">LOGOUT</a>
+    </nav>
+
+    <!-- Top menu on small screens -->
+    <header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
+        <span class="w3-left w3-padding">{{user.username}}</span>
+        <a href="javascript:void(0)" class="w3-right w3-btn w3-white" onclick="w3_open()">☰</a>
+    </header>
+    <!-- Overlay effect when opening sidenav on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
   <!-- Page Header
     <header class="intro-header" style="background-image: url('{% static 'images/pitchIndex.jpg' %}')">
@@ -92,27 +84,25 @@
         </div>
     </header>-->
 
-  <!-- page content -->
-  <div class="wrapper">
-    <div class="container">
-      <div class="post-preview">
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-left:300px; bottom: 0;">
+        <!-- About section -->
+        <div class="w3-container  w3-center w3-text-light-grey w3-padding-32" id="about" >
+     
         <h1>{% block head %}{% endblock %}</h1> {% block content %}{% endblock %}
       </div>
     </div>
-  </div>
+
 </body>
 
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-        <p class="copyright text-muted"> Question or comments, contact us at <em>email</em></p>
-      </div>
-    </div>
-  </div>
-</footer>
+
+</center>
+<script>
+
+
 
 {% block script %}{% endblock %}
 
