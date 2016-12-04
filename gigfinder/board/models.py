@@ -48,13 +48,15 @@ class Musician_Advertisement(models.Model):
     """
     Model for the advertisements for availability by musicians
     """
-    musician_name = models.CharField(max_length=200)
+    posting_name = models.CharField(null=True, max_length=200)
+    musician_name = models.ForeignKey(User, on_delete = models.CASCADE, null=True)
     ad_description_short = models.CharField(max_length=400, blank=True)
     ad_description_long = models.CharField(max_length=2000)
     pub_date = models.DateTimeField(auto_now_add=True)
     start_availability = models.DateField()
     end_availability = models.DateField()
     ad_image = models.ImageField(null=True, blank=True)
+
 
     def __str__(self):
         return self.musician_name

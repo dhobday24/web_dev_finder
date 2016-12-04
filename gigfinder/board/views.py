@@ -62,6 +62,7 @@ def ad_submit(request):
     form_ad = AdForm(request.POST or None, request.FILES or None)
     if form_ad.is_valid():
         instance = form_ad.save(commit=False)
+        instance.musician_name = request.user
         instance.save()
         return redirect('board')
     context = {
@@ -153,15 +154,19 @@ def long_description_musad(request, ad_id):
     """
     ad = get_object_or_404(Musician_Advertisement, pk=ad_id)
     name = ad.musician_name
+    posting_name = ad.posting_name
     long_description = ad.ad_description_long
     start_availability = ad.start_availability
     end_availability = ad.end_availability
     ad_image = ad.ad_image
+    name = ad.musician_name
     return render(request, 'board/ad_long.html', {'name': name,
+                                                  'posting_name': posting_name,
                                                   'long_description': long_description,
                                                   'start_availability': start_availability,
                                                   'end_availability': end_availability,
-                                                  'ad_image': ad_image})
+                                                  'ad_image': ad_image,
+                                                  })
 
 def search_results(request):
     """
