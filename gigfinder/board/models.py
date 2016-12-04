@@ -8,6 +8,14 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
+class Application(models.Model):
+    # event = models.ForeignKey(Event)
+    user = models.ForeignKey(User)
+    status = models.NullBooleanField(blank=True, default=None, null=True)
+
+    def __str__(self):
+        return self.event.event_name
+
 class Event(models.Model):
     """
     Model for the one-time event postings
@@ -20,6 +28,7 @@ class Event(models.Model):
     event_time = models.TimeField(null=True)
     event_image = models.ImageField(null=True, blank=True)
     event_user = models.ForeignKey(User, on_delete = models.CASCADE, null=True)
+    event_application = models.OneToOneField(Application, null=True)
 
     def __str__(self):
         return self.event_name
@@ -60,3 +69,6 @@ class Musician_Advertisement(models.Model):
 
     def __str__(self):
         return self.musician_name
+
+
+
