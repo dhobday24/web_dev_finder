@@ -6,6 +6,8 @@ from django.forms.widgets import DateInput
 from django.contrib.admin.widgets import AdminDateWidget
 import floppyforms.__future__ as forms
 from .models import Event, Musician_Advertisement
+from address.forms import AddressField
+
 #from board.models import Job_Posting
 
 

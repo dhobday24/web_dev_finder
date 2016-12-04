@@ -5,6 +5,8 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+
+from address.models import AddressField
 # Create your models here.
 
 
@@ -16,6 +18,7 @@ class EventApplication(models.Model):
     def __str__(self):
         return self.user_who_applied.username
 
+
 class AdApplication(models.Model):
     ad_name = models.ForeignKey('Musician_Advertisement', null = True)
     user_who_applied = models.ForeignKey(User)
@@ -23,6 +26,7 @@ class AdApplication(models.Model):
 
     def __str__(self):
         return self.user_who_applied.username
+
 
 class Event(models.Model):
     """
@@ -35,11 +39,13 @@ class Event(models.Model):
     event_date = models.DateField()
     event_time = models.TimeField(null=True)
     event_image = models.ImageField(null=True, blank=True)
-    event_user = models.ForeignKey(User, on_delete = models.CASCADE, null=True)
+    event_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     event_application = models.OneToOneField(EventApplication, null=True)
+    event_address = AddressField(null=True)
 
     def __str__(self):
         return self.event_name
+
 
 class Musician_Advertisement(models.Model):
     """
@@ -54,7 +60,6 @@ class Musician_Advertisement(models.Model):
     end_availability = models.DateField()
     ad_image = models.ImageField(null=True, blank=True)
     ad_application = models.OneToOneField(AdApplication, null=True)
-
 
     def __str__(self):
         string = str(self.posting_name)
