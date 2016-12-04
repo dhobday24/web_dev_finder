@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 
 class Application(models.Model):
-    application_event = models.ForeignKey('Event')
+    application_event = models.ForeignKey('Event', null = True)
     user = models.ForeignKey(User)
     status = models.NullBooleanField(blank=True, default=None, null=True)
 
@@ -69,6 +69,3 @@ class Musician_Advertisement(models.Model):
 
     def __str__(self):
         return self.musician_name
-
-
-
