@@ -7,6 +7,8 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 
+
+from address.models import Address
 from .models import Event, Musician_Advertisement, EventApplication, AdApplication
 #from board.models import Job_Posting
 from .forms import EventForm, AdForm
@@ -39,23 +41,6 @@ def event_submit(request):
     return render(request, 'board/event_submit.html', context)
 
 
-'''
-def job_submit(request):
-    """
-    Allows for the submission of a regular job posting
-    """
-    form_job = JobForm(request.POST or None, request.FILES or None)
-    if form_job.is_valid():
-        instance = form_job.save(commit=False)
-        instance.save()
-        return redirect('board')
-    context = {
-        'form_job': form_job,
-    }
-    return render(request, 'board/job_submit.html', context)
-'''
-
-
 def ad_submit(request):
     """
     Allows a musician to post an ad on their availability
@@ -81,19 +66,6 @@ def events(request):
         'all_events': all_events,
     }
     return render(request, 'board/event_board.html', context)
-
-
-'''
-def job_posts(request):
-    """
-    Renders a page with all the regular job postings
-    """
-    all_jobs = Job_Posting.objects.all()
-    context = {
-        'all_jobs': all_jobs,
-    }
-    return render(request, 'board/job_posts_board.html', context)
-'''
 
 
 def musician_ads(request):
@@ -127,28 +99,6 @@ def long_description_event(request, event_id):
                                                      'event_image': event_image,
                                                      'user_posted': user_posted,
                                                      'browser_id': browsing_userid})
-
-
-'''
-def long_description_job(request, job_id):
-    """
-    A deep dive into a job posting
-    Provides the user with a longer description of the job
-    """
-    job = get_object_or_404(Job_Posting, pk=job_id)
-    name = job.posting_name
-    long_description = job.job_description_long
-    start_date = job.start_date
-    end_date = job.end_date
-    pay = job.pay
-    job_image = job.job_image
-    return render(request, 'board/job_long.html', {'name': name,
-                                                   'long_description': long_description,
-                                                   'start_date': start_date,
-                                                   'end_date': end_date,
-                                                   'pay': pay,
-                                                   'job_image': job_image})
-'''
 
 
 def long_description_musad(request, ad_id):
@@ -198,3 +148,55 @@ def request_musician(request):
         print(app_id)
         application = AdApplication.objects.create(user=username, ad_name = Musician_Advertisement.objects.filter(id = app_id).get())
     return render(request, 'board/apply_for_ad.html')
+
+
+'''
+def job_submit(request):
+    """
+    Allows for the submission of a regular job posting
+    """
+    form_job = JobForm(request.POST or None, request.FILES or None)
+    if form_job.is_valid():
+        instance = form_job.save(commit=False)
+        instance.save()
+        return redirect('board')
+    context = {
+        'form_job': form_job,
+    }
+    return render(request, 'board/job_submit.html', context)
+'''
+
+
+'''
+def job_posts(request):
+    """
+    Renders a page with all the regular job postings
+    """
+    all_jobs = Job_Posting.objects.all()
+    context = {
+        'all_jobs': all_jobs,
+    }
+    return render(request, 'board/job_posts_board.html', context)
+'''
+
+
+'''
+def long_description_job(request, job_id):
+    """
+    A deep dive into a job posting
+    Provides the user with a longer description of the job
+    """
+    job = get_object_or_404(Job_Posting, pk=job_id)
+    name = job.posting_name
+    long_description = job.job_description_long
+    start_date = job.start_date
+    end_date = job.end_date
+    pay = job.pay
+    job_image = job.job_image
+    return render(request, 'board/job_long.html', {'name': name,
+                                                   'long_description': long_description,
+                                                   'start_date': start_date,
+                                                   'end_date': end_date,
+                                                   'pay': pay,
+                                                   'job_image': job_image})
+'''
