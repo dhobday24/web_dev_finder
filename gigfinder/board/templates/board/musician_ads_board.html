@@ -7,10 +7,7 @@
 <body>
   <ul>
     {% for ad in all_ads %}
-    <li>{{ad.musician_name}}<a href="/board/talent_ads/{{ad.id}}/"> 
-
-    
-
+    <li> <a href="#">{{ad.musician_name}}</a> posted <a href="/board/talent_ads/{{ad.id}}/"> 
     {{ad.posting_name}}</a></li>
     
     {% endfor %}
