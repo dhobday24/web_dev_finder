@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 
 class Application(models.Model):
-    # event = models.ForeignKey(Event)
+    application_event = models.ForeignKey('Event')
     user = models.ForeignKey(User)
     status = models.NullBooleanField(blank=True, default=None, null=True)
 
