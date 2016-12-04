@@ -11,27 +11,31 @@
             {% if events %}
               <p>Upcoming Events</p>
             {% for events in events|slice:"5" %}
+              
+                <ul>
+                  <li>
+                   <p>on {{events.event_date}} <em>@</em> {{events.event_name}} <br> {{events.event_description_short }}</p>
+                   
+                  </li>
+                </ul>
+            {% endfor %}                              
+            {% endif %} 
+      </div>
+      <div id="musician_posts">
+        
+        {% if users %}
+              <p>Upcoming Events</p>
+            {% for users in users|slice:"5" %}
               <ul>
                 <li>
-                 <p>on {{events.event_date}} <em>@</em> {{events.event_name}} <br> {{events.event_description_short }}</p>
+                 <p> {{user.username}}</p>
                  
                 </li>
               </ul>
             {% endfor %}                              
             {% endif %} 
-      </div>
-      <div id="musician_posts">
-        {% if users %}
-        <p >Who's playing</p>
-          {% for users in users %}
-        <ul>
-          <li>
-            <p>{{ users.user }} @ </p>
-            
-          </li>
-        </ul>
-        {% endfor %}
-        {%endif%}
+      
+      
 
       </div>
     </div>
