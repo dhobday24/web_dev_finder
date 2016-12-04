@@ -14,7 +14,7 @@ class Application(models.Model):
     status = models.NullBooleanField(blank=True, default=None, null=True)
 
     def __str__(self):
-        return self.event.event_name
+        return self.user.username
 
 class Event(models.Model):
     """
