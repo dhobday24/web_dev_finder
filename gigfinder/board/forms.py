@@ -40,4 +40,4 @@ class AdForm(forms.ModelForm):
     class Meta:
         model = Musician_Advertisement
         fields = '__all__'
-        exclude = ['pub_date', 'musician_name']
+        exclude = ['pub_date', 'musician_name', 'ad_application']
