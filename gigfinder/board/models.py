@@ -53,6 +53,7 @@ class Musician_Advertisement(models.Model):
     start_availability = models.DateField()
     end_availability = models.DateField()
     ad_image = models.ImageField(null=True, blank=True)
+    ad_application = models.OneToOneField(AdApplication, null=True)
 
 
     def __str__(self):
