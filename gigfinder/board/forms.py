@@ -5,7 +5,7 @@ Board app forms based on models
 from django.forms.widgets import DateInput
 from django.contrib.admin.widgets import AdminDateWidget
 import floppyforms.__future__ as forms
-from models import Event, Musician_Advertisement
+from .models import Event, Musician_Advertisement
 #from board.models import Job_Posting
 
 
