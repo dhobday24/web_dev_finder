@@ -2,17 +2,29 @@
 
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
+
+   <link href="{% static 'css/board.css'%} " rel="stylesheet">
+  <style type="text/css">
+   p{
+    font-size: 18px;
+   }
+
+    a {
+      text-decoration:none;
+    }
+
+  </style>
 </head>
 
 <body>
-  <h1> Board Page </h1>
+  <h1>Submit New Events or Look for Talent </h1>
 
   <p>
-    <a href="/board/events"><span style="">Posted Events</span></a>
+    <a href="/board/events">Events Board</a>
   </p>
 {% if user.userprofile.type_user == 'Venue' %}
   <p>
-    <a style="color: white;" href="/board/event_submit">Submit a new Event</a>
+    <a href="/board/event_submit">Submit a new Event</a>
   </p>
 {% endif %}
   <!--
@@ -25,8 +37,8 @@
   <p>
   -->
 
-    <a style="color: white;" href="/board/talent_ads" >Talent Ads</a>
- 
+   <p> <a href="/board/talent_ads">Talent Ads</a>
+  </p>
 {% if user.userprofile.type_user == 'Musician' %}
   <p>
     <a href="/board/ad_submit">Submit a new Ad</a>
