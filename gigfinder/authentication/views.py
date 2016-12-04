@@ -134,5 +134,8 @@ def update_success(request):
     return render_to_response('registration/update_success.html')
 
 def get_user_profile(request, username):
+    current_user = request.user
+    print(current_user)
     user = User.objects.get(username=username)
-    return render(request, 'user_profile.html', {"user":user})
+    profile_pic = user.userprofile.profile_pic
+    return render(request, 'user_profile.html', {"user":user, 'profile_pic': profile_pic, "current_user":current_user})
