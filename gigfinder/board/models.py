@@ -5,6 +5,8 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+
+from address.models import AddressField
 # Create your models here.
 
 
@@ -27,8 +29,9 @@ class Event(models.Model):
     event_date = models.DateField()
     event_time = models.TimeField(null=True)
     event_image = models.ImageField(null=True, blank=True)
-    event_user = models.ForeignKey(User, on_delete = models.CASCADE, null=True)
+    event_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     event_application = models.OneToOneField(Application, null=True)
+    event_address = AddressField(null=True)
 
     def __str__(self):
         return self.event_name

@@ -7,6 +7,8 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 
+from address.models import Address
+
 from .models import Event, Musician_Advertisement, Application
 #from board.models import Job_Posting
 from .forms import EventForm, AdForm
