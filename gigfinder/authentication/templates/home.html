@@ -1,4 +1,4 @@
-{% load staticfiles %} {% block title %}Login to Find Your Gigs Here{% endblock %} {% block head %} {% endblock %} {% block content %}
+{% load staticfiles %} {% block title %}Profile{% endblock %} {% block head %} {% endblock %} {% block content %}
 
 <!DOCTYPE html>
 <html>
@@ -31,9 +31,9 @@
 
     <!-- Sidenav/menu -->
     <nav class="w3-sidenav w3-white w3-animate-left w3-center w3-text-grey w3-collapse w3-top" style="z-index:3;width:300px;font-weight:bold" id="mySidenav"><br>
-        <h3 class="w3-padding-64">{{user.username}}</h3>
+        <h3 class="w3-padding-64">{{user.first_name}}<br> {{user.last_name}}</h3>
         <a href="javascript:void(0)" onclick="w3_close()" class="w3-padding w3-hide-large">CLOSE</a>
-        <a href="#about" onclick="w3_close()" class="w3-padding">ABOUT ME</a>
+        <a href="#about" onclick="w3_close()" class="w3-padding"><strong>ABOUT ME</strong></a>
         <a href="#contact" onclick="w3_close()" class="w3-padding">CONTACT</a>
         <a onclick="window.location.href='/home/profile/{{pk}}/' ">UPDATE PROFILE</a>
         <a href="/" onclick="w3_close()" class="w3-padding">PITCH</a>
@@ -54,19 +54,22 @@
     <div class="w3-main" style="margin-left:300px;">
         <!-- About section -->
         <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="about" style="
-        background: #1F1C2C; /* fallback for old browsers */
-        background: -webkit-linear-gradient(to left, #1F1C2C , #928DAB); /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to left, #1F1C2C , #928DAB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        ">
-            <h4><b>ABOUT ME</b></h4>
-            <img src="{{profile_pic.url}}"  class="w3-image w3-padding-32" width="600" height="650">
+        background: #43C6AC; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: fill;">
+            <h4><b>ABOUT ME</b></h4> {% if profile_pic.url != None %}
+            <img src="{{profile_pic.url}}" class="w3-image w3-padding-32" width="600" height="650"> {% else %}
+            <img src="" class="w3-image w3-padding-32" width="600" height="650"> {% endif %}
+
             <div class="w3-content w3-justify" style="max-width:600px">
-                <h4>{{user.username}}</h4>
+                {% if user.userprofile.type_user == "Musician" %}
+                <h4>{{user.username}}: {{user.userprofile.type_user}}</h4>
                 <p>{{user.userprofile.bio}}</p>
-                <p>email: {{user.email}}</p>
-                <p>tel: {{user.userprofile.phonenumber}}</p>
+                <p>Email: {{user.email}}</p>
+                <p>Phone: {{user.userprofile.phonenumber}}</p>
                 <p>
-                    availability: {{user.userprofile.available}}
+                    Availability: {{user.userprofile.available}}
                 </p>
                 <hr class="w3-opacity">
                 <h4 class="w3-padding-16">Type of Music I Play</h4>
@@ -74,6 +77,38 @@
                 <p><button class="w3-btn w3-light-grey w3-padding-large w3-margin-top w3-margin-bottom w3-hover-black">Download Resume</button></p>
                 <hr class="w3-opacity">
                 <div class="w3-row-padding" style="margin:0 -16px">
+                {% else %}
+                <h4>{{user.username}}: {{user.userprofile.type_user}}</h4>
+                <p>{{user.userprofile.bio}}</p>
+                <p>Email: {{user.email}}</p>
+                <p>Phone: {{user.userprofile.phonenumber}}</p>
+                <p>
+                  Website: {{user.userprofile.website}}
+                </p>
+                <p>
+                    Submitted Events:
+                    {% if all_events %}
+                      <ul>
+                        {% for event in all_events %}
+                        <li><a href="/board/events/{{event.id}}/">{{event.event_name}}</a></li>
+                        {% endfor %}
+                      </ul>
+                      <p>
+                        <a href="/board">Go Back to Boards</a>
+                      </p>
+                    {% else %}
+                      <p>No events are available.</p>
+                    {% endif %}
+                </p>
+                <hr class="w3-opacity">
+
+                <h4 class="w3-padding-16">Type of Music We Look For:</h4>
+                <p class="w3-wide">{{user.userprofile.genre}}</p>
+                <p><button class="w3-btn w3-light-grey w3-padding-large w3-margin-top w3-margin-bottom w3-hover-black">Apply to play at this Venue</button></p>
+                <hr class="w3-opacity">
+                <div class="w3-row-padding" style="margin:0 -16px">
+                {% endif %}
+
                 </div>
             </div>
         </div>
@@ -82,6 +117,7 @@
         <div class="w3-container w3-light-grey w3-padding-32 w3-padding-large" id="contact">
             <div class="w3-content" style="max-width:600px">
                 <h4 class="w3-center"><b>Contact Me</b></h4>
+                {% if user.userprofile == "Musician"%}
                 <p>Do you want me to play at your venue? Fill out the form and fill me in with the details :)</p>
                 <form action="form.asp" target="_blank">
                     <div class="w3-group">
@@ -98,6 +134,24 @@
                     </div>
                     <button type="submit" class="w3-btn-block w3-padding-large w3-black w3-margin-bottom">Send Message</button>
                 </form>
+                {% else %}
+                <p>Are you interested in {{user.username}}? Fill out the form and we will contact you, if you are chosen! :)</p>
+                <form action="form.asp" target="_blank">
+                    <div class="w3-group">
+                        <label>Name</label>
+                        <input class="w3-input w3-border" type="text" name="Name" required>
+                    </div>
+                    <div class="w3-group">
+                        <label>Email</label>
+                        <input class="w3-input w3-border" type="text" name="Email" required>
+                    </div>
+                    <div class="w3-group">
+                        <label>Message</label>
+                        <input class="w3-input w3-border" type="text" name="Message" required>
+                    </div>
+                    <button type="submit" class="w3-btn-block w3-padding-large w3-black w3-margin-bottom">Send Message</button>
+                </form>
+                {% endif %}
             </div>
         </div>
 
