@@ -62,17 +62,15 @@
             <img src="{{profile_pic.url}}"  class="w3-image w3-padding-32" width="600" height="650">
             <div class="w3-content w3-justify" style="max-width:600px">
                 <h4>{{user.username}}</h4>
-                <p>Some text about me. I love taking photos of PEOPLE. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-                    id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
+                <p>{{user.userprofile.bio}}</p>
                 <p>email: {{user.email}}</p>
-                <p>tel: {{userprofile.phonenumber}}</p>
+                <p>tel: {{user.userprofile.phonenumber}}</p>
+                <p>
+                    availability: {{user.userprofile.available}}
+                </p>
                 <hr class="w3-opacity">
                 <h4 class="w3-padding-16">Type of Music I Play</h4>
-                <p class="w3-wide">Jazz</p>
-                <p class="w3-wide">Acoustic</p>
-                <p class="w3-wide">Blues</p>
+                <p class="w3-wide">{{user.userprofile.genre}}</p>
                 <p><button class="w3-btn w3-light-grey w3-padding-large w3-margin-top w3-margin-bottom w3-hover-black">Download Resume</button></p>
                 <hr class="w3-opacity">
                 <div class="w3-row-padding" style="margin:0 -16px">
