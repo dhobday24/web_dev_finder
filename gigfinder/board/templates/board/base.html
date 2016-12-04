@@ -1,36 +1,13 @@
 <!-- base.html -->
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>PITCH </title>
-
-  <!-- Bootstrap Core CSS -->
-  <link href="{% static 'css/bootstrap/vendor/bootstrap/css/bootstrap.min.css'%} " rel="stylesheet">
-
-  <!-- Theme CSS -->
-  <link href="{% static 'css/bootstrap/css/clean-blog.min.css'%}" rel="stylesheet">
-
- 
-
-  <script
-  src="https://code.jquery.com/jquery-3.1.1.js"
-  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-  crossorigin="anonymous"></script>
-
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<html>
+<title>PITCH| {{user.username}}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <style>
+
     body,
     h1,
     h2,
@@ -39,9 +16,7 @@
     h5 {
         font-family: "Lora", sans-serif;
     }
-    body{
-      color:white;
-    }
+
     .w3-third img {
         margin-bottom: -6px;
         opacity: 0.8;
@@ -52,8 +27,8 @@
         opacity: 1
     }
 </style>
-</head>
- <body class="w3-light-grey w3-content" style="max-width:1600px; bottom: 10PX; margin-top: 20px;">
+
+<body class="w3-light-grey w3-content" style="max-width:1600px; margin-top: 20px;">
 
     <!-- Sidenav/menu -->
     <nav class="w3-sidenav w3-white w3-animate-left w3-center w3-text-indigo w3-collapse w3-top" style="z-index:3;width:300px;font-weight:bold" id="mySidenav"><br>
@@ -61,11 +36,9 @@
         <a href="javascript:void(0)" onclick="w3_close()" class="w3-padding w3-hide-large">CLOSE</a>
         <a href="/" onclick="w3_close()" class="w3-padding">PITCH</a>
         <a href="/home/" onclick="w3_close()" class="w3-padding">HOME</a>
-        {% if not current_user %}
-        <a onclick="window.location.href='/home/profile/{{pk}}/' ">UPDATE PROFILE</a>
-        {% endif %}
-        <a href="#about" onclick="w3_close()" class="w3-padding"><strong>ABOUT ME</strong></a>
-        <a href="#contact" onclick="w3_close()" class="w3-padding">CONTACT</a>
+        
+        
+  
         <a href="/logout/" onclick="w3_close()" class="w3-padding">LOGOUT</a>
     </nav>
 
@@ -74,7 +47,6 @@
         <span class="w3-left w3-padding">{{user.username}}</span>
         <a href="javascript:void(0)" class="w3-right w3-btn w3-white" onclick="w3_open()">☰</a>
     </header>
-
     <!-- Overlay effect when opening sidenav on small screens -->
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
@@ -93,26 +65,25 @@
         </div>
     </header>-->
 
-  <!-- page content -->
-  <div class="wrapper" style="margin-left:300px;margin-top: 90px; background: #43C6AC; color: white; /* fallback for old browsers */
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-left:300px; height: 100%;">
+        <!-- About section -->
+        <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="about" style="
+        background: #43C6AC; /* fallback for old browsers */
         background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         background: fill;">
-    <div class="container">
-      <div class="post-preview">
-      <style type="text/css">
-        h1, h2, p{
-          color: white;
-        }
-      </style>
+     
         <h1>{% block head %}{% endblock %}</h1> {% block content %}{% endblock %}
       </div>
     </div>
-  </div>
+
 </body>
 
 <!-- Footer -->
-<center
+<center>
 <footer style="position: fixed; bottom: 0">
   <div class="container">
     <div class="row">
