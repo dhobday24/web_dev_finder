@@ -19,6 +19,7 @@ def board(request):
     """
     Let a logged in user see the board page
     """
+    user = request.user
     return render(request, 'board/board.html')
 
 

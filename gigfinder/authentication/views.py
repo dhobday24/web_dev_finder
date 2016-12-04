@@ -73,7 +73,9 @@ def home(request):
     """
     Render the home page for a logged in user
     """
-    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id})
+    profile_pic = request.user.userprofile.profile_pic
+    print(request.user.userprofile.location)
+    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic})
 
 @login_required() # only logged in users should access this
 def edit_user(request, pk):
@@ -95,16 +97,17 @@ def edit_user(request, pk):
                                                          'website',
                                                          'phonenumber',
                                                          'genre',
-                                                         'available'))
+                                                         'available',
+                                                         'profile_pic',))
     formset = ProfileInlineFormset(instance=user)
 
     if request.user.is_authenticated() and request.user.id == user.id:
         if request.method == "POST":
             user_form = UserForm(request.POST, request.FILES, instance=user)
-            formset = ProfileInlineFormset(request.POST, request.FILES, instance=user)
+            formset = ProfileInlineFormset(request.POST, request.FILES or None, instance=user)
             if user_form.is_valid():
                 created_user = user_form.save(commit=False)
-                formset = ProfileInlineFormset(request.POST, request.FILES, instance=created_user)
+                formset = ProfileInlineFormset(request.POST, request.FILES or None, instance=created_user)
                 if formset.is_valid():
                     created_user.save()
                     formset.save()
@@ -125,5 +128,8 @@ def update_success(request):
     return render_to_response('registration/update_success.html')
 
 def get_user_profile(request, username):
+    current_user = request.user
+    print(current_user)
     user = User.objects.get(username=username)
-    return render(request, 'user_profile.html', {"user":user})
+    profile_pic = user.userprofile.profile_pic
+    return render(request, 'user_profile.html', {"user":user, 'profile_pic': profile_pic, "current_user":current_user})
