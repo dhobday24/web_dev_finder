@@ -2,6 +2,12 @@
 
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
+      <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
 </head>
 
 <body>
@@ -22,39 +28,33 @@
     <img src="{{event_image.url}}" />
   </p>
   {% endif %}
+  <div id="map"></div>
   <p>
     <a href="/board/events">Go Back to Events</a>
   </p>
   <form action='/board/apply_for_event/' method='post'> {% csrf_token %}
-
+    <input type="hidden" name="app_event" value="{{event.id}}" />
     <input type="submit" value="Apply Now!" />
   </form>
-<!--   <form action="#" method="get">
-    <input type="submit" class="btn" value="Click" name="mybtn">
-  </form> -->
-<!--   <button onclick="call_counter({{browser_id}});">
-            Application Submission
-  </button> -->
+
+      <script>
+      function initMap() {
+        var uluru = {lat: 40.730, lng: -73.935};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiXWhciRh1uFx6DSjrqLhFnAgvExifV-Q&callback=initMap">
+    </script>
 </body>
 {% endblock %}
 
 {% block script %}
-<!-- $(function(){
-     $('form').on('submit', function(e){
-         e.preventDefault();
-         $.ajax({
-             url: $(this).attr('action'),
-             method: $(this).attr('method'),
-             success: function(data){ $('#target').html(data) }
-         });
-     });
-}); -->
-<!-- <script>
-  function call_counter(pk) {
-    window.open(url);
-    $.get('apply_for_event/'+pk+'/', function (data) {
-      alert("application submitted!");
-    });
-  }
-</script> -->
 {% endblock %}

@@ -22,6 +22,10 @@
     <img src="{{ad_image.url}}" />
   </p>
   {% endif %}
+  <form action='/board/apply_for_ad/' method='post'> {% csrf_token %}
+    <input type="hidden" name="app_ad" value="{{ad.id}}" />
+    <input type="submit" value="Apply Now!" />
+  </form>
   <p>
     <a href="/board/talent_ads">Go Back to Musician Ads</a>
   </p>
