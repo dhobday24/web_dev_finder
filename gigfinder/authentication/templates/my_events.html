@@ -1,0 +1,77 @@
+{% load staticfiles %} {% block title %}Profile{% endblock %} {% block head %} {% endblock %} {% block content %}
+
+<!DOCTYPE html>
+<html>
+<title>PITCH| {{user.username}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-family: "Lora", sans-serif;
+    }
+
+    .w3-third img {
+        margin-bottom: -6px;
+        opacity: 0.8;
+        cursor: pointer
+    }
+
+    .w3-third img:hover {
+        opacity: 1
+    }
+</style>
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
+    <span class="w3-left w3-padding">{{user.username}}</span>
+    <a href="javascript:void(0)" class="w3-right w3-btn w3-white" onclick="w3_open()">☰</a>
+</header>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px; margin-top: 20px;">
+
+    <!-- Sidenav/menu -->
+    <nav class="w3-sidenav w3-white w3-animate-left w3-center w3-text-grey w3-collapse w3-top" style="z-index:3;width:300px;font-weight:bold" id="mySidenav"><br>
+        <h3 class="w3-padding-64">{{user.username}}</h3>
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-padding w3-hide-large">CLOSE</a>
+        <h4>MY EVENTS</h4>
+        <br><br>
+        <a href="/" onclick="w3_close()" class="w3-padding">PITCH</a>
+        <a href="/board/" onclick="w3_close()" class="w3-padding">GO TO BOARDS</a> {% if not current_user %}
+        <a href="/home/">PROFILE</a> {% endif %}
+        <a href="/logout/" onclick="w3_close()" class="w3-padding">LOGOUT</a>
+    </nav>
+    <div class="w3-main" style="margin-left:350px;">
+        {% if all_events %}
+        <ul>
+            {% for event in all_events %}
+            {% if event.event_user.username == user.username %}
+            <li><a href="/events/{{event.id}}/applicants/">{{event.event_name}}</a></li>
+            <form action="/events/{{event.id}}/applicants/ "method='post'> {% csrf_token %}
+              <input type="hidden" name="app_event" value="{{event.id}}" readonly/>
+                <input type="hidden" id="event_lat" name="event_lat" value="{{ event_lat }}" readonly/>
+                <input type="hidden" id="event_long" name="event_long" value="{{ event_long }}" readonly/>
+              <input type="submit" value="Apply Now!" />
+            </form>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <p>
+            <a href="/board">Go Back to Boards</a>
+        </p>
+        {% else %}
+        <p>No events are available.</p>
+        <p>
+            <a href="/board">Go Back to Boards</a>
+        </p>
+
+        {% endif %}
+
+
+
+</body>
+{% endblock %}

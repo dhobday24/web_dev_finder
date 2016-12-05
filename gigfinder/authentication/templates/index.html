@@ -5,24 +5,27 @@
 
 {% block content%}
 <!-- Main Content -->
+->
 <div class="container">
   <div class="row" >
-   
-         <div id="venue_posts">
+
+         <div id="venue_posts" style="border-radius: 6%; text-align: center;">
+
             {% if events %}
               <p>Upcoming Events</p>
-            {% for events in events|slice:"5" %}
+            {% for event in events|slice:"5" %}
 
                 <ul>
                   <li>
-                   <p>on {{events.event_date}} <em>@</em> {{events.event_name}} <br> {{events.event_description_short }}</p>
-                   
+                   <p>{{event.event_name}} on {{event.event_date}} <em>@</em> <br> </p>
+
                   </li>
                 </ul>
-            {% endfor %}                              
-            {% endif %} 
+            {% endfor %}
+            {% endif %}
       </div>
       <div id="musician_posts">
+
         
         {% if users %}
               <p>who's playing</p>
@@ -36,6 +39,20 @@
             {% endfor %}                              
             {% endif %} 
       
+
+
+        {% if ads %}
+              <p>Recent Ads</p>
+            {% for ad in ads|slice:"5" %}
+              <ul>
+                <li>
+                 <p> {{ad.musician_name}} <br/> {{ad.ad_description_short}} </p>
+
+                </li>
+              </ul>
+            {% endfor %}
+            {% endif %}
+
       </div>
  </div>
  

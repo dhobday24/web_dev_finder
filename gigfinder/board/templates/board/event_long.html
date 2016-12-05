@@ -7,6 +7,7 @@
 </head>
 
 <body>
+
     <p>
       <a href="/profile/{{user_posted}}">{{user_posted}}</a>
     </p>
@@ -29,12 +30,47 @@
       <a href="/board/events">Go Back to Events</a>
     </p>
     <form action='/board/apply_for_event/' method='post'> {% csrf_token %}
-        <input type="hidden" name="app_event" value="{{event.id}}" />
-        <input type="submit" value="Apply Now!" />
-    </form>
+    <input type="hidden" name="app_event" value="{{event.id}}" readonly/>
+      <input type="hidden" id="event_lat" name="event_lat" value="{{ event_lat }}" readonly/>
+      <input type="hidden" id="event_long" name="event_long" value="{{ event_long }}" readonly/>
+    <input type="submit" value="Apply Now!" />
+  </form>
     <script>
+=======
+  <p>
+    <a href="/profile/{{user_posted}}">{{user_posted}}</a>
+  </p>
+  <p>
+    {{name}}
+  </p>
+  <p>
+    {{long_description}}
+  </p>
+  <p>
+    {{date}}
+  </p>
+  {% if event_image %}
+  <p>
+    <img src="{{event_image.url}}" />
+  </p>
+  {% endif %}
+  <div id="map"></div>
+  <p>
+    <a href="/board/events">Go Back to Events</a>
+  </p>
+  <form action='/board/apply_for_event/' method='post'> {% csrf_token %}
+    <input type="hidden" name="app_event" value="{{event.id}}" readonly/>
+      <input type="hidden" id="event_lat" name="event_lat" value="{{ event_lat }}" readonly/>
+      <input type="hidden" id="event_long" name="event_long" value="{{ event_long }}" readonly/>
+    <input type="submit" value="Apply Now!" />
+  </form>
+
+      <script>
+>>>>>>> upsteam/master
       function initMap() {
-        var uluru = {lat: 40.730, lng: -73.935};
+          var lat = parseFloat(document.getElementById("event_lat").value);
+          var long = parseFloat(document.getElementById("event_long").value);
+        var uluru = {lat: lat, lng: long};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
           center: uluru

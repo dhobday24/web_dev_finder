@@ -23,10 +23,10 @@ def index(request):
     Return the landing page
     """
     events = Event.objects.all()
-    users = UserProfile.objects.all()
+    ads = Musician_Advertisement.objects.all()
     context = {
         'events': events,
-       'users':users,
+       'ads':ads,
     }
     return render(request, 'index.html', context)
 
@@ -139,3 +139,15 @@ def get_user_profile(request, username):
     user = User.objects.get(username=username)
     profile_pic = user.userprofile.profile_pic
     return render(request, 'user_profile.html', {"user":user, 'profile_pic': profile_pic, "current_user":current_user})
+
+def my_events(request):
+    current_user = request.user
+    all_events = Event.objects.all()
+    context = {
+        'all_events': all_events,
+        'current_user': current_user,
+    }
+    return render(request, 'my_events.html', context)
+
+def show_applicants(request, event_id):
+    return render(request, 'applicants.html')
