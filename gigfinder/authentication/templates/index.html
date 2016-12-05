@@ -3,7 +3,6 @@
 <link href="{%static 'css/customCss.css'% }" rel="stylesheet" type="text/css"  />
 <link rel="stylesheet" type="text/css" href="{% static 'slideshow.css' %} "/>
 
-
 {% block content%}
 <!-- Main Content -->
 <div class="container">
@@ -37,19 +36,45 @@
             {% endfor %}                              
             {% endif %} 
       
-      
-
       </div>
-    </div>
+ </div>
+ 
+  </div>
 
-    <div class="slideshow">
-        <figure>
-          <img src="{%static 'images/slide1.jpg' %} " width="600" />
-          <figcaption>"band" at "venue" </figcaption>
-        </figure>
-      </div>
-    </div>
+  <!-- FOLLOWING SLIDESHOW ISNT WORKING AS OF YET. 
+<div class="slideshow-container">
 
+     
+        <div class="images">
+          <img src="{%static 'images/slide2.jpg' %}">
+          <div class="caption"> Caption</div>
+        </div>
+
+        <div class="images">
+          <img src="images/moriarty.jpg"> 
+          <div class="caption"> Caption</div> 
+         </div>
+        <div class="images">
+          <img src="images/moriarty.jpg"> 
+          <div class="caption"> Caption</div> 
+         </div>
+         <div class="images">
+          <img src="images/moriarty.jpg"> 
+          <div class="caption"> Caption</div> 
+         </div>
+
+
+<a class="next" onclick="nextSlide(1)">&#10095;</a>
+<a class="prev" onclick="prevSlide(1)">&#10094;</a>
+
+</div>
+-->
+
+
+
+
+
+       
 
 
 {% endblock %}
