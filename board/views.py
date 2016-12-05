@@ -131,6 +131,7 @@ def long_description_musad(request, ad_id):
     end_availability = ad.end_availability
     ad_image = ad.ad_image
     name = ad.musician_name
+    app = AdApplication.objects.filter(ad_name = ad.id, user_who_applied=request.user)
     return render(request, 'board/ad_long.html', {'name': name,
                                                   'ad': ad,
                                                   'posting_name': posting_name,
@@ -138,6 +139,7 @@ def long_description_musad(request, ad_id):
                                                   'start_availability': start_availability,
                                                   'end_availability': end_availability,
                                                   'ad_image': ad_image,
+                                                  'app': app,
                                                   })
 
 def search_results(request):
