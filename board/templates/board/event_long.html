@@ -2,15 +2,41 @@
 
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
-      <style>
-       #map {
-        height: 400px;
-        width: 100%;
-       }
-    </style>
+  <link href="{%static 'css/customCss.css' %}" rel="stylesheet" type="text/css"  />
+      
 </head>
 
 <body>
+
+    <p>
+      <a href="/profile/{{user_posted}}">{{user_posted}}</a>
+    </p>
+    <p>
+      {{name}}
+    </p>
+    <p>
+      {{long_description}}
+    </p>
+    <p>
+      {{date}}
+    </p>
+    {% if event_image %}
+    <p>
+      <img src="{{event_image.url}}" />
+    </p>
+    {% endif %}
+    <div id="map"></div>
+    <p>
+      <a href="/board/events">Go Back to Events</a>
+    </p>
+    <form action='/board/apply_for_event/' method='post'> {% csrf_token %}
+    <input type="hidden" name="app_event" value="{{event.id}}" readonly/>
+      <input type="hidden" id="event_lat" name="event_lat" value="{{ event_lat }}" readonly/>
+      <input type="hidden" id="event_long" name="event_long" value="{{ event_long }}" readonly/>
+    <input type="submit" value="Apply Now!" />
+  </form>
+    
+
   <p>
     <a href="/profile/{{user_posted}}">{{user_posted}}</a>
   </p>
@@ -37,9 +63,10 @@
       <input type="hidden" id="event_lat" name="event_lat" value="{{ event_lat }}" readonly/>
       <input type="hidden" id="event_long" name="event_long" value="{{ event_long }}" readonly/>
     <input type="submit" value="Apply Now!" />
-  </form>
+</form>
 
       <script>
+
       function initMap() {
           var lat = parseFloat(document.getElementById("event_lat").value);
           var long = parseFloat(document.getElementById("event_long").value);
@@ -58,6 +85,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiXWhciRh1uFx6DSjrqLhFnAgvExifV-Q&callback=initMap">
     </script>
 </body>
+
 {% endblock %}
 
 {% block script %}

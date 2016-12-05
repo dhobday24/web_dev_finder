@@ -1,4 +1,5 @@
 {% extends 'board/base.html'%} {% load staticfiles %} {% block content%} {% load floppyforms %}
+  <link href="{%static 'css/customCss.css' %}" rel="stylesheet" type="text/css"  />
 
 <head>
  
@@ -6,12 +7,12 @@
 
 
 <body >
-  <form method="POST" action="" enctype="multipart/form-data" style=""> {% csrf_token %}
+  <form method="POST" action="" enctype="multipart/form-data" class="event_submit_form"> {% csrf_token %}
     <!--{{form_event.as_p}}-->
     {% form form_event using "floppyforms/layouts/p.html" %}
     <input type="submit" value="Create Event"/>
   </form>
   </br>
-  <a style="color: white;" href="/board">Go Back to Boards</a>
+  <a  href="/board">Go Back to Boards</a>
 </body>
 {% endblock %}

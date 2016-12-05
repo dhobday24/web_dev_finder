@@ -1,67 +1,16 @@
-{%extends 'base.html' %} {% load staticfiles %} {% block content%}
-   <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %} ">
+{%extends 'base.html' %} {% load staticfiles %}     
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/slideshow.css' %} ">
+<link href="{%static 'css/customCss.css'% }" rel="stylesheet" type="text/css"  />
+<link rel="stylesheet" type="text/css" href="{% static 'slideshow.css' %} "/>
 
-<style type="text/css">
-  /* style for landing page */
-#venue_posts {
-
-
-    background: #43C6AC; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-    width: 45%;
-    height: 450px;
-    float: left;
-    color: white;
-    border-radius: 60%;
-
-
-}
-
-#musician_posts{
-    background: #43C6AC; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    width: 45%;
-    float: right;
-    height: 450px;
-    border-radius: 6%;
-    text-align: center;
-
-}
-
-
-#venue_posts a {
-  color: white;
-}
-#venue_posts li {
-  color: white;
-  list-style: none;
-}
-#musician_posts li{
-  list-style: none;
-}
-.slideshow{
-  margin: auto;
-  border-style: dotted;
-  margin-top: 20px;
-}
-
-.slideshow figure img{
-  margin: auto;
-  width: 80%;
-
-}
-
-</style>
+{% block content%}
 <!-- Main Content -->
+->
 <div class="container">
   <div class="row" >
 
          <div id="venue_posts" style="border-radius: 6%; text-align: center;">
+
             {% if events %}
               <p>Upcoming Events</p>
             {% for event in events|slice:"5" %}
@@ -77,6 +26,21 @@
       </div>
       <div id="musician_posts">
 
+        
+        {% if users %}
+              <p>who's playing</p>
+            {% for users in users|slice:"5" %}
+              <ul>
+                <li>
+                 <p> {{user.name}}</p>
+                 
+                </li>
+              </ul>
+            {% endfor %}                              
+            {% endif %} 
+      
+
+
         {% if ads %}
               <p>Recent Ads</p>
             {% for ad in ads|slice:"5" %}
@@ -89,19 +53,45 @@
             {% endfor %}
             {% endif %}
 
-
-
       </div>
-    </div>
+ </div>
+ 
+  </div>
 
-    <div class="slideshow">
-        <figure>
-          <img src="{%static 'images/slide1.jpg' %} " width="600" />
-          <figcaption>"band" at "venue" </figcaption>
-        </figure>
-      </div>
-    </div>
+  <!-- FOLLOWING SLIDESHOW ISNT WORKING AS OF YET. 
+<div class="slideshow-container">
 
+     
+        <div class="images">
+          <img src="{%static 'images/slide2.jpg' %}">
+          <div class="caption"> Caption</div>
+        </div>
+
+        <div class="images">
+          <img src="images/moriarty.jpg"> 
+          <div class="caption"> Caption</div> 
+         </div>
+        <div class="images">
+          <img src="images/moriarty.jpg"> 
+          <div class="caption"> Caption</div> 
+         </div>
+         <div class="images">
+          <img src="images/moriarty.jpg"> 
+          <div class="caption"> Caption</div> 
+         </div>
+
+
+<a class="next" onclick="nextSlide(1)">&#10095;</a>
+<a class="prev" onclick="prevSlide(1)">&#10094;</a>
+
+</div>
+-->
+
+
+
+
+
+       
 
 
 {% endblock %}
