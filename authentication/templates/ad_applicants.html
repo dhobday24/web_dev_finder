@@ -52,7 +52,11 @@
 <p>
     {% if inqueries %}
         {% for inquery in inqueries %}
-            <li> {{inquery.user_who_applied}} </li>
+            <li> <a href="/profile/{{inquery.user_who_applied}}">{{inquery.user_who_applied}}</a>  </li>
+            <input type="submit" value="Accept" />
+            <input type="submit" value="Deny" />
+            <br />
+            <br />
         {% endfor %}
     {% endif %}
 </p>
