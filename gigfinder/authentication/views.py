@@ -148,3 +148,6 @@ def my_events(request):
         'current_user': current_user,
     }
     return render(request, 'my_events.html', context)
+
+def show_applicants(request, event_id):
+    return render(request, 'applicants.html')
