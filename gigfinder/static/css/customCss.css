@@ -3,6 +3,8 @@
 
 #landing-header{
 background-image: url(../images/pitchIndex.jpg);
+
+
 }
 
 
@@ -24,12 +26,12 @@ background-image: url(../images/pitchIndex.jpg);
     background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     width: 45%;
-   float: right;
+    float: right;
     height: 450px;
     border-radius: 6%;  
     text-align: center;
     color: white;
-}
+  }
 
 
 #venue_posts a {
@@ -91,8 +93,8 @@ body,
 /* style for board.html */
 .board{
   
- font-size: 18px;
- text-decoration: none;
+  font-size: 18px;
+  text-decoration: none;
   
 }
 
@@ -115,4 +117,37 @@ margin-left: 500px;
   background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: fill; bottom: 0px; height: 100%;
  
-} 
+}
+
+.slideshow-container{
+  clear: both;
+  position: relative;
+  margin: 0 auto;
+  padding: 10px; 
+  width: 50px;
+  height: 80px; 
+}
+.images{
+  width: 5px;
+  height: 6px;
+  
+}
+.caption{
+  background-color: rgba(0,0,0,.5);
+}
+.prev, .next{
+  color: white;
+  cursor: pointer;
+  font-size: 20PX;
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  top: 0;
+  top: 50%;
+
+  /*margin: 0 auto; */
+  text-decoration: none;
+  padding: 30px;
+}
+.next{
+  right: 0;
+}
