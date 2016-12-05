@@ -24,7 +24,6 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [STATIC_DIR, ]
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFileStorage'
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'authentication/templates/')
 # Quick-start development settings - unsuitable for production
@@ -99,6 +98,10 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+DATABASES[‘default’] = dj_database_url.config()
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -124,3 +127,4 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 MEDIA_URL = '/media/'
 
 #AUTH_PROFILE_MODULE = authentication.UserProfile
+SECURE_PROXY_SSL_HEADER = (‘HTTP_X_FORWARDED_PROTO’, ‘https’)
