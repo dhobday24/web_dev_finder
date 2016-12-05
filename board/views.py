@@ -104,6 +104,7 @@ def long_description_event(request, event_id):
     browsing_userid = request.user.id
     event_lat = event.event_lat
     event_long = event.event_long
+    app = EventApplication.objects.filter(event_name = event.id, user_who_applied=request.user)
 
     return render(request, 'board/event_long.html', {'name': name,
                                                      'event': event,
@@ -113,7 +114,8 @@ def long_description_event(request, event_id):
                                                      'user_posted': user_posted,
                                                      'browser_id': browsing_userid,
                                                      'event_lat': event_lat,
-                                                     'event_long': event_long})
+                                                     'event_long': event_long,
+                                                     'app': app,})
 
 
 def long_description_musad(request, ad_id):
