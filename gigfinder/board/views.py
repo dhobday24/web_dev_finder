@@ -152,7 +152,7 @@ def apply_for_event(request):
     if request.method == 'POST':
         app_id = request.POST.get("app_event")
         username = request.user
-        application = EventApplication.objects.create(user=username, event_name = Event.objects.filter(id = app_id).get())
+        application = EventApplication.objects.create(user_who_applied=username, event_name = Event.objects.filter(id = app_id).get())
     return render(request, 'board/apply_for_event.html')
 
 def request_musician(request):
@@ -160,7 +160,7 @@ def request_musician(request):
         app_id = request.POST.get("app_ad")
         username = request.user
         print(app_id)
-        application = AdApplication.objects.create(user=username, ad_name = Musician_Advertisement.objects.filter(id = app_id).get())
+        application = AdApplication.objects.create(user_who_applied=username, ad_name = Musician_Advertisement.objects.filter(id = app_id).get())
     return render(request, 'board/apply_for_ad.html')
 
 
