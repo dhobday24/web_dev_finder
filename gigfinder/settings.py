@@ -98,8 +98,9 @@ DATABASES = {
     }
 }
 
-# import dj_database_url
-# DATABASES['default'] = dj_database_url.config()
+import dj_database_url
+DATABASES[‘default’] = dj_database_url.config()
+
 
 
 # Internationalization
@@ -126,4 +127,4 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 MEDIA_URL = '/media/'
 
 #AUTH_PROFILE_MODULE = authentication.UserProfile
-# SECURE_PROXY_SSL_HEADER = (‘HTTP_X_FORWARDED_PROTO’, ‘https’)
+SECURE_PROXY_SSL_HEADER = (‘HTTP_X_FORWARDED_PROTO’, ‘https’)
