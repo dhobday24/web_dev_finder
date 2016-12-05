@@ -35,7 +35,7 @@ SECRET_KEY = 'lmdwqn_&9$rn_m)x_khxf%8e5l1gng_^kw9p_zua0o+la#e-1&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'pitchccny.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'pitchccny.herokuapp.com', 'gig-webdev-proj.herokuapp.com']
 
 
 # Application definition
