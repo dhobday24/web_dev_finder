@@ -41,27 +41,21 @@
         <h4>MY ADS</h4>
         <br><br>
         <a href="/" onclick="w3_close()" class="w3-padding">PITCH</a>
-        <a href="/board/" onclick="w3_close()" class="w3-padding">GO TO BOARDS</a> {% if current_user %}
+        <a href="/board/" onclick="w3_close()" class="w3-padding">GO TO BOARDS</a> {% if not current_user %}
         <a href="/home/">PROFILE</a> {% endif %}
         <a href="/logout/" onclick="w3_close()" class="w3-padding">LOGOUT</a>
     </nav>
     <div class="w3-main" style="margin-left:350px;">
-        {% if all_ads %}
-        <ul>
-            {% for ad in all_ads %}
-            {% if ad.musician_name.username == user.username %}
-            <li><a href="/talent_ads/{{ad.id}}/applicants/">{{ad.posting_name}}</a></li>
-            {% endif %}
-            {% endfor %}
-        </ul>
 
-        {% else %}
-        <p>No ads are available.</p>
+<h3> Venues Requesting My Talent </h3>
 
-
-        {% endif %}
-
-
+<p>
+    {% if inqueries %}
+        {% for inquery in inqueries %}
+            <li> {{inquery.user_who_applied}} </li>
+        {% endfor %}
+    {% endif %}
+</p>
 
 </body>
 {% endblock %}

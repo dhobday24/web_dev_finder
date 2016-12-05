@@ -165,3 +165,11 @@ def my_ads(request):
         'current_user': current_user,
     }
     return render(request, 'my_ads.html', context)
+
+def show_applicants_ad(request, ad_id):
+    ad = Musician_Advertisement.objects.filter(id = ad_id).get()
+    inqueries = AdApplication.objects.filter(ad_name = ad_id)
+    context = {
+        'inqueries' : inqueries
+    }
+    return render(request, 'ad_applicants.html', context)
