@@ -155,4 +155,4 @@ def show_applicants_event(request, event_id):
     context = {
         'applications' : applications
     }
-    return render(request, 'applicants.html', context)
+    return render(request, 'event_applicants.html', context)
