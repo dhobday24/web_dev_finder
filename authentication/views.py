@@ -155,6 +155,17 @@ def show_applicants_event(request, event_id):
     context = {
         'applications' : applications
     }
+    if request.method == 'POST':
+        app_status = request.POST.get('app_status')
+        applicant = request.POST.get('applicant')
+        if app_status == 'Yes':
+            cur_app = EventApplication.objects.filter(event_name = event_id, user_who_applied = applicant).get()
+            cur_app.status = True
+            cur_app.save()
+        else:
+            cur_app = EventApplication.objects.filter(event_name = event_id, user_who_applied = applicant).get()
+            cur_app.status = False
+            cur_app.save()
     return render(request, 'event_applicants.html', context)
 
 def my_ads(request):
