@@ -40,7 +40,7 @@ class Event(models.Model):
     event_time = models.TimeField(null=True)
     event_image = models.ImageField(null=True, blank=True)
     event_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    event_application = models.OneToOneField(EventApplication, null=True)
+    event_application = models.OneToOneField(EventApplication, null=True, blank = True)
     event_address = AddressField(null=True)
 
     def __str__(self):
