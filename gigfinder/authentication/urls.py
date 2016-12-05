@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^my_events/$', views.my_events, name='my_events'),
     url(r'^events/(?P<event_id>[0-9]+)/applicants/$',
         views.show_applicants_event, name='show_applicants'),
+    url(r'^my_ads/$', views.my_ads, name='my_ads'),
 ]

@@ -40,7 +40,12 @@
         {% endif %}
         <a href="#about" onclick="w3_close()" class="w3-padding"><strong>ABOUT ME</strong></a>
         <a href="#contact" onclick="w3_close()" class="w3-padding">CONTACT</a>
+        {% if user.userprofile.type_user == 'Venue' %}
         <a href="/my_events" onclick="w3_close()" class="w3-padding">MY EVENTS</a>
+        {% endif %}
+        {% if user.userprofile.type_user == 'Musician' %}
+        <a href="/my_ads" onclick="w3_close()" class="w3-padding">MY ADS</a>
+        {% endif %}
         <a href="/logout/" onclick="w3_close()" class="w3-padding">LOGOUT</a>
     </nav>
 

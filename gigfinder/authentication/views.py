@@ -156,3 +156,12 @@ def show_applicants_event(request, event_id):
         'applications' : applications
     }
     return render(request, 'event_applicants.html', context)
+
+def my_ads(request):
+    current_user = request.user
+    all_ads = Musician_Advertisement.objects.all()
+    context = {
+        'all_ads': all_ads,
+        'current_user': current_user,
+    }
+    return render(request, 'my_ads.html', context)

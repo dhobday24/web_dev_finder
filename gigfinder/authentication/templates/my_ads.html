@@ -1,0 +1,67 @@
+{% load staticfiles %} {% block title %}Profile{% endblock %} {% block head %} {% endblock %} {% block content %}
+
+<!DOCTYPE html>
+<html>
+<title>PITCH| {{user.username}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-family: "Lora", sans-serif;
+    }
+
+    .w3-third img {
+        margin-bottom: -6px;
+        opacity: 0.8;
+        cursor: pointer
+    }
+
+    .w3-third img:hover {
+        opacity: 1
+    }
+</style>
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
+    <span class="w3-left w3-padding">{{user.username}}</span>
+    <a href="javascript:void(0)" class="w3-right w3-btn w3-white" onclick="w3_open()">☰</a>
+</header>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px; margin-top: 20px;">
+
+    <!-- Sidenav/menu -->
+    <nav class="w3-sidenav w3-white w3-animate-left w3-center w3-text-grey w3-collapse w3-top" style="z-index:3;width:300px;font-weight:bold" id="mySidenav"><br>
+        <h3 class="w3-padding-64">{{user.username}}</h3>
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-padding w3-hide-large">CLOSE</a>
+        <h4>MY EVENTS</h4>
+        <br><br>
+        <a href="/" onclick="w3_close()" class="w3-padding">PITCH</a>
+        <a href="/board/" onclick="w3_close()" class="w3-padding">GO TO BOARDS</a> {% if current_user %}
+        <a href="/home/">PROFILE</a> {% endif %}
+        <a href="/logout/" onclick="w3_close()" class="w3-padding">LOGOUT</a>
+    </nav>
+    <div class="w3-main" style="margin-left:350px;">
+        {% if all_ads %}
+        <ul>
+            {% for ad in all_ads %}
+            {% if ad.musician_name.username == user.username %}
+            <li><a href="/events/{{ad.id}}/applicants/">{{ad.posting_name}}</a></li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+
+        {% else %}
+        <p>No ads are available.</p>
+
+
+        {% endif %}
+
+
+
+</body>
+{% endblock %}
