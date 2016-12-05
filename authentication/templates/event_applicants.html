@@ -52,7 +52,11 @@
 <p>
     {% if applications %}
         {% for applicant in applications %}
-            <li> {{applicant.user_who_applied}} </li>
+            <li> <a href="/profile/{{applicant.user_who_applied}}">{{applicant.user_who_applied}}</a> </li>
+            <input type="submit" value="Accept" />
+            <input type="submit" value="Deny" />
+            <br />
+            <br />
         {% endfor %}
     {% endif %}
 </p>
