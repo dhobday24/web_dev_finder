@@ -4,8 +4,9 @@
 <html>
 <title>PITCH: {{user.username}}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link href="{%static 'css/custom.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{%static 'css/custom.css' %}" rel="stylesheet" type="text/css" />
 
 
 
@@ -15,57 +16,39 @@
         background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         background: fill; bottom: 0px; height: 100%">
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <body class="w3-light-grey w3-content board-base-body"  >
 
-    <!-- Sidenav/menu -->
-    <nav class="w3-sidenav w3-white w3-animate-left w3-center w3-text-grey w3-collapse w3-top" style="z-index:3;width:300px;font-weight:bold;"  id="mySidenav" class="board-base-body"><br>
-        <h3 class="w3-padding-64">{{user.first_name}}<br> {{user.last_name}}</h3>
-        <a href="javascript:void(0)" onclick="w3_close()" class="w3-padding w3-hide-large">CLOSE</a>
-        <a href="/" onclick="w3_close()" class="w3-padding">PITCH</a>
+    <body class="w3-light-grey w3-content board-base-body">
 
-        <a href="/home/" onclick="w3_close()" class="w3-padding">PROFILE</a>
+        <!-- Sidenav/menu -->
+        <nav class="w3-sidenav w3-white w3-animate-left w3-center w3-text-grey w3-collapse w3-top" style="z-index:3;width:300px;font-weight:bold;" id="mySidenav" class="board-base-body"><br>
+            <h3 class="w3-padding-64">{{user.first_name}}<br> {{user.last_name}}</h3>
+            <a href="javascript:void(0)" onclick="w3_close()" class="w3-padding w3-hide-large">CLOSE</a>
+            <a href="/" onclick="w3_close()" class="w3-padding">PITCH</a>
 
+            <a href="/home/" onclick="w3_close()" class="w3-padding">PROFILE</a>
 
+            <a href="/home/" onclick="w3_close()" class="w3-padding">HOME</a>
 
-               
-        
-        
-        <a href="/home/" onclick="w3_close()" class="w3-padding">HOME</a>
-        
-        
-  
+            <a href="/logout/" onclick="w3_close()" class="w3-padding">LOGOUT</a>
 
-        <a href="/logout/" onclick="w3_close()" class="w3-padding">LOGOUT</a>
-    </nav>
+            <form action="#" method="POST">
+              {% csrf_token %}
+                <br><br>
+                <input type="text" name="search" placeholder="Search.." id="search">
+                <br><br>
+                <button type="submit" class="btn btn-primary" value="submit">SUBMIT</button>
+            </form>
+        </nav>
 
-    <!-- Top menu on small screens -->
-    <header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
-        <span class="w3-left w3-padding">{{user.username}}</span>
-        <a href="javascript:void(0)" class="w3-right w3-btn w3-white" onclick="w3_open()">☰</a>
-    </header>
-    <!-- Overlay effect when opening sidenav on small screens -->
-    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+        <!-- Top menu on small screens -->
+        <header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
+            <span class="w3-left w3-padding">{{user.username}}</span>
+            <a href="javascript:void(0)" class="w3-right w3-btn w3-white" onclick="w3_open()">☰</a>
+        </header>
+        <!-- Overlay effect when opening sidenav on small screens -->
+        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-  <!-- Page Header
+        <!-- Page Header
     <header class="intro-header" style="background-image: url('{% static 'images/pitchIndex.jpg' %}')">
         <div class="container">
             <div class="row">
@@ -80,26 +63,26 @@
         </div>
     </header>-->
 
-  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-    <!-- !PAGE CONTENT! -->
-    <div class="w3-main" style="margin-left:300px; ">
-        <!-- About section -->
-        <div class="w3-container  w3-center w3-text-light-grey w3-padding-32" id="about" >
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main" style="margin-left:300px; ">
+            <!-- About section -->
+            <div class="w3-container  w3-center w3-text-light-grey w3-padding-32" id="about">
 
-        <h1>{% block head %}{% endblock %}</h1> {% block content %}{% endblock %}
-      </div>
-    </div>
+                <h1>{% block head %}{% endblock %}</h1> {% block content %}{% endblock %}
+            </div>
+        </div>
 
-</body>
-
-
-
-</center>
-<script>
+    </body>
 
 
 
-{% block script %}{% endblock %}
+    </center>
+    <script>
+        { % block script %
+        } { % endblock %
+        }
 
-</html>
+        <
+        /html>
