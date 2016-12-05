@@ -46,7 +46,10 @@
         {% if user.userprofile.type_user == 'Musician' %}
         <a href="/my_ads" onclick="w3_close()" class="w3-padding">MY ADS</a>
         {% endif %}
+        {% if current_user.is_authenticated %}
         <a href="/logout/" onclick="w3_close()" class="w3-padding">LOGOUT</a>
+        {% else %}
+        {% endif %}
     </nav>
 
     <!-- Top menu on small screens -->
