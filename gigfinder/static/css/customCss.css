@@ -1,0 +1,120 @@
+
+@import url(https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic);
+
+#landing-header{
+background-image: url(../images/pitchIndex.jpg);
+
+
+}
+
+
+#venue_posts {
+    background: #43C6AC; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 45%;
+    height: 450px;
+    float: left;
+    color: white;
+    border-radius: 6%; 
+    text-align: center;
+    
+}
+
+#musician_posts{
+    background: #43C6AC; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 45%;
+    float: right;
+    height: 450px;
+    border-radius: 6%;  
+    text-align: center;
+    color: white;
+  }
+
+
+#venue_posts a {
+  color: white;
+}
+
+#venue_posts li {
+  color: white;
+  list-style: none;
+}
+
+#musician_posts li{
+  list-style: none;
+}
+.slideshow{
+  margin: auto;
+  border-style: dotted;
+  margin-top: 20px;
+}
+
+.slideshow figure img{
+  margin: auto;
+  width: 80%;
+
+}
+
+/*style for homepage */
+body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-family:  sans-serif;
+    }
+
+.w3-third img {
+        margin-bottom: -6px;
+        opacity: 0.8;
+        cursor: pointer;
+    }
+
+.w3-third img:hover {
+        opacity: 1;
+    }
+
+.user-background{
+    background: #43C6AC; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: fill
+}
+
+#w3-main{
+      margin-left:300px;
+}
+
+
+/* style for board.html */
+.board{
+  
+  font-size: 18px;
+  text-decoration: none;
+  
+}
+
+/* event_long.html*/
+
+#map {
+        height: 400px;
+        width: 100%;
+       }
+
+.event_submit_form{
+text-align: left;"
+margin-left: 500px;
+}
+
+.board-base-body{
+  max-width:1600px; margin-top: 20px; bottom: 0; min-height: 100%; 
+  background: #43C6AC; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: fill; bottom: 0px; height: 100%;
+ 
+}

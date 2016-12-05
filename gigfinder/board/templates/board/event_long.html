@@ -2,42 +2,37 @@
 
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
-      <style>
-       #map {
-        height: 400px;
-        width: 100%;
-       }
-    </style>
+  <link href="{%static 'css/customCss.css' %}" rel="stylesheet" type="text/css"  />
+      
 </head>
 
 <body>
-  <p>
-    <a href="/profile/{{user_posted}}">{{user_posted}}</a>
-  </p>
-  <p>
-    {{name}}
-  </p>
-  <p>
-    {{long_description}}
-  </p>
-  <p>
-    {{date}}
-  </p>
-  {% if event_image %}
-  <p>
-    <img src="{{event_image.url}}" />
-  </p>
-  {% endif %}
-  <div id="map"></div>
-  <p>
-    <a href="/board/events">Go Back to Events</a>
-  </p>
-  <form action='/board/apply_for_event/' method='post'> {% csrf_token %}
-    <input type="hidden" name="app_event" value="{{event.id}}" />
-    <input type="submit" value="Apply Now!" />
-  </form>
-
-      <script>
+    <p>
+      <a href="/profile/{{user_posted}}">{{user_posted}}</a>
+    </p>
+    <p>
+      {{name}}
+    </p>
+    <p>
+      {{long_description}}
+    </p>
+    <p>
+      {{date}}
+    </p>
+    {% if event_image %}
+    <p>
+      <img src="{{event_image.url}}" />
+    </p>
+    {% endif %}
+    <div id="map"></div>
+    <p>
+      <a href="/board/events">Go Back to Events</a>
+    </p>
+    <form action='/board/apply_for_event/' method='post'> {% csrf_token %}
+        <input type="hidden" name="app_event" value="{{event.id}}" />
+        <input type="submit" value="Apply Now!" />
+    </form>
+    <script>
       function initMap() {
         var uluru = {lat: 40.730, lng: -73.935};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -54,6 +49,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiXWhciRh1uFx6DSjrqLhFnAgvExifV-Q&callback=initMap">
     </script>
 </body>
+
 {% endblock %}
 
 {% block script %}
