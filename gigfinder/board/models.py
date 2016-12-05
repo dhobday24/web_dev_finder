@@ -5,13 +5,14 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 from address.models import AddressField
 # Create your models here.
 
 
 class EventApplication(models.Model):
-    event_name = models.ForeignKey('Event', null = True)
+    event_name = models.ForeignKey('Event', null=True)
     user_who_applied = models.ForeignKey(User)
     status = models.NullBooleanField(blank=True, default=None, null=True)
 
@@ -20,7 +21,7 @@ class EventApplication(models.Model):
 
 
 class AdApplication(models.Model):
-    ad_name = models.ForeignKey('Musician_Advertisement', null = True)
+    ad_name = models.ForeignKey('Musician_Advertisement', null=True)
     user_who_applied = models.ForeignKey(User)
     status = models.NullBooleanField(blank=True, default=None, null=True)
 
@@ -42,6 +43,8 @@ class Event(models.Model):
     event_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     event_application = models.OneToOneField(EventApplication, null=True, blank = True)
     event_address = AddressField(null=True)
+    event_lat = models.DecimalField(null=True, decimal_places=3, max_digits=5)
+    event_long = models.DecimalField(null=True, decimal_places=3, max_digits=5)
 
     def __str__(self):
         return self.event_name
@@ -82,3 +85,5 @@ class Job_Posting(models.Model):
     def __str__(self):
         return self.posting_name
 '''
+
+

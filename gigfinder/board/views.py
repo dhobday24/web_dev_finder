@@ -10,9 +10,13 @@ from django.contrib.auth.decorators import login_required
 
 from address.models import Address
 from .models import Event, Musician_Advertisement, EventApplication, AdApplication
-#from board.models import Job_Posting
 from .forms import EventForm, AdForm
+from geocodio import GeocodioClient
+#from board.models import Job_Posting
 #from board.forms import JobForm
+
+client = GeocodioClient('2f48b44cbca3558fcc7888282c4824b54ce88bf')
+
 # Create your views here.
 
 
@@ -33,7 +37,12 @@ def event_submit(request):
     if form_event.is_valid():
         instance = form_event.save(commit=False)
         instance.event_user = request.user
+        event_lat_long = client.geocode(instance.event_address)
+        event_lat_long = event_lat_long.coords
+        instance.event_lat = event_lat_long[0]
+        instance.event_long = event_lat_long[1]
         instance.save()
+        # instance.save()
         return redirect('board')
     context = {
         'form_event': form_event,
@@ -92,13 +101,18 @@ def long_description_event(request, event_id):
     event_image = event.event_image
     user_posted = event.event_user
     browsing_userid = request.user.id
+    event_lat = event.event_lat
+    event_long = event.event_long
+
     return render(request, 'board/event_long.html', {'name': name,
                                                      'event': event,
                                                      'long_description': long_description,
                                                      'date': date,
                                                      'event_image': event_image,
                                                      'user_posted': user_posted,
-                                                     'browser_id': browsing_userid})
+                                                     'browser_id': browsing_userid,
+                                                     'event_lat': event_lat,
+                                                     'event_long': event_long})
 
 
 def long_description_musad(request, ad_id):
@@ -138,7 +152,7 @@ def apply_for_event(request):
     if request.method == 'POST':
         app_id = request.POST.get("app_event")
         username = request.user
-        application = EventApplication.objects.create(user=username, event_name = Event.objects.filter(id = app_id).get())
+        application = EventApplication.objects.create(user_who_applied=username, event_name = Event.objects.filter(id = app_id).get())
     return render(request, 'board/apply_for_event.html')
 
 def request_musician(request):
@@ -146,7 +160,7 @@ def request_musician(request):
         app_id = request.POST.get("app_ad")
         username = request.user
         print(app_id)
-        application = AdApplication.objects.create(user=username, ad_name = Musician_Advertisement.objects.filter(id = app_id).get())
+        application = AdApplication.objects.create(user_who_applied=username, ad_name = Musician_Advertisement.objects.filter(id = app_id).get())
     return render(request, 'board/apply_for_ad.html')
 
 
