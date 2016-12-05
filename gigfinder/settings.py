@@ -23,6 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [STATIC_DIR, ]
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFileStorage'
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'authentication/templates/')
 # Quick-start development settings - unsuitable for production
@@ -34,7 +36,7 @@ SECRET_KEY = 'lmdwqn_&9$rn_m)x_khxf%8e5l1gng_^kw9p_zua0o+la#e-1&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'pitchccny.herokuapp.com']
 
 
 # Application definition
