@@ -51,12 +51,6 @@
             {% for event in all_events %}
             {% if event.event_user.username == user.username %}
             <li><a href="/events/{{event.id}}/applicants/">{{event.event_name}}</a></li>
-            <form action="/events/{{event.id}}/applicants/ "method='post'> {% csrf_token %}
-              <input type="hidden" name="app_event" value="{{event.id}}" readonly/>
-                <input type="hidden" id="event_lat" name="event_lat" value="{{ event_lat }}" readonly/>
-                <input type="hidden" id="event_long" name="event_long" value="{{ event_long }}" readonly/>
-              <input type="submit" value="Apply Now!" />
-            </form>
             {% endif %}
             {% endfor %}
         </ul>

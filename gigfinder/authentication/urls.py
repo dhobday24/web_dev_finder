@@ -18,5 +18,5 @@ urlpatterns = [
     url(r'profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile),
     url(r'^my_events/$', views.my_events, name='my_events'),
     url(r'^events/(?P<event_id>[0-9]+)/applicants/$',
-        views.show_applicants, name='show_applicants'),
+        views.show_applicants_event, name='show_applicants'),
 ]

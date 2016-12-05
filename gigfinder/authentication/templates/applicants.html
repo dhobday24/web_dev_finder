@@ -46,26 +46,16 @@
         <a href="/logout/" onclick="w3_close()" class="w3-padding">LOGOUT</a>
     </nav>
     <div class="w3-main" style="margin-left:350px;">
-        {% if all_events %}
-        <ul>
-            {% for event in all_events %}
-            {% if event.event_user.username == user.username %}
-            <li><a href="/board/events/{{event.id}}/">{{event.event_name}}</a></li>
-            {% endif %}
-            {% endfor %}
-        </ul>
-        <p>
-            <a href="/board">Go Back to Boards</a>
-        </p>
-        {% else %}
-        <p>No events are available.</p>
-        <p>
-            <a href="/board">Go Back to Boards</a>
-        </p>
 
-        {% endif %}
+<h3> Users Who Applied </h3>
 
-
+<p>
+    {% if applications %}
+        {% for applicant in applications %}
+            <li> {{applicant.user_who_applied}} </li>
+        {% endfor %}
+    {% endif %}
+</p>
 
 </body>
 {% endblock %}

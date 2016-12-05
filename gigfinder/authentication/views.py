@@ -149,5 +149,10 @@ def my_events(request):
     }
     return render(request, 'my_events.html', context)
 
-def show_applicants(request, event_id):
-    return render(request, 'applicants.html')
+def show_applicants_event(request, event_id):
+    event = Event.objects.filter(id = event_id).get()
+    applications = EventApplication.objects.filter(event_name = event_id)
+    context = {
+        'applications' : applications
+    }
+    return render(request, 'applicants.html', context)

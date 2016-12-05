@@ -71,6 +71,7 @@ def events(request):
     Renders a page with a list of all the events
     """
     all_events = Event.objects.all()
+    #print(all_events.event_name)
     context = {
         'all_events': all_events,
     }
