@@ -43,6 +43,7 @@ pylint-plugin-utils==0.2.4
 pyparsing==2.1.10
 python-dateutil==2.5.3
 pytz==2016.7
+psycopg2==2.6.2
 requests==2.12.3
 selenium==2.33.0
 simplegeneric==0.8.1
@@ -51,6 +52,7 @@ six==1.10.0
 static3==0.7.0
 traitlets==4.2.2
 urllib3==1.18
+virtualenv==15.1.0
 wcwidth==0.1.7
 Werkzeug==0.11.11
 whitenoise==3.2.2

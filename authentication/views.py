@@ -16,17 +16,14 @@ from django.contrib.auth.models import User
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
 
+import requests
 from authentication.models import UserProfile
 from authentication.forms import UserForm, RegistrationForm
-from datetime import date
-import datetime
+from address.models import Address
 
+from geocodio import GeocodioClient
 
-from datetime import date, timedelta
-from django import template
-
-register = template.Library()
-
+client = GeocodioClient('2f48b44cbca3558fcc7888282c4824b54ce88bf')
 
 
 def index(request):
@@ -50,13 +47,15 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
+            # address = request.POST.get('address')
+            # if address is not "":
             user = User.objects.create_user(
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password1'],
                 email=form.cleaned_data['email'],
                 first_name = form.cleaned_data['first_name'],
                 last_name = form.cleaned_data['last_name'],
-            )
+                )
             return HttpResponseRedirect('/register/success/')
     else:
         form = RegistrationForm()
@@ -90,10 +89,12 @@ def home(request):
     """
     Render the home page for a logged in user
     """
+    address = request.user.userprofile.address
     profile_pic = request.user.userprofile.profile_pic
     soundcloud_username = request.user.userprofile.soundcloud_username
-    print(request.user.userprofile.location)
-    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic, 'soundcloud_username': soundcloud_username})
+    # print(request.user.userprofile.address)
+    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic, 'address': address, 'soundcloud_username': soundcloud_username})
+
 
 @login_required() # only logged in users should access this
 def edit_user(request, pk):
@@ -110,7 +111,7 @@ def edit_user(request, pk):
     ProfileInlineFormset = inlineformset_factory(User,
                                                  UserProfile,
                                                  fields=('type_user',
-                                                         'location',
+                                                         'address',
                                                          'bio',
                                                          'website',
                                                          'phonenumber',
@@ -140,11 +141,13 @@ def edit_user(request, pk):
     else:
         raise PermissionDenied
 
+
 def update_success(request):
     """
     Render the registration success page
     """
     return render_to_response('registration/update_success.html')
+
 
 def get_user_profile(request, username):
     current_user = request.user
@@ -153,6 +156,7 @@ def get_user_profile(request, username):
     soundcloud_username = user.userprofile.soundcloud_username
     profile_pic = user.userprofile.profile_pic
     return render(request, 'user_profile.html', {"user":user, 'profile_pic': profile_pic, "current_user":current_user, 'soundcloud_username': soundcloud_username})
+
 
 def my_events(request):
     current_user = request.user
@@ -163,6 +167,7 @@ def my_events(request):
     }
     return render(request, 'my_events.html', context)
 
+
 def my_ads(request):
     current_user = request.user
     all_ads = Musician_Advertisement.objects.all()
@@ -171,6 +176,7 @@ def my_ads(request):
         'current_user': current_user,
     }
     return render(request, 'my_ads.html', context)
+
 
 def show_applicants_event(request, event_id):
     event = Event.objects.filter(id = event_id).get()
@@ -182,14 +188,23 @@ def show_applicants_event(request, event_id):
         app_status = request.POST.get('app_status')
         applicant = request.POST.get('applicant')
         if app_status == 'Yes':
-            cur_app = EventApplication.objects.filter(event_name = event_id, user_who_applied = applicant).get()
+            cur_app = EventApplication.objects.get(event_name=event_id, user_who_applied=applicant)
             cur_app.status = True
             cur_app.save()
+            event_ref = Event.objects.get(id=event_id)
+            event_performer = cur_app.user_who_applied
+            performer = UserProfile.objects.get(user_id=event_performer.id)
+            performer_number = performer.phonenumber
+            payload = {'number': performer_number,
+                       'message': "Congratulations! You've been selected to perform at: " + event_ref.event_name +
+                                  ". Check out all your other applications to your events on PITCH!"}
+            requests.post('http://textbelt.com/text', data=payload)
         else:
             cur_app = EventApplication.objects.filter(event_name = event_id, user_who_applied = applicant).get()
             cur_app.status = False
             cur_app.save()
     return render(request, 'event_applicants.html', context)
+
 
 def show_applicants_ad(request, ad_id):
     ad = Musician_Advertisement.objects.filter(id = ad_id).get()
