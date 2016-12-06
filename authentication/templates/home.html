@@ -61,7 +61,9 @@
                 <p>{{user.userprofile.bio}}</p>
                 <p>Email: {{user.email}}</p>
                 <p>Phone: {{user.userprofile.phonenumber}}</p>
+                {% if user.userprofile.soundcloud_username %}
                 <iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2F{{soundcloud_username}}&color=orange_white&size=56" style="width: 56px; height: 56px;"></iframe>
+                {% endif %}
                 <p>
                     Availability: {{user.userprofile.available}}
                 </p>
