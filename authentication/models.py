@@ -4,6 +4,8 @@ Models for the Authentication app
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from address.models import AddressField
+
 # Create your models here.
 PROFILE_TYPES = (
     ('Musician', 'Musician'),
@@ -20,7 +22,7 @@ class UserProfile(models.Model):
     """
     user = models.OneToOneField(User, primary_key = True, related_name='userprofile')
     type_user = models.CharField(max_length=20, default='Musician', choices=PROFILE_TYPES)
-    location = models.CharField(max_length=20, blank=True)
+    address = models.CharField(max_length=40, null=True, blank=True)
     bio = models.TextField(max_length=400, blank=True)
     website = models.CharField(max_length=50, blank='user@example.com')
     phonenumber = models.CharField(max_length=13, default='999-999-9999')

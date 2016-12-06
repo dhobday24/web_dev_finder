@@ -4,13 +4,13 @@ Authentication App forms
 from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from address.forms import AddressField
 
 
 class RegistrationForm(forms.Form):
     """
     Registration Form
     """
-
     CHOICES = (
         ('Musician', 'Musician'),
         ('Venue', 'Venue'),
@@ -32,6 +32,7 @@ class RegistrationForm(forms.Form):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(
         required=True, max_length=30, render_value=False)), label=_("Password (again)"))
     #user_type = forms.ChoiceField(choices = CHOICES, required = True, label = 'User Type')
+    address = forms.CharField(required = False, max_length=40, label=_("Address"))
 
     def clean_username(self):
         """
