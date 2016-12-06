@@ -31,12 +31,12 @@
 
             <a href="/logout/" onclick="w3_close()" class="w3-padding">LOGOUT</a>
 
-            <form action="#" method="POST">
-              {% csrf_token %}
+            <form action="search_results" method="GET">
+              <!--{% csrf_token %}-->
                 <br><br>
-                <input type="text" name="search" placeholder="Search.." id="search">
+                <input type="text" name="search" placeholder="Search.." value="{{ query }}"/>
                 <br><br>
-                <button type="submit" class="btn btn-primary" value="submit">SUBMIT</button>
+                <input type="submit" class="btn btn-primary" value="SUBMIT" name="q"></input>
             </form>
         </nav>
 
