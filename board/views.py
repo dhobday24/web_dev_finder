@@ -7,7 +7,9 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 
+import requests
 
+from authentication.models import UserProfile
 from address.models import Address
 from .models import Event, Musician_Advertisement, EventApplication, AdApplication
 from .forms import EventForm, AdForm
@@ -197,6 +199,13 @@ def apply_for_event(request):
         app_id = request.POST.get("app_event")
         username = request.user
         application = EventApplication.objects.create(user_who_applied=username, event_name = Event.objects.filter(id = app_id).get())
+        event_ref = Event.objects.get(id=app_id)
+        vendor = UserProfile.objects.get(user_id=event_ref.event_user.id)
+        vendor_number = vendor.phonenumber
+        payload = {'number': vendor_number,
+                   'message': "An application has been submitted to your event: " + event_ref.event_name +
+                   ". Check out all the applications to your events on PITCH!"}
+        requests.post('http://textbelt.com/text', data=payload)
     return render(request, 'board/apply_for_event.html')
 
 def request_musician(request):
