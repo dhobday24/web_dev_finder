@@ -1,8 +1,10 @@
 """
 Authentication App views
 """
+import datetime
 from django.shortcuts import render
 from board.models import *
+import django.contrib.admin.widgets
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -16,6 +18,15 @@ from django.core.exceptions import PermissionDenied
 
 from authentication.models import UserProfile
 from authentication.forms import UserForm, RegistrationForm
+from datetime import date
+import datetime
+
+
+from datetime import date, timedelta
+from django import template
+
+register = template.Library()
+
 
 
 def index(request):
@@ -198,3 +209,7 @@ def show_applicants_ad(request, ad_id):
             cur_app.status = False
             cur_app.save()
     return render(request, 'ad_applicants.html', context)
+
+def about(request):
+    return render(request, 'about.html')
+############################################################

@@ -5,11 +5,13 @@
 </head>
 
 <body>
+<center>
   <form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %} {{form_ad.as_p}}
     <br />
     <input type="submit" value="Create Event" class="btn btn-primary"/>
   </form>
   </br>
   <a href="/board">Go Back to Boards</a>
+</center>
 </body>
 {% endblock %}

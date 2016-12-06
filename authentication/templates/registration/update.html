@@ -12,6 +12,9 @@
 
     <!-- Sidenav/menu -->
     <nav class="w3-sidenav w3-white w3-animate-left w3-center w3-text-grey w3-collapse w3-top" style="z-index:3;width:300px;font-weight:bold" id="mySidenav"><br>
+     <div id="logo" >
+            <img src="{%static 'images/logo.png'%}" width="200px" height="150px">
+        </div>
         <h3 class="w3-padding-64">{{user.first_name}}<br> {{user.last_name}}</h3>
         <a href="javascript:void(0)" onclick="w3_close()" class="w3-padding w3-hide-large">CLOSE</a>
         <a href="/" onclick="w3_close()" class="w3-padding">PITCH</a>
@@ -32,15 +35,15 @@
     </nav>
 
 <div class="updatePage-form w3-center" style="margin-left: 305px; ">
-        <h2 class="flow-text">Update your information</h2>
-          <form class="form" action="/home/update_success/{{pk}}/" method="POST" enctype="multipart/form-data" class="padding">
+        <h2 class="flow-text form">Update your information</h2>
+          <form class="form"  action="/home/update_success/{{pk}}/" method="POST" enctype="multipart/form-data" class="padding">
             {% csrf_token %} {{ noodle_form.as_p }}
             <div class="divider"></div>
             {{ formset.management_form }}
                 {{ formset.as_p }}
             <button type="submit" class="btn-floating btn-large waves-light waves-effect"><i class="large material-icons">SAVE</i></button>
-            <button onclick="window.history.back(); return false;" title="Cancel" class="btn-floating waves-effect waves-light red"><i class="material-icons">CANCEL</i></a>
+            <button onclick="window.history.back(); return false;" title="Cancel" class="btn-floating waves-effect waves-light red"><i  class="material-icons">CANCEL</i></a>
             </button>
 
-        </form>
-        </div>
+    </form>
+    </div>

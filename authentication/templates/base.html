@@ -53,17 +53,22 @@
             <a href="/home/{{pk}}">Profile</a>
           </li>
           <li>
+            <a href="/board">Boadrd</a>
+          </li>
+          <li>
             {% if user.is_authenticated %}
             <a href="/logout">Logout</a> {% else %}
             <a href="/register">Register</a> {% endif %}
           </li>
+         
           <li>
             {% if user.is_authenticated %} {% else %}
             <a href="/accounts/login">Login</a> {% endif %}
           </li>
           <li>
-            <a href="/board">Board</a>
+            <a href="/about">What is Pitch</a>
           </li>
+          
         </ul>
       </div>
       <!-- /.navbar-collapse -->
