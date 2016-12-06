@@ -1,7 +1,17 @@
 {% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
 
+<h2>SIMILAR RESULTS FOUND:</h2>
+<h3>EVENTS:</h3>
 {% if all_posts %}
-<p>
-  {for post in all_posts %}
-    {{post}}
-</p>
+{% for post in all_posts %}
+<div>
+    <a href="/board/events/{{event.id}}">{{post}}</a>
+</div>
+<h4>MUSICIAN ADs:</h4>
+{% endfor %}
+{% endif %}
+{% if all_ads %} {% for ad_post in all_ads %}
+<div>
+    <a href="/board/talent_ads/{{ad.id}}/">{{ad_post}}</a>
+</div>
+{% endfor %} {% endif %} {% endblock %}

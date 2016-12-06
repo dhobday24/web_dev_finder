@@ -142,14 +142,36 @@ def long_description_musad(request, ad_id):
                                                   'app': app,
                                                   })
 
+# ef search_results(request):
+#     """
+#     render a page with the search results
+#     """
+#     query = request.GET.get('q')
+#     all_posts = Event.objects.all().filter(Event.event_name=query)
+#     all_ads = Musician_Advertisement.objects.all().filter(Musician_Advertisement.posting_name=query)
+#
+#     context = {
+#         'all_posts' : all_posts,
+#         'all_ads': all_ads,
+#     }
+
 def search_results(request):
     """
     render a page with the search results
     """
-    all_posts = Event.objects.all()+Job_Posting.objects.all()+Musician_Advertisement.objects.all()
+
+    query = request.GET.get('search')
+    all_posts = Event.objects.filter(event_name = query)
+    all_ads = Musician_Advertisement.objects.filter(posting_name=query)
     context = {
         'all_posts' : all_posts,
+        'all_ads': all_ads,
     }
+    print(query)
+    if query:
+        all_posts = Event.objects.filter(event_name = query)
+        all_ads = Musician_Advertisement.objects.filter(posting_name=query)
+        return render(request, 'board/search_results.html', context)
     return render(request, 'board/search_results.html', context)
 
 

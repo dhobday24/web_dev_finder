@@ -1,4 +1,4 @@
-{%extends 'base.html' %} {% load staticfiles %}     
+{%extends 'base.html' %} {% load staticfiles %}
 
 <link href="{%static 'css/customCss.css'% }" rel="stylesheet" type="text/css"  />
 <link rel="stylesheet" type="text/css" href="{% static 'slideshow.css' %} "/>
@@ -26,19 +26,19 @@
       </div>
       <div id="musician_posts">
 
-        
+
         {% if users %}
               <p>who's playing</p>
             {% for users in users|slice:"5" %}
               <ul>
                 <li>
                  <p> {{user.name}}</p>
-                 
+
                 </li>
               </ul>
-            {% endfor %}                              
-            {% endif %} 
-      
+            {% endfor %}
+            {% endif %}
+
 
 
         {% if ads %}
@@ -55,29 +55,29 @@
 
       </div>
  </div>
- 
+
   </div>
 
-  <!-- FOLLOWING SLIDESHOW ISNT WORKING AS OF YET. 
+  <!-- FOLLOWING SLIDESHOW ISNT WORKING AS OF YET.
 <div class="slideshow-container">
 
-     
+
         <div class="images">
           <img src="{%static 'images/slide2.jpg' %}">
           <div class="caption"> Caption</div>
         </div>
 
         <div class="images">
-          <img src="images/moriarty.jpg"> 
-          <div class="caption"> Caption</div> 
+          <img src="images/moriarty.jpg">
+          <div class="caption"> Caption</div>
          </div>
         <div class="images">
-          <img src="images/moriarty.jpg"> 
-          <div class="caption"> Caption</div> 
+          <img src="images/moriarty.jpg">
+          <div class="caption"> Caption</div>
          </div>
          <div class="images">
-          <img src="images/moriarty.jpg"> 
-          <div class="caption"> Caption</div> 
+          <img src="images/moriarty.jpg">
+          <div class="caption"> Caption</div>
          </div>
 
 
@@ -91,7 +91,7 @@
 
 
 
-       
+
 
 
 {% endblock %}
