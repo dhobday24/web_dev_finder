@@ -3,12 +3,10 @@
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
   <link href="{%static 'css/customCss.css' %}" rel="stylesheet" type="text/css"  />
-      
+
 </head>
 
 <body>
-
-    
 
   <p>
     <a href="/profile/{{user_posted}}">{{user_posted}}</a>
@@ -28,15 +26,23 @@
   </p>
   {% endif %}
   <div id="map"></div>
-  <p>
-    <a href="/board/events">Go Back to Events</a>
-  </p>
+
   <form action='/board/apply_for_event/' method='post'> {% csrf_token %}
     <input type="hidden" name="app_event" value="{{event.id}}" readonly/>
       <input type="hidden" id="event_lat" name="event_lat" value="{{ event_lat }}" readonly/>
       <input type="hidden" id="event_long" name="event_long" value="{{ event_long }}" readonly/>
-    <input type="submit" value="Apply Now!" />
+  {% if not app %}
+    <input type="submit" value="Apply Now!" style="width:200px; height:60px" />
+  {% else %}
+  <p>
+    YOU HAVE APPLIED
+  </p>
 </form>
+  {% endif %}
+
+  <p>
+    <a href="/board/events">Go Back to Events</a>
+  </p>
 
       <script>
 

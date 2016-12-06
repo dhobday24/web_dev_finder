@@ -80,8 +80,9 @@ def home(request):
     Render the home page for a logged in user
     """
     profile_pic = request.user.userprofile.profile_pic
+    soundcloud_username = request.user.userprofile.soundcloud_username
     print(request.user.userprofile.location)
-    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic})
+    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic, 'soundcloud_username': soundcloud_username})
 
 @login_required() # only logged in users should access this
 def edit_user(request, pk):
@@ -104,7 +105,8 @@ def edit_user(request, pk):
                                                          'phonenumber',
                                                          'genre',
                                                          'available',
-                                                         'profile_pic',))
+                                                         'profile_pic',
+                                                         'soundcloud_username',))
     formset = ProfileInlineFormset(instance=user)
 
     if request.user.is_authenticated() and request.user.id == user.id:
@@ -137,8 +139,9 @@ def get_user_profile(request, username):
     current_user = request.user
     print(current_user)
     user = User.objects.get(username=username)
+    soundcloud_username = user.userprofile.soundcloud_username
     profile_pic = user.userprofile.profile_pic
-    return render(request, 'user_profile.html', {"user":user, 'profile_pic': profile_pic, "current_user":current_user})
+    return render(request, 'user_profile.html', {"user":user, 'profile_pic': profile_pic, "current_user":current_user, 'soundcloud_username': soundcloud_username})
 
 def my_events(request):
     current_user = request.user
@@ -149,14 +152,6 @@ def my_events(request):
     }
     return render(request, 'my_events.html', context)
 
-def show_applicants_event(request, event_id):
-    event = Event.objects.filter(id = event_id).get()
-    applications = EventApplication.objects.filter(event_name = event_id)
-    context = {
-        'applications' : applications
-    }
-    return render(request, 'event_applicants.html', context)
-
 def my_ads(request):
     current_user = request.user
     all_ads = Musician_Advertisement.objects.all()
@@ -166,10 +161,40 @@ def my_ads(request):
     }
     return render(request, 'my_ads.html', context)
 
+def show_applicants_event(request, event_id):
+    event = Event.objects.filter(id = event_id).get()
+    applications = EventApplication.objects.filter(event_name = event_id)
+    context = {
+        'applications' : applications
+    }
+    if request.method == 'POST':
+        app_status = request.POST.get('app_status')
+        applicant = request.POST.get('applicant')
+        if app_status == 'Yes':
+            cur_app = EventApplication.objects.filter(event_name = event_id, user_who_applied = applicant).get()
+            cur_app.status = True
+            cur_app.save()
+        else:
+            cur_app = EventApplication.objects.filter(event_name = event_id, user_who_applied = applicant).get()
+            cur_app.status = False
+            cur_app.save()
+    return render(request, 'event_applicants.html', context)
+
 def show_applicants_ad(request, ad_id):
     ad = Musician_Advertisement.objects.filter(id = ad_id).get()
     inqueries = AdApplication.objects.filter(ad_name = ad_id)
     context = {
         'inqueries' : inqueries
     }
+    if request.method == 'POST':
+        app_status = request.POST.get('app_status')
+        inquery = request.POST.get('inquery')
+        if app_status == 'Yes':
+            cur_app = AdApplication.objects.filter(ad_name = ad_id, user_who_applied = inquery).get()
+            cur_app.status = True
+            cur_app.save()
+        else:
+            cur_app = AdApplication.objects.filter(ad_name = ad_id, user_who_applied = inquery).get()
+            cur_app.status = False
+            cur_app.save()
     return render(request, 'ad_applicants.html', context)

@@ -24,8 +24,14 @@
   {% endif %}
   <form action='/board/apply_for_ad/' method='post'> {% csrf_token %}
     <input type="hidden" name="app_ad" value="{{ad.id}}" />
-    <input type="submit" value="Apply Now!" />
+  {% if not app %}
+    <input type="submit" value="Apply Now!" style="width:200px; height:60px" />
+  {% else %}
+  <p>
+    YOU HAVE APPLIED
+  </p>
   </form>
+  {% endif %}
   <p>
     <a href="/board/talent_ads">Go Back to Musician Ads</a>
   </p>
