@@ -226,3 +226,19 @@ figure:nth-child(6) {
     opacity: 1;
   }
 }
+
+/*****************CALENDAR*****************/
+
+#calendar {
+  width: 100%;
+  margin: 0 auto;
+}
+
+//************************************FOOTER *********************/
+
+footer{
+  clear: both;
+  position: fixed;
+  bottom-margin: 0;
+  font: 12px;
+}
