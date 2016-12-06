@@ -1,17 +1,30 @@
 {% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
 
-<h2>SIMILAR RESULTS FOUND:</h2>
-<h3>EVENTS:</h3>
+<h2>SIMILAR RESULTS FOUND:</h2><br>
+<h3>Events:</h3>
 {% if all_posts %}
 {% for post in all_posts %}
 <div>
     <a href="/board/events/{{event.id}}">{{post}}</a>
 </div>
-<h4>MUSICIAN ADs:</h4>
 {% endfor %}
+{% else %}
+  No Events with that Description.<br>
 {% endif %}
-{% if all_ads %} {% for ad_post in all_ads %}
+<br>
+
+<h3>Musician Advertisements:</h3>
+{% if all_ads %}
+{% for ad_post in all_ads %}
 <div>
     <a href="/board/talent_ads/{{ad.id}}/">{{ad_post}}</a>
 </div>
-{% endfor %} {% endif %} {% endblock %}
+{% endfor %}
+{% else %}
+  No Musician Ads with that Description.
+{% endif %}
+<br><br>
+<form action="/board">
+    <input type="submit" class="btn btn-primary" value="BACK TO BOARDS" name="q"></input>
+</form>
+{% endblock %}
