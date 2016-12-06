@@ -27,6 +27,7 @@ class UserProfile(models.Model):
     profile_pic = models.ImageField(null=True)
     genre = models.CharField(max_length=300, blank=True)
     available = models.CharField(choices=AVALABILITY, max_length=20, blank=True)
+    soundcloud_username = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
