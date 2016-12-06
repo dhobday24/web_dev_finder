@@ -80,8 +80,9 @@ def home(request):
     Render the home page for a logged in user
     """
     profile_pic = request.user.userprofile.profile_pic
+    soundcloud_username = request.user.userprofile.soundcloud_username
     print(request.user.userprofile.location)
-    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic})
+    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic, 'soundcloud_username': soundcloud_username})
 
 @login_required() # only logged in users should access this
 def edit_user(request, pk):
@@ -104,7 +105,8 @@ def edit_user(request, pk):
                                                          'phonenumber',
                                                          'genre',
                                                          'available',
-                                                         'profile_pic',))
+                                                         'profile_pic',
+                                                         'soundcloud_username',))
     formset = ProfileInlineFormset(instance=user)
 
     if request.user.is_authenticated() and request.user.id == user.id:
@@ -137,8 +139,9 @@ def get_user_profile(request, username):
     current_user = request.user
     print(current_user)
     user = User.objects.get(username=username)
+    soundcloud_username = user.userprofile.soundcloud_username
     profile_pic = user.userprofile.profile_pic
-    return render(request, 'user_profile.html', {"user":user, 'profile_pic': profile_pic, "current_user":current_user})
+    return render(request, 'user_profile.html', {"user":user, 'profile_pic': profile_pic, "current_user":current_user, 'soundcloud_username': soundcloud_username})
 
 def my_events(request):
     current_user = request.user
