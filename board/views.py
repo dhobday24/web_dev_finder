@@ -105,6 +105,14 @@ def long_description_event(request, event_id):
     event_lat = event.event_lat
     event_long = event.event_long
     app = EventApplication.objects.filter(event_name = event.id, user_who_applied=request.user)
+    all_apps = EventApplication.objects.filter(event_name = event.id)
+    event_booked = False
+    for single_app in all_apps:
+        if single_app.status == True:
+            event_booked = True
+
+
+    print(all_apps)
 
     return render(request, 'board/event_long.html', {'name': name,
                                                      'event': event,
@@ -115,7 +123,9 @@ def long_description_event(request, event_id):
                                                      'browser_id': browsing_userid,
                                                      'event_lat': event_lat,
                                                      'event_long': event_long,
-                                                     'app': app,})
+                                                     'app': app,
+                                                     'event_booked': event_booked,
+                                                     })
 
 
 def long_description_musad(request, ad_id):

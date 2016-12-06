@@ -31,8 +31,8 @@
     <input type="hidden" name="app_event" value="{{event.id}}" readonly/>
       <input type="hidden" id="event_lat" name="event_lat" value="{{ event_lat }}" readonly/>
       <input type="hidden" id="event_long" name="event_long" value="{{ event_long }}" readonly/>
-  {% if not app %}
-    <input type="submit" value="Apply Now!" style="width:200px; height:60px" />
+  {% if not app and not event_booked %}
+    <input type="submit" value="Apply Now!" style="width:200px; height:60px;" class="btn btn-primary" />
   {% else %}
   <p>
     YOU HAVE APPLIED

@@ -25,7 +25,7 @@
   <form action='/board/apply_for_ad/' method='post'> {% csrf_token %}
     <input type="hidden" name="app_ad" value="{{ad.id}}" />
   {% if not app %}
-    <input type="submit" value="Apply Now!" style="width:200px; height:60px" />
+    <input type="submit" value="Apply Now!" style="width:200px; height:60px" class="btn btn-primary" />
   {% else %}
   <p>
     YOU HAVE APPLIED
