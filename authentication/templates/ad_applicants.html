@@ -56,8 +56,8 @@
             <form action="" method="post"> {% csrf_token %}
 
                 <input type="hidden" value="{{inquery.user_who_applied.id}}" name="inquery" />
-                <input type="submit" value="Yes" name="app_status" />
-                <input type="submit" value="No" name="app_status"/>
+                <input type="submit" value="Yes" name="app_status" class="btn btn-primary" />
+                <input type="submit" value="No" name="app_status" class="btn btn-primary"/>
             <br />
             <br />
             </form>
