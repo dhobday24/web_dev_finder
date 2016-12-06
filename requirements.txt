@@ -43,6 +43,7 @@ pylint-plugin-utils==0.2.4
 pyparsing==2.1.10
 python-dateutil==2.5.3
 pytz==2016.7
+psycopg2==2.6.2
 requests==2.12.3
 selenium==2.33.0
 simplegeneric==0.8.1
