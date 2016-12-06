@@ -112,7 +112,7 @@ def long_description_event(request, event_id):
             event_booked = True
 
 
-    print(all_apps)
+    print(event_booked)
 
     return render(request, 'board/event_long.html', {'name': name,
                                                      'event': event,
@@ -142,6 +142,12 @@ def long_description_musad(request, ad_id):
     ad_image = ad.ad_image
     name = ad.musician_name
     app = AdApplication.objects.filter(ad_name = ad.id, user_who_applied=request.user)
+    all_apps = AdApplication.objects.filter(ad_name = ad.id)
+    ad_booked = False
+    for single_app in all_apps:
+        if single_app.status == True:
+            ad_booked = True
+
     return render(request, 'board/ad_long.html', {'name': name,
                                                   'ad': ad,
                                                   'posting_name': posting_name,
@@ -150,6 +156,7 @@ def long_description_musad(request, ad_id):
                                                   'end_availability': end_availability,
                                                   'ad_image': ad_image,
                                                   'app': app,
+                                                  'ad_booked': ad_booked,
                                                   })
 
 # ef search_results(request):
