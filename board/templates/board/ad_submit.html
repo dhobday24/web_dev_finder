@@ -6,7 +6,8 @@
 
 <body>
   <form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %} {{form_ad.as_p}}
-    <input type="submit" value="Create Event" />
+    <br />
+    <input type="submit" value="Create Event" class="btn btn-primary"/>
   </form>
   </br>
   <a href="/board">Go Back to Boards</a>

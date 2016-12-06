@@ -25,12 +25,14 @@
   <form action='/board/apply_for_ad/' method='post'> {% csrf_token %}
     <input type="hidden" name="app_ad" value="{{ad.id}}" />
   {% if not app %}
-    <input type="submit" value="Apply Now!" style="width:200px; height:60px" />
+    {% if not ad_booked %}
+    <input type="submit" value="Apply Now!" style="width:200px; height:60px" class="btn btn-primary" />
   {% else %}
   <p>
-    YOU HAVE APPLIED
+    Either you have applied, or the ad has been addressed. Sorry :(
   </p>
   </form>
+  {% endif %}
   {% endif %}
   <p>
     <a href="/board/talent_ads">Go Back to Musician Ads</a>
