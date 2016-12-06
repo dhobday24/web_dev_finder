@@ -16,6 +16,11 @@ from django.core.exceptions import PermissionDenied
 
 from authentication.models import UserProfile
 from authentication.forms import UserForm, RegistrationForm
+from address.models import Address
+
+from geocodio import GeocodioClient
+
+client = GeocodioClient('2f48b44cbca3558fcc7888282c4824b54ce88bf')
 
 
 def index(request):
@@ -39,13 +44,15 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
+            # address = request.POST.get('address')
+            # if address is not "":
             user = User.objects.create_user(
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password1'],
                 email=form.cleaned_data['email'],
                 first_name = form.cleaned_data['first_name'],
                 last_name = form.cleaned_data['last_name'],
-            )
+                )
             return HttpResponseRedirect('/register/success/')
     else:
         form = RegistrationForm()
@@ -79,10 +86,11 @@ def home(request):
     """
     Render the home page for a logged in user
     """
+    address = request.user.userprofile.address
     profile_pic = request.user.userprofile.profile_pic
     soundcloud_username = request.user.userprofile.soundcloud_username
-    print(request.user.userprofile.location)
-    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic, 'soundcloud_username': soundcloud_username})
+    # print(request.user.userprofile.address)
+    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic, 'address': address, 'soundcloud_username': soundcloud_username})
 
 @login_required() # only logged in users should access this
 def edit_user(request, pk):
@@ -99,7 +107,7 @@ def edit_user(request, pk):
     ProfileInlineFormset = inlineformset_factory(User,
                                                  UserProfile,
                                                  fields=('type_user',
-                                                         'location',
+                                                         'address',
                                                          'bio',
                                                          'website',
                                                          'phonenumber',
