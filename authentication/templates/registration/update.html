@@ -1,16 +1,46 @@
-<div class="col s12 m8 offset-m2">
-      <div class="card">
-        <div class="card-content">
+
+{% load staticfiles %} 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+ 
+   <link href="{%static 'css/custom.css' %}" rel="stylesheet" type="text/css"  />
+
+</head>
+
+<body class="updatePage-background w3-light-grey w3-content" style="max-width:1600px; margin-top: 20px;">
+
+    <!-- Sidenav/menu -->
+    <nav class="w3-sidenav w3-white w3-animate-left w3-center w3-text-grey w3-collapse w3-top" style="z-index:3;width:300px;font-weight:bold" id="mySidenav"><br>
+        <h3 class="w3-padding-64">{{user.first_name}}<br> {{user.last_name}}</h3>
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-padding w3-hide-large">CLOSE</a>
+        <a href="/" onclick="w3_close()" class="w3-padding">PITCH</a>
+        <a href="/board/" onclick="w3_close()" class="w3-padding">GO TO BOARDS</a>
+        
+        <a href="#about" onclick="w3_close()" class="w3-padding"><strong>ABOUT ME</strong></a>
+        <a href="#contact" onclick="w3_close()" class="w3-padding">CONTACT</a>
+        {% if user.userprofile.type_user == 'Venue' %}
+        <a href="/my_events" onclick="w3_close()" class="w3-padding">MY EVENTS</a>
+        {% endif %}
+        {% if user.userprofile.type_user == 'Musician' %}
+        <a href="/my_ads" onclick="w3_close()" class="w3-padding">MY ADS</a>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+        <a href="/logout/" onclick="w3_close()" class="w3-padding">LOGOUT</a>
+        {% else %}
+        {% endif %}
+    </nav>
+
+<div class="updatePage-form w3-center" style="margin-left: 305px; ">
         <h2 class="flow-text">Update your information</h2>
-          <form action="/home/update_success/{{pk}}/" method="POST" enctype="multipart/form-data" class="padding">
+          <form class="form" action="/home/update_success/{{pk}}/" method="POST" enctype="multipart/form-data" class="padding">
             {% csrf_token %} {{ noodle_form.as_p }}
             <div class="divider"></div>
             {{ formset.management_form }}
                 {{ formset.as_p }}
-            <button type="submit" class="btn-floating btn-large waves-light waves-effect"><i class="large material-icons">SUBMIT</i></button>
-            <a href="#" onclick="window.history.back(); return false;" title="Cancel" class="btn-floating waves-effect waves-light red"><i class="material-icons">Go Back</i></a>
+            <button type="submit" class="btn-floating btn-large waves-light waves-effect"><i class="large material-icons">SAVE</i></button>
+            <button onclick="window.history.back(); return false;" title="Cancel" class="btn-floating waves-effect waves-light red"><i class="material-icons">CANCEL</i></a>
+            </button>
 
         </form>
         </div>
-    </div>
-</div>

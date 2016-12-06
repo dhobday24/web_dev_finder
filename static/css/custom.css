@@ -1,16 +1,17 @@
 
 @import url(https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic);
 
+/******************STYLE FOR LANDING PAGE *************************/
 #landing-header{
 background-image: url(../images/pitchIndex.jpg);
+
 }
 
 
 #venue_posts {
-    background: #43C6AC; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    width: 45%;
+    background-color: rgba(1,32,37, 1);
+    width: 40%;
+    margin-left: 40px;
     height: 450px;
     float: left;
     color: white;
@@ -20,13 +21,12 @@ background-image: url(../images/pitchIndex.jpg);
 }
 
 #musician_posts{
-    background: #43C6AC; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    width: 45%;
-   float: right;
-    height: 450px;
-    border-radius: 6%;
+  background-color: rgba(1,32,37, 1);
+  width: 40%;
+  float: right;
+  margin-right:  40px;
+  height: 450px;
+  border-radius: 6%;
     text-align: center;
     color: white;
 }
@@ -56,7 +56,8 @@ background-image: url(../images/pitchIndex.jpg);
 
 }
 
-/*style for homepage */
+
+/*style for user homepage */
 body,
     h1,
     h2,
@@ -76,11 +77,11 @@ body,
         opacity: 1;
     }
 
-.user-background{
+.user-background {
     background: #43C6AC; /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: fill
+    background: fill;
 }
 
 #w3-main{
@@ -104,7 +105,7 @@ body,
        }
 
 .event_submit_form{
-text-align: left;"
+text-align: left;
 margin-left: 500px;
 }
 
@@ -131,3 +132,23 @@ input[type=text]:focus {
 #search_input{
 	color: black;
 }
+
+
+/**************** UPDATE PROFILE PAGE *****************/
+.updatePage-background{
+  background: #43C6AC; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: fill; bottom: 0px; height: 100%;
+  color: white;
+  align-content: left;
+
+}
+.updatePage-form form{
+  color:white;
+ text-align: center;
+ border:0;
+ border-bottom: 4px;
+
+  }
+
