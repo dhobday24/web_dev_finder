@@ -11,12 +11,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-	<link rel="stylesheet" href="static/css/bootstrap.min.css">
-	<link rel="stylesheet" href="static/css/animate.min.css">
-	<link rel="stylesheet" href="static/css/font-awesome.min.css">
-	<link rel="stylesheet" href="static/css/owl.theme.css">
-	<link rel="stylesheet" href="static/css/owl.carousel.css">
-	<link rel="stylesheet" href="static/css/style.css">
+	<link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{%static 'css/animate.min.css' %}">
+	<link rel="stylesheet" href="{%static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{%static 'css/owl.theme.css' %}">
+	<link rel="stylesheet" href="{%static 'css/owl.carousel.css' %}">
+	<link rel="stylesheet" href="{%static 'css/style.css' %}">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 </head>
@@ -48,7 +48,7 @@
 		<div class="container">
 
 			<div class="navbar-header">
-				<button class="navbar-toggle">
+				<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="icon icon-bar"></span>
 				<span class="icon icon-bar"></span>
 				<span class="icon icon-bar"></span>
@@ -82,20 +82,22 @@
 
 				<div class="col-md-6 col-sm-12">
 					<div class="about-des">
+						<center>
 						<h4>POWERED BY PITCH:</h4>
 						<h3>Popular Events!</h3> {% if events %} {% for event in events|slice:"5" %}
-						<ul>
+						<ul style="list-style:none;">
 							<li>
 								<p>{{event.event_name}} on {{event.event_date}} <br> </p>
 							</li>
 						</ul>
 						{% endfor %} {% endif %}
+						</center>
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
-
+					<center>
 				<div class="col-md-6 col-sm-12">
 					<div class="about-des">
 						<h4>PITCH USERS:</h4>
@@ -108,10 +110,9 @@
 							{% endfor %} {% endif %} {% if ads %}
 							<p>Recent Ads</p>
 							{% for ad in ads|slice:"5" %}
-							<ul>
+							<ul style="list-style:none;">
 								<li>
-									<p> {{ad.musician_name}} posted {{ad.ad_description_short}} </p>
-
+									<p>{{ad.musician_name}} posted {{ad.ad_description_short}}</p>
 								</li>
 							</ul>
 							{% endfor %} {% endif %}
@@ -119,6 +120,7 @@
 						</div>
 					</div>
 				</div>
+				</center>
 
 				<div class="col-md-6 col-sm-12">
 					<img src="static/images/john_band.jpg" class="img-responsive" alt="about ads">

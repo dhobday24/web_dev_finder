@@ -26,7 +26,7 @@ class UserProfile(models.Model):
     bio = models.TextField(max_length=400, blank=True)
     website = models.CharField(max_length=50, blank='user@example.com')
     phonenumber = models.CharField(max_length=13, default='999-999-9999')
-    profile_pic = models.ImageField(null=True)
+    profile_pic = models.ImageField(null=False)
     genre = models.CharField(max_length=300, blank=True)
     available = models.CharField(choices=AVALABILITY, max_length=20, blank=True)
     soundcloud_username = models.CharField(max_length=30, null=True, blank=True)

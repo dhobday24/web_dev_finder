@@ -1,15 +1,22 @@
 {% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
 
 <head>
-  <link href="{% static 'css/board.css'%} " rel="stylesheet">
+
 </head>
 
 <body>
-  <form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %} {{form_ad.as_p}}
-    <br />
-    <input type="submit" value="Create Event" class="btn btn-primary"/>
-  </form>
-  </br>
-  <a href="/board">Go Back to Boards</a>
+    <h3>Please fill in the information below to list an ad.</h3>
+    <br>
+    <center>
+        <div style="width: 100%; font-size: 20px; float: left;">
+            <form method="POST" action="" enctype="multipart/form-data" style="color:black;"> {% csrf_token %} {{form_ad.as_p}}
+                <br>
+                <input type="submit" value="Create Event" class="btn btn-warning btn-lg" />
+            </form>
+            <br>
+            <a href="/board">Go Back to Boards</a>
+        </div>
+    </center>
+
 </body>
 {% endblock %}
