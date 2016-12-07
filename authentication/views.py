@@ -32,7 +32,7 @@ def index(request):
     ads = Musician_Advertisement.objects.all()
     context = {
         'events': events,
-       'ads':ads,
+        'ads':ads,
     }
     return render(request, 'index.html', context)
 
