@@ -13,6 +13,7 @@ from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
+import simplejson as json
 
 import requests
 from authentication.models import UserProfile
@@ -36,6 +37,8 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+def about (request):
+    return render_to_response('about.html')
 
 @csrf_exempt
 def register(request):
@@ -90,8 +93,14 @@ def home(request):
     address = request.user.userprofile.address
     profile_pic = request.user.userprofile.profile_pic
     soundcloud_username = request.user.userprofile.soundcloud_username
-    # print(request.user.userprofile.address)
-    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic, 'address': address, 'soundcloud_username': soundcloud_username})
+
+    events = Event.objects.all()
+
+    ev = []
+    for event in events:
+        ev.append({"title": event.event_name, "start": event.event_date.isoformat()})
+      # print(request.user.userprofile.address)
+    return render_to_response('home.html', {'events' :json.dumps(ev), 'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic, 'address': address, 'soundcloud_username': soundcloud_username})
 
 
 @login_required() # only logged in users should access this
@@ -163,7 +172,7 @@ def my_events(request):
         'all_events': all_events,
         'current_user': current_user,
     }
-    return render(request, 'my_events.html', context, message=user.id+' has appplied for your events')
+    return render(request, 'my_events.html', context)
 
 
 def my_ads(request):

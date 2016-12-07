@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'^my_ads/$', views.my_ads, name='my_ads'),
     url(r'^talent_ads/(?P<ad_id>[0-9]+)/applicants/$',
         views.show_applicants_ad, name='show_applicants_ad'),
+    url(r'^about/$', views.about, name='about'),
+
 ]
