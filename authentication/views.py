@@ -37,6 +37,8 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+def about (request):
+    return render_to_response('about.html')
 
 @csrf_exempt
 def register(request):

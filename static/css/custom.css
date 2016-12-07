@@ -136,3 +136,10 @@ input[type=text]:focus {
   width: 80%; 
 margin: 30 auto;
 }
+
+#about-page ul li{
+  list-style-type: none;
+  list-style: none;
+
+}
+
