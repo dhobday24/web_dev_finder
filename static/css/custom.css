@@ -229,98 +229,6 @@ figure:nth-child(6) {
 
 /*****************CALENDAR*****************/
 
-#calendar {
-  width: 100%;
-  margin: 0 auto;
-}
-#calendar {
-    width: 100%;    
-}
-
-#calendar a {
-    color: #8e352e;
-    text-decoration: none;
-}
-
-#calendar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-
-#calendar li {
-  background-color: red;
-    display: block;
-    float: left;
-    width:14.342%;
-    padding: 5px;
-    box-sizing:border-box;
-    border: 1px solid #ccc;
-    margin-right: -1px;
-    margin-bottom: -1px;
-}
-
-#calendar ul.weekdays {
-    height: 40px;
-    background: #8e352e;
-}
-
-#calendar ul.weekdays li {
-    text-align: center;
-    text-transform: uppercase;
-    line-height: 20px;
-    border: none !important;
-    padding: 10px 6px;
-    color: #fff;
-    font-size: 13px;
-}
-
-#calendar .days li {
-    height: 180px;
-}
-
-#calendar .days li:hover {
-    background: #d3d3d3;
-}
-
-#calendar .date {
-    text-align: center;
-    margin-bottom: 5px;
-    padding: 4px;
-    background: #333;
-    color: #fff;
-    width: 20px;
-    border-radius: 50%;
-    float: right;
-}
-
-#calendar .event {
-    clear: both;
-    display: block;
-    font-size: 13px;
-    border-radius: 4px;
-    padding: 5px;
-    margin-top: 40px;
-    margin-bottom: 5px;
-    line-height: 14px;
-    background: #e4f2f2;
-    border: 1px solid #b5dbdc;
-    color: #009aaf;
-    text-decoration: none;
-}
-
-#calendar .event-desc {
-    color: #666;
-    margin: 3px 0 7px 0;
-    text-decoration: none;  
-}
-
-#calendar .other-month {
-    background: #f5f5f5;
-    color: #666;
-}
-
 /* ============================
                 Mobile Responsiveness
    ============================*/
@@ -370,4 +278,20 @@ footer{
 
 #about-page h2{
   text-align: center;
+}
+
+#calendar-container{
+
+background: #43C6AC; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: fill; bottom: 0px; height: 100%;
+}
+#calendar {
+ 
+  align-content: center;
+}
+
+#calendar today{
+  background: blue;
 }

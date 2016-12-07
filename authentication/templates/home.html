@@ -10,14 +10,15 @@
     <link href="/static/css/custom.css" rel="stylesheet" type="text/css"  />
     <!-- To use Geocoding from Google Maps V3 you need to link https://maps.googleapis.com/maps/api/js?sensor=false -->
     <!--calendar-->
+
        
     <link href= "{%static 'css/fullcalendar.css'%}" rel='stylesheet' />
     <link href= "{%static 'css/fullcalendar.print.css'%}" rel='stylesheet' media='print' />
     <script src="{%static 'js/moment.min.js'%}"></script>
     <script src="{%static 'js/jquery.min.js'%}"></script>
     <script src="{%static 'js/fullcalendar.min.js'%}"></script>
-    <link href="{%static 'css/custom.css' %}" rel="stylesheet" type="text/css"  />
-    <<script>
+   
+    <script>
         $(document).ready(function() {
         data = {{events|safe}};
             console.log(data);
