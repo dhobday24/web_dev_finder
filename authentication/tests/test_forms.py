@@ -32,7 +32,17 @@ class RegistrationFormTest(TestCase):
                   },
          'error': ('username', [u"This username is already taken. Please choose another one."])
          },
-
+        # Mismatched Password
+        {'data': {'username': 'alice',
+                  'email': 'alice@example.com',
+                  'first_name': 'alice',
+                  'last_name': 'bob',
+                  'password1': 'secret',
+                  'password2': 'password',
+                  'address': '35W 67TH st, New York, NY'
+                  },
+         'error': ('__all__', [u"Passwords do not match"])
+         },
     ]
 
     def test_registration_form_valid_username_syntax(self):
@@ -53,3 +63,10 @@ class RegistrationFormTest(TestCase):
         form = RegistrationForm(data=form_data['data'])
         self.assert_(not form.is_valid())
 
+    def test_registration_form_matching_passwords(self):
+        """
+        Test that ``RegistrationForm`` has matching passwords
+        """
+        form_data = RegistrationFormTest.form_data_dict[2]
+        form = RegistrationForm(data=form_data['data'])
+        self.assert_(not form.is_valid())
