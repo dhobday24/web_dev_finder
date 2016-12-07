@@ -1,23 +1,16 @@
-{% extends "base.html" %}
-
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      {% block title %} Pitch:GigFinder Login {% endblock %} {% block head %} Login {% endblock %} {% block content %} {% if form.errors %}
-      <h2>Your Username and Password did not match! Please try again.</h2> {% endif %}
-
-      <form class="form" method="post">
+{% extends "base.html" %} {% block content %}
+<br>
+<div style="width: 300px; margin: 0 auto; margin-top: 50px; font-size: 18px;">
+    <h2 style="color:#669999">Pitch: User Login</h2>
+    <form class="form" method="post">
         {% csrf_token %}
-        <input type="text" placeholder="Username" name="username">
+        <label>Username: <input type="text" placeholder="Username" name="username"></label>
         <br>
-        <input type="password" placeholder="Password" name="password">
+        <label>Password: <input type="password" placeholder="Password" name="password"></label>
         <br>
         <br>
-        <button type="submit" value="Login" id="login-button" onclick="window.location.href='/home">Login</button>
-        <button type="button" onclick="window.location.href='/register/' ">Register</button>
-      </form>
-    </div>
-  </div>
+        <button type="submit" value="Login" id="login-button" onclick="window.location.href='/home" class="btn btn-danger btn-lg">Login</button>
+        <button type="button" onclick="window.location.href='/register/' " class="btn btn-danger btn-lg">Register</button>
+    </form>
 </div>
-
-{% endblock %}
+<br><br><br> {% endblock %}

@@ -1,4 +1,7 @@
-{% extends "base.html" %} {% block title %}Registration Successful{% endblock %} {% block head %} Registration Completed Successfully {% endblock %} {% block content %} Thank you for registering.
-</br>
-<button type="button"><a href="/accounts/login/">Login</button>
-{% endblock %}
+{% extends "base.html" %} {% block content %}
+<br>
+<div style="width: 500px; margin: 0 auto; font-size: 18px;">
+    <h2>Thank you for registering! You are now a member of Pitch!</h2>
+    <button type="button" onclick="window.location.href='/accounts/login/'" class="btn btn-danger btn-lg">Login</button>
+</div>
+<br><br><br> {% endblock %}

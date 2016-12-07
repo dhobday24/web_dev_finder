@@ -1,9 +1,18 @@
-{% extends "base.html" %} {% block title %}User Registration{% endblock %} {% block head %}User Registration{% endblock %} {% block content %}
-<form method="post" action=".">{% csrf_token %}
-  <table border="0">
-    {{ form.as_table }}
-  </table>
-  <button type="submit" value="Register">Register</button>
-  <button type="button" onclick="window.location.href='/'">Login</button>
-</form>
+{% extends "base.html" %}
+{% block content %}
+<br>
+
+<div style="width: 330px; margin: 0 auto; font-size: 18px; margin-top: 50px;">
+  <h2 style="color:#669999">Pitch: User Registration</h2>
+    <form method="post" action=".">{% csrf_token %}
+        <table border="0">
+            {{ form.as_table }}
+        </table>
+        <br>
+        <button type="submit" value="Register" class="btn btn-danger btn-lg">Register</button>
+        <button type="button" onclick="window.location.href='/'" class="btn btn-danger btn-lg">Login</button>
+      </form>
+</div>
+<br><br><br>
+
 {% endblock %}

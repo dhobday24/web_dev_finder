@@ -34,7 +34,7 @@ def index(request):
     ads = Musician_Advertisement.objects.all()
     context = {
         'events': events,
-       'ads':ads,
+        'ads':ads,
     }
     return render(request, 'index.html', context)
 
@@ -165,7 +165,7 @@ def my_events(request):
         'all_events': all_events,
         'current_user': current_user,
     }
-    return render(request, 'my_events.html', context)
+    return render(request, 'my_events.html', context, message=user.id+' has appplied for your events')
 
 
 def my_ads(request):
