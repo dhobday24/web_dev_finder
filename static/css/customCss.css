@@ -1,5 +1,5 @@
 
-@import url(https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic);
+@import url(//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic);
 
 #landing-header{
 background-image: url(../images/pitchIndex.jpg);
@@ -16,9 +16,9 @@ background-image: url(../images/pitchIndex.jpg);
     height: 450px;
     float: left;
     color: white;
-    border-radius: 6%; 
+    border-radius: 6%;
     text-align: center;
-    
+
 }
 
 #musician_posts{
@@ -28,7 +28,7 @@ background-image: url(../images/pitchIndex.jpg);
     width: 45%;
     float: right;
     height: 450px;
-    border-radius: 6%;  
+    border-radius: 6%;
     text-align: center;
     color: white;
   }
@@ -92,10 +92,10 @@ body,
 
 /* style for board.html */
 .board{
-  
+
   font-size: 18px;
   text-decoration: none;
-  
+
 }
 
 /* event_long.html*/
@@ -111,26 +111,26 @@ margin-left: 500px;
 }
 
 .board-base-body{
-  max-width:1600px; margin-top: 20px; bottom: 0; min-height: 100%; 
+  max-width:1600px; margin-top: 20px; bottom: 0; min-height: 100%;
   background: #43C6AC; /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #43C6AC , #191654); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #43C6AC , #191654); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: fill; bottom: 0px; height: 100%;
- 
+
 }
 
 .slideshow-container{
   clear: both;
   position: relative;
   margin: 0 auto;
-  padding: 10px; 
+  padding: 10px;
   width: 50px;
-  height: 80px; 
+  height: 80px;
 }
 .images{
   width: 5px;
   height: 6px;
-  
+
 }
 .caption{
   background-color: rgba(0,0,0,.5);
