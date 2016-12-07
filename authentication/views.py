@@ -20,6 +20,9 @@ import requests
 from authentication.models import UserProfile
 from authentication.forms import UserForm, RegistrationForm
 from address.models import Address
+from django.core.serializers.json import DjangoJSONEncoder
+from json_tricks import dumps
+import simplejson as json
 
 from geocodio import GeocodioClient
 
@@ -93,8 +96,17 @@ def home(request):
     profile_pic = request.user.userprofile.profile_pic
     soundcloud_username = request.user.userprofile.soundcloud_username
     # print(request.user.userprofile.address)
-    return render_to_response('home.html', {'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic, 'address': address, 'soundcloud_username': soundcloud_username})
+    # For Calendar
+    events = Event.objects.all()
+    ads = Musician_Advertisement.objects.all()
 
+    ev = []
+    for event in events:
+        ev.append({"title": event.event_name, "start": event.event_date.isoformat()})
+
+
+       # print(request.user.userprofile.address)
+    return render_to_response('home.html', {'events' :json.dumps(ev), 'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic, 'address': address, 'soundcloud_username': soundcloud_username})
 
 @login_required() # only logged in users should access this
 def edit_user(request, pk):
