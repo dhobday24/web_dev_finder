@@ -131,3 +131,8 @@ input[type=text]:focus {
 #search_input{
 	color: black;
 }
+
+#calendar {
+  width: 80%; 
+margin: 30 auto;
+}
