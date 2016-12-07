@@ -5,14 +5,34 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>PITCH </title>
+    <title>PITCH </title>
 
+<<<<<<< HEAD
+    <!-- Bootstrap Core CSS
+  <link href="{% static 'css/bootstrap/vendor/bootstrap/css/bootstrap.min.css'%} " rel="stylesheet">
+-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Theme CSS -->
+    <link href="{% static 'css/clean-blog.min.css'%}" rel="stylesheet">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'css/bootstrap/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lora" />
+    <link href="{%static 'css/custom.css' %}" rel="stylesheet" type="text/css" />
+=======
   <!-- Bootstrap Core CSS
   <link href="{% static 'css/bootstrap/vendor/bootstrap/css/bootstrap.min.css'%} " rel="stylesheet">
 -->
@@ -31,80 +51,88 @@
   <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lora" />
 <link href="{%static 'css/custom.css' %}" rel="stylesheet" type="text/css"  />
+>>>>>>> upstream/master
 
 </head>
 
 <body>
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+              </button>
+                <a class="navbar-brand page-scroll" href="/">Find Your Pitch</a>
+            </div>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-default navbar-custom navbar-fixed-top" style="position: fixed;">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header page-scroll">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-        </button>
-        <a class="navbar-brand" href="/">FIND YOUR PITCH</a>
-      </div>
-
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="/home/{{pk}}">Profile</a>
-          </li>
-          <li>
-            {% if user.is_authenticated %}
-            <a href="/logout">Logout</a> {% else %}
-            <a href="/register">Register</a> {% endif %}
-          </li>
-          <li>
-            {% if user.is_authenticated %} {% else %}
-            <a href="/accounts/login">Login</a> {% endif %}
-          </li>
-          <li>
-            <a href="/board">Board</a>
-          </li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse -->
-    </div>
-  </nav>
-
-  <!-- Page Header -->
-  <header class="intro-header" id="landing-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-          <div class="site-heading">
-            <h1>PITCH</h1>
-            <hr class="small">
-            <span class="subheading">Connecting Musicians and Venues</span>
-          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/home/{{pk}}">Profile</a>
+                    </li>
+                    <li>
+                        {% if user.is_authenticated %}
+                        <a href="/logout">Logout</a> {% else %}
+                        <a href="/register">Register</a> {% endif %}
+                    </li>
+                    <li>
+                        {% if user.is_authenticated %} {% else %}
+                        <a href="/accounts/login">Login</a> {% endif %}
+                    </li>
+                    <li>
+                        <a href="/board">Board</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-      </div>
-    </div>
-  </header>
+        <!-- /.container-fluid -->
+    </nav>
 
-  <!-- page content -->
-  <div class="wrapper">
-    <div class="container">
-      <div class="post-preview">
-        <h1>{% block head %}{% endblock %}</h1> {% block content %}{% endblock %}
-      </div>
+    <!-- Page Header -->
+    <header class="intro-header" id="landing-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>PITCH</h1>
+                        <hr class="small">
+                        <span class="subheading">Connecting Musicians and Venues</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- page content -->
+    <div class="wrapper">
+        <div class="container">
+            <div class="post-preview">
+                <h1>{% block head %}{% endblock %}</h1> {% block content %}{% endblock %}
+            </div>
+        </div>
     </div>
-  </div>
 </body>
 
 <!-- Footer -->
 <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-        <p class="copyright text-muted"> Question or comments, contact us at <em>email</em></p>
-      </div>
+                <p class="copyright text-muted"> Question or comments, contact us at <em>email</em></p>
+            </div>
+        </div>
     </div>
-  </div>
 </footer>
 
 </html>
