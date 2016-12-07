@@ -20,15 +20,36 @@ class RegistrationFormTest(TestCase):
                   'password2': 'secret',
                   'address': '35W 67TH st, New York, NY'
                   },
-         'error': ('username', [u"Enter a valid value."])
+         'error': ('username', [u"Enter a valid value."])},
+         # Already-existing username
+        {'data': {'username': 'alice',
+                  'email': 'alice@example.com',
+                  'first_name': 'alice',
+                  'last_name': 'bob',
+                  'password1': 'secret',
+                  'password2': 'secret',
+                  'address': '35W 67TH st, New York, NY'
+                  },
+         'error': ('username', [u"This username is already taken. Please choose another one."])
          },
+
     ]
 
     def test_registration_form_valid_username_syntax(self):
         """
-        Test that ``RegistrationForm`` enforces username constraints
+        Test that ``RegistrationForm`` enforces username syntax constraints
         """
         form_data = RegistrationFormTest.form_data_dict[0]
+        form = RegistrationForm(data=form_data['data'])
+        self.assert_(not form.is_valid())
+
+
+    def test_registration_form_valid_existing_username(self):
+        """
+        Test that ``RegistrationForm`` enforces username length constraints
+        """
+        self.user = User.objects.create(username='alice', password='secret', email='alice@example.com',)
+        form_data = RegistrationFormTest.form_data_dict[1]
         form = RegistrationForm(data=form_data['data'])
         self.assert_(not form.is_valid())
 
