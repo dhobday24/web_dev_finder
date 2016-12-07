@@ -5,11 +5,13 @@
 
 {% if all_ads %}
 <body>
-  <ul>
+  <h1>Find Musicians For You!</h1>
+  <br>
+  <ul style="list-style:none; font-size:18px;">
     {% for ad in all_ads %}
-    <li> <a href="profile/{{ad.musician_name}}">{{ad.musician_name}}</a> posted <a href="/board/talent_ads/{{ad.id}}/"> 
+    <li> <a href="profile/{{ad.musician_name}}">{{ad.musician_name}}</a> posted <a href="/board/talent_ads/{{ad.id}}/">
     {{ad.posting_name}}</a></li>
-    
+
     {% endfor %}
   </ul>
   <p>

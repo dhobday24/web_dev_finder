@@ -15,7 +15,7 @@
 
 {% if all_events %}
 <body>
-  <ul>
+  <ul style="list-style: none; font-size:18px;">
     {% for event in all_events %}
     <li><a href="/profile/{{event.event_user}}">{{event.event_user}}</a> <em>posted </em><a href="/board/events/{{event.id}}/">{{event.event_name}}</a></li>
     {% endfor %}
