@@ -103,11 +103,6 @@ body,
         width: 100%;
        }
 
-.event_submit_form{
-text-align: left;"
-margin-left: 500px;
-}
-
 .board-base-body{
   max-width:1600px; margin-top: 20px; bottom: 0; min-height: 100%;
   background: #43C6AC; /* fallback for old browsers */
@@ -130,4 +125,15 @@ input[type=text]:focus {
 }
 #search_input{
 	color: black;
+}
+
+#calendar {
+  width: 80%;
+margin: 30 auto;
+}
+
+#about-page ul li{
+  list-style-type: none;
+  list-style: none;
+
 }

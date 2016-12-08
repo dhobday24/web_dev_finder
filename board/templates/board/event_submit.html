@@ -3,17 +3,24 @@
     <link href="{% static 'css/event_submit.css' %}" rel="stylesheet" type="text/css"/>
 
     <head>
-
     </head>
 
-
     <body>
-    <form method="POST" action="" enctype="multipart/form-data" class="event_submit_form"> {% csrf_token %}
-        <!--{{form_event.as_p}}-->
-        {% form form_event using "floppyforms/layouts/p.html" %}
-        <input type="submit" value="Create Event" class="btn btn-primary"/>
-    </form>
-    </br>
-    <a href="/board">Go Back to Boards</a>
+    <h3>Please fill in the information below to list an Event.</h3>
+    <br>
+    <center>
+        <div style="width: 100%; font-size: 20px;">
+
+
+            <form method="POST" action="" enctype="multipart/form-data" class="event_submit_form"
+                  style="width: 100%; font-size: 20px;"> {% csrf_token %}
+                <!--{{form_event.as_p}}-->
+                {% form form_event using "floppyforms/layouts/p.html" %}
+                <input type="submit" value="Create Event" class="btn btn-warning btn-lg"/>
+            </form>
+            </br>
+            <a href="/board">Go Back to Boards</a>
+    </center>
+    </div>
     </body>
 {% endblock %}
