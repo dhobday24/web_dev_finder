@@ -1,26 +1,42 @@
 {% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
+
 <head>
   <link href="{% static 'css/board.css'%} " rel="stylesheet">
+  <style>
+  .hit-the-floor {
+      color: #fff;
+      font-size: 55px;
+      font-weight: bold;
+      font-family: Helvetica;
+      text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
+  }
+
+  .hit-the-floor {
+      text-align: center;
+  }
+  </style>
 </head>
 
-{% if all_ads %}
 <body>
-  <h1>Find Musicians For You!</h1>
-  <br>
-  <ul style="list-style:none; font-size:18px;">
-    {% for ad in all_ads %}
-    <li> <a href="profile/{{ad.musician_name}}">{{ad.musician_name}}</a> posted <a href="/board/talent_ads/{{ad.id}}/">
+    <h1 class="hit-the-floor">Musician Advertisements</h1>
+    <br>
+    <div style="font-size: 18;">
+      {% if all_ads %}
+        <ul style="list-style:none; font-size:18px;">
+            {% for ad in all_ads %}
+            <li> <a href="profile/{{ad.musician_name}}">{{ad.musician_name}}</a> posted <a href="/board/talent_ads/{{ad.id}}/">
     {{ad.posting_name}}</a></li>
 
-    {% endfor %}
-  </ul>
-  <p>
-    <a href="/board">Go Back to Boards</a>
-  </p>
-  {% else %}
-  <p>No ads are available.</p>
-  <p>
-    <a href="/board">Go Back to Boards</a>
-  </p>
+            {% endfor %}
+        </ul>
+        <p>
+            <a href="/board">Go Back to Boards</a>
+        </p>
+        {% else %}
+        <p>No ads are available.</p>
+        <p>
+            <a href="/board">Go Back to Boards</a>
+        </p>
+    </div>
 </body>
 {% endif %} {% endblock %}
