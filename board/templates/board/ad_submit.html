@@ -8,10 +8,10 @@
     <h3>Please fill in the information below to list an ad.</h3>
     <br>
     <center>
-        <div style="width: 100%; font-size: 20px; float: left;">
+        <div style="width: 100%; font-size: 20px;">
             <form method="POST" action="" enctype="multipart/form-data" style="color:black;"> {% csrf_token %} {{form_ad.as_p}}
                 <br>
-                <input type="submit" value="Create Event" class="btn btn-warning btn-lg" />
+                <input type="submit" value="Create Ad" class="btn btn-warning btn-lg" />
             </form>
             <br>
             <a href="/board">Go Back to Boards</a>
