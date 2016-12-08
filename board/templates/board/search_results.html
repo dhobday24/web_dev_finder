@@ -5,7 +5,7 @@
 {% if all_posts %}
 {% for post in all_posts %}
 <div>
-    <a href="/board/events/{{event.id}}">{{post}}</a>
+    <a href="/board/events/{{post.id}}">{{post}}</a>
 </div>
 {% endfor %}
 {% else %}
@@ -17,7 +17,7 @@
 {% if all_ads %}
 {% for ad_post in all_ads %}
 <div>
-    <a href="/board/talent_ads/{{ad.id}}/">{{ad_post}}</a>
+    <a href="/board/talent_ads/{{ad_post.id}}/">{{ad_post}}</a>
 </div>
 {% endfor %}
 {% else %}
