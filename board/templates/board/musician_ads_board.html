@@ -1,27 +1,29 @@
-{% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
-<head>
-</head>
+{% extends 'board/base.html' %} {% load staticfiles %} {% block content %}
 
-{% if all_ads %}
-<body>
-  <h1 style="font-family:inherit; font-size: 50px;">Talent Ads</h1>
-  <br>
-  <div style="font-size:25px;">
-  <ul style="list-style:none;">
-    {% for ad in all_ads %}
-    <li> <a href="profile/{{ad.musician_name}}">{{ad.musician_name}}</a> posted <a href="/board/talent_ads/{{ad.id}}/">
-    {{ad.posting_name}}</a></li>
+    {% if all_ads %}
+        <div>
+            <h1 style="font-family:inherit; font-size: 50px;">Talent Ads</h1>
+            <br />
+            <div style="font-size:25px;">
+                <ul style="list-style:none;">
+                    {% for ad in all_ads %}
+                        <li><a href="profile/{{ ad.musician_name }}">{{ ad.musician_name }}</a> posted
+                            <a href="/board/talent_ads/{{ ad.id }}/">
+                            {{ ad.posting_name }}</a></li>
 
-    {% endfor %}
-  </ul>
-  <p>
-    <a href="/board">Go Back to Boards</a>
-  </p>
-  {% else %}
-  <p>No ads are available.</p>
-  <p>
-    <a href="/board">Go Back to Boards</a>
-  </p>
-  </div>
-</body>
-{% endif %} {% endblock %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <p>
+            <a href="/board">Go Back to Boards</a>
+        </p>
+
+    {% else %}
+        <div>
+            <p>No ads are available.</p>
+            <p>
+                <a href="/board">Go Back to Boards</a>
+            </p>
+        </div>
+    {% endif %} {% endblock %}
