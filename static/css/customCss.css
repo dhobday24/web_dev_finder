@@ -6,7 +6,9 @@ background-image: url(../images/pitchIndex.jpg);
 
 
 }
-
+p{
+  font-size: 16px;
+}
 
 #venue_posts {
     background: #43C6AC; /* fallback for old browsers */

@@ -172,7 +172,7 @@ def my_events(request):
         'all_events': all_events,
         'current_user': current_user,
     }
-    return render(request, 'my_events.html', context, message=user.id+' has appplied for your events')
+    return render(request, 'my_events.html', context)
 
 
 def my_ads(request):

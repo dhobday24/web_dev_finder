@@ -13,9 +13,11 @@
   </style>
 </head>
 
-{% if all_events %}
+
 <body>
-  <ul>
+  <h1 style="font-family:inherit; font-size: 50px;">Events</h1> <br>
+  <ul style="list-style: none; font-size:25px;">
+    {% if all_events %}
     {% for event in all_events %}
     <li><a href="/profile/{{event.event_user}}">{{event.event_user}}</a> <em>posted </em><a href="/board/events/{{event.id}}/">{{event.event_name}}</a></li>
     {% endfor %}

@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html>
-<title>PITCH| {{user.username}}</title>
+<title>Pitch- Find Your Pitch</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{%static 'css/w3.css' %}">
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora">
@@ -11,15 +11,14 @@
     <link href= "{%static 'css/fullcalendar.css'%}" rel='stylesheet' />
     <link href= "{%static 'css/fullcalendar.print.css'%}" rel='stylesheet' media='print' />
     <script src="{%static 'js/moment.min.js'%}"></script>
-    <script src="{%static 'js/jquery.min.js'%}"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
     <script src="{%static 'js/fullcalendar.min.js'%}"></script>
-   
+
     <script>
         $(document).ready(function() {
         data = {{events|safe}};
-            console.log(data);
- 
-         
+
+
         $('#calendar').fullCalendar({
         //<!--Header Section Including Previous,Next and Today-->
         header: {
@@ -187,7 +186,7 @@
     function initMap() {
           var lat = parseFloat(document.getElementById("address_lat").value);
           var long = parseFloat(document.getElementById("address_long").value);
-          console.log(document.getElementById("address_lat"));
+
         var uluru = {lat: lat, lng: long};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,

@@ -1,15 +1,17 @@
 {% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
 <head>
-  <link href="{% static 'css/board.css'%} " rel="stylesheet">
 </head>
 
 {% if all_ads %}
 <body>
-  <ul>
+  <h1 style="font-family:inherit; font-size: 50px;">Talent Ads</h1>
+  <br>
+  <div style="font-size:25px;">
+  <ul style="list-style:none;">
     {% for ad in all_ads %}
-    <li> <a href="profile/{{ad.musician_name}}">{{ad.musician_name}}</a> posted <a href="/board/talent_ads/{{ad.id}}/"> 
+    <li> <a href="profile/{{ad.musician_name}}">{{ad.musician_name}}</a> posted <a href="/board/talent_ads/{{ad.id}}/">
     {{ad.posting_name}}</a></li>
-    
+
     {% endfor %}
   </ul>
   <p>
@@ -20,5 +22,6 @@
   <p>
     <a href="/board">Go Back to Boards</a>
   </p>
+  </div>
 </body>
 {% endif %} {% endblock %}

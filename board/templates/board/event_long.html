@@ -1,73 +1,67 @@
 {% extends 'board/base.html'%} {% load staticfiles %} {% block content%}
 
 <head>
-  <link href="{% static 'css/board.css'%} " rel="stylesheet">
-  <link href="{%static 'css/customCss.css' %}" rel="stylesheet" type="text/css"  />
+    <link href="{% static 'css/board.css'%} " rel="stylesheet">
+    <link href="{%static 'css/customCss.css' %}" rel="stylesheet" type="text/css" />
 
 </head>
 
 <body>
 
-  <p>
-    <a href="/profile/{{user_posted}}">{{user_posted}}</a>
-  </p>
-  <p>
-    {{name}}
-  </p>
-  <p>
-    {{long_description}}
-  </p>
-  <p>
-    {{date}}
-  </p>
-  {% if event_image %}
-  <p>
-    <img src="{{event_image.url}}" />
-  </p>
-  {% endif %}
-  <div id="map"></div>
+    <p>
+        <a href="/profile/{{user_posted}}">{{user_posted}}</a>
+    </p>
+    <p>
+        {{name}}
+    </p>
+    <p>
+        {{long_description}}
+    </p>
+    <p>
+        {{date}}
+    </p>
+    {% if event_image %}
+    <p>
+        <img src="{{event_image.url}}" />
+    </p>
+    {% endif %}
+    <div id="map"></div>
 
-  <form action='/board/apply_for_event/' method='post'> {% csrf_token %}
-    <input type="hidden" name="app_event" value="{{event.id}}" readonly/>
-      <input type="hidden" id="event_lat" name="event_lat" value="{{ event_lat }}" readonly/>
-      <input type="hidden" id="event_long" name="event_long" value="{{ event_long }}" readonly/>
-  {% if not app %}
-    {% if not event_booked %}
-    <input type="submit" value="Apply Now!" style="width:200px; height:60px;" class="btn btn-primary" />
-  {% else %}
-  <p>
-    Either you have applied, or the event has been filled. Sorry :(
-  </p>
-</form>
-  {% endif %}
-  {% endif %}
+    <form action='/board/apply_for_event/' method='post'> {% csrf_token %}
+        <input type="hidden" name="app_event" value="{{event.id}}" readonly/>
+        <input type="hidden" id="event_lat" name="event_lat" value="{{ event_lat }}" readonly/>
+        <input type="hidden" id="event_long" name="event_long" value="{{ event_long }}" readonly/> {% if not app %} {% if not event_booked %}
+        <input type="submit" value="Apply Now!" style="width:200px; height:60px;" class="btn btn-primary" /> {% else %}
+        <p>
+            Either you have applied, or the event has been filled. Sorry :(
+        </p>
+    </form>
+    {% endif %} {% endif %}
 
-  <p>
-    <a href="/board/events">Go Back to Events</a>
-  </p>
+    <p>
+        <a href="/board/events">Go Back to Events</a>
+    </p>
 
-      <script>
-
-      function initMap() {
-          var lat = parseFloat(document.getElementById("event_lat").value);
-          var long = parseFloat(document.getElementById("event_long").value);
-        var uluru = {lat: lat, lng: long};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
+    <script>
+        function initMap() {
+            var lat = parseFloat(document.getElementById("event_lat").value);
+            var long = parseFloat(document.getElementById("event_long").value);
+            var uluru = {
+                lat: lat,
+                lng: long
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiXWhciRh1uFx6DSjrqLhFnAgvExifV-Q&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiXWhciRh1uFx6DSjrqLhFnAgvExifV-Q&callback=initMap">
     </script>
 </body>
 
-{% endblock %}
-
-{% block script %}
-{% endblock %}
+{% endblock %} {% block script %} {% endblock %}

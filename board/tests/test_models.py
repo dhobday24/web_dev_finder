@@ -22,28 +22,7 @@ class EventTestCase(unittest.TestCase):
         self.assertEquals(self.event1.event_description_long,'long description of the event test')
         self.assertEquals(self.event1.pub_date, date(2016,11,11))
         self.assertEquals(self.event1.event_date, date(2016,12,11))
-    
 
-class Job_PostingTestCase(unittest.TestCase):
-    def setUp(self):
-        self.JobPosting = Job_Posting.objects.create(
-            posting_name = 'posting name',
-            job_description_short= 'short job description',
-            job_description_long = 'long job description',
-            pub_date = date(2016, 11, 11),
-            start_date = date(2016,11,11),
-            end_date  = date(2016, 12, 11),
-            pay = '200',
-            )
-
-    def test_job_posting(self):
-        self.assertEquals(self.JobPosting.posting_name, 'posting name')
-        self.assertEquals(self.JobPosting.job_description_short, 'short job description')
-        self.assertEquals(self.JobPosting.job_description_long, 'long job description')
-        self.assertEquals(self.JobPosting.pub_date, date(2016,11,11))
-        self.assertEquals(self.JobPosting.start_date, date(2016,11,11))
-        self.assertEquals(self.JobPosting.end_date, date(2016,12,11))
-        self.assertEquals(self.JobPosting.pay, '200')
 
 class Musician_adTestCase(unittest.TestCase):
     def setUp(self):
@@ -62,3 +41,24 @@ class Musician_adTestCase(unittest.TestCase):
         self.assertEquals(self.musicians_ads.pub_date, date(2016,11,11))
         self.assertEquals(self.musicians_ads.start_availability, date(2017,1,1))
         self.assertEquals(self.musicians_ads.end_availability, date(2017,1,7))
+
+# class Job_PostingTestCase(unittest.TestCase):
+#     def setUp(self):
+#         self.JobPosting = Job_Posting.objects.create(
+#             posting_name = 'posting name',
+#             job_description_short= 'short job description',
+#             job_description_long = 'long job description',
+#             pub_date = date(2016, 11, 11),
+#             start_date = date(2016,11,11),
+#             end_date  = date(2016, 12, 11),
+#             pay = '200',
+#             )
+#
+#     def test_job_posting(self):
+#         self.assertEquals(self.JobPosting.posting_name, 'posting name')
+#         self.assertEquals(self.JobPosting.job_description_short, 'short job description')
+#         self.assertEquals(self.JobPosting.job_description_long, 'long job description')
+#         self.assertEquals(self.JobPosting.pub_date, date(2016,11,11))
+#         self.assertEquals(self.JobPosting.start_date, date(2016,11,11))
+#         self.assertEquals(self.JobPosting.end_date, date(2016,12,11))
+#         self.assertEquals(self.JobPosting.pay, '200')
