@@ -180,16 +180,16 @@ def search_results(request):
     """
 
     query = request.GET.get('search')
-    all_posts = Event.objects.filter(event_name = query)
-    all_ads = Musician_Advertisement.objects.filter(posting_name=query)
+    all_posts = Event.objects.filter(event_name__icontains = query)
+    all_ads = Musician_Advertisement.objects.filter(posting_name__icontains=query)
     context = {
         'all_posts' : all_posts,
         'all_ads': all_ads,
     }
     print(query)
     if query:
-        all_posts = Event.objects.filter(event_name = query)
-        all_ads = Musician_Advertisement.objects.filter(posting_name=query)
+        all_posts = Event.objects.filter(event_name__icontains=query)
+        all_ads = Musician_Advertisement.objects.filter(posting_name__icontains=query)
         return render(request, 'board/search_results.html', context)
     return render(request, 'board/search_results.html', context)
 
