@@ -34,7 +34,7 @@
 					<h3 class="wow fadeInDown" data-wow-delay="0.2s" style="font-size: 25px;">TINDER FOR MUSICIANS AND VENUES</h3>
 					<h1 class="wow fadeInDown">PITCH</h1>
 					<a href="/register" class="btn btn-danger wow fadeInUp" data-wow-delay="0.4s">JOIN TODAY</a>
-					<a href="#about" class="btn btn-default smoothScroll wow fadeInUp" data-wow-delay="0.6s">LEARN MORE</a>
+					<a href="/about" class="btn btn-default smoothScroll wow fadeInUp" data-wow-delay="0.6s">LEARN MORE</a>
 				</div>
 
 			</div>
@@ -53,11 +53,11 @@
 				<span class="icon icon-bar"></span>
 				<span class="icon icon-bar"></span>
 			</button>
-				<a href="#" class="navbar-brand">PITCH</a>
+				<a href="/" class="navbar-brand">PITCH</a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right main-navigation">
-					<li><a href="#" class="smoothScroll">ABOUT PITCH</a></li>
+					<li><a href="/about" class="smoothScroll">ABOUT PITCH</a></li>
 					{% if user.is_authenticated %}
 					<li><a href="/home/{{pk}}" class="smoothScroll">PROFILE</a></li>
 					{% else %} {% endif %} {% if user.is_authenticated %}
