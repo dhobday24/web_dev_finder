@@ -1,17 +1,19 @@
 from django.test import TestCase
+from django.contrib.auth.models import User
 from board.forms import *
 import unittest
 from board import models
 from datetime import date
 from django.utils import timezone
+from authentication.models import UserProfile
+
 
 #testing models
-class EventTestCase(unittest.TestCase):
+class EventTestCase(TestCase):
     def setUp(self):
         self.event1 = Event.objects.create(event_name="Event1", 
                     event_description_short = "short description of the event", 
                     event_description_long="long description of the event test",
-                    pub_date = date(2016, 11, 11),
                     event_date = date(2016, 12, 11)
                     )
 
@@ -20,27 +22,35 @@ class EventTestCase(unittest.TestCase):
         self.assertEquals(self.event1.event_name, 'Event1')
         self.assertEquals(self.event1.event_description_short, 'short description of the event')
         self.assertEquals(self.event1.event_description_long,'long description of the event test')
-        self.assertEquals(self.event1.pub_date, date(2016,11,11))
         self.assertEquals(self.event1.event_date, date(2016,12,11))
 
 
 class Musician_adTestCase(unittest.TestCase):
     def setUp(self):
+        user = User.objects.create(username='felipe', email='something@aol.com')
+        self.venue_profile = UserProfile(user=user,
+                                         type_user='Venue',
+                                         address='35W 67th st, New York, NY',
+                                         bio='Hello There',
+                                         website='www.google.com',
+                                         phonenumber='9999999999',
+                                         genre='Rock',
+                                         soundcloud_username='tfloud',
+                                         )
+
         self.musicians_ads = Musician_Advertisement.objects.create(
-            musician_name = 'Musician Name',
+            musician_name = user,
             ad_description_short = 'short ad description',
             ad_description_long = 'long ad description',
-            pub_date = date(2016,11,11),
             start_availability = date(2017,1,1),
             end_availability = date(2017, 1, 7)
             )
     def test_musician_ads(self):
-        self.assertEquals(self.musicians_ads.musician_name, 'Musician Name')
         self.assertEquals(self.musicians_ads.ad_description_short, 'short ad description')
         self.assertEquals(self.musicians_ads.ad_description_long, 'long ad description')
-        self.assertEquals(self.musicians_ads.pub_date, date(2016,11,11))
         self.assertEquals(self.musicians_ads.start_availability, date(2017,1,1))
         self.assertEquals(self.musicians_ads.end_availability, date(2017,1,7))
+        self.assertEquals(self.musicians_ads.musician_name.username, 'felipe')
 
 # class Job_PostingTestCase(unittest.TestCase):
 #     def setUp(self):
