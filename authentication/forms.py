@@ -4,7 +4,7 @@ Authentication App forms
 from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from address.forms import AddressField
+# from address.forms import AddressField
 
 
 class RegistrationForm(forms.Form):
@@ -25,8 +25,8 @@ class RegistrationForm(forms.Form):
                                                   +"numbers and underscores.")})
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(
         required=True, max_length=30)), label=_("Email address"))
-    first_name = forms.CharField(required = True)
-    last_name = forms.CharField(required = True)
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(
         required=True, max_length=30, render_value=False)), label=_("Password"))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(

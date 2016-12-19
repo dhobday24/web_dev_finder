@@ -20,7 +20,7 @@ class UserProfile(models.Model):
     """
     Model for the Musician Profile
     """
-    user = models.OneToOneField(User, primary_key = True, related_name='userprofile')
+    user = models.OneToOneField(User, primary_key=True, related_name='userprofile')
     type_user = models.CharField(max_length=20, default='Musician', choices=PROFILE_TYPES)
     address = models.CharField(max_length=40, null=True, blank=True)
     bio = models.TextField(max_length=400, blank=True)
