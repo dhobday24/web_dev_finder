@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^events/(?P<event_id>[0-9]+)/$',
         views.long_description_event, name='long_description_event'),
     #url(r'^job_posts/(?P<job_id>[0-9]+)/$',
-        #views.long_description_job, name='long_description_job'),
+    #views.long_description_job, name='long_description_job'),
     url(r'^talent_ads/(?P<ad_id>[0-9]+)/$',
         views.long_description_musad, name='long_description_musad'),
     url(r'^event_submit/$', views.event_submit, name='event_submit'),
