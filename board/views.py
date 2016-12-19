@@ -2,21 +2,14 @@
 Views for the board app
 """
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
-from django.template import loader
-from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
-
 import requests
-
 from authentication.models import UserProfile
-from address.models import Address
+from geocodio import GeocodioClient
 from .models import Event, Musician_Advertisement, EventApplication, AdApplication
 from .forms import EventForm, AdForm
-from geocodio import GeocodioClient
-#from board.models import Job_Posting
-#from board.forms import JobForm
 
+# pylint: disable=invalid-name
 client = GeocodioClient('2f48b44cbca3558fcc7888282c4824b54ce88bf')
 
 # Create your views here.
@@ -27,6 +20,7 @@ def board(request):
     """
     Let a logged in user see the board page
     """
+    # pylint: disable=unused-variable
     user = request.user
     return render(request, 'board/board.html')
 
@@ -100,17 +94,16 @@ def long_description_event(request, event_id):
     name = event.event_name
     long_description = event.event_description_long
     date = event.event_date
-    pub_date = event.pub_date
     event_image = event.event_image
     user_posted = event.event_user
     browsing_userid = request.user.id
     event_lat = event.event_lat
     event_long = event.event_long
-    app = EventApplication.objects.filter(event_name = event.id, user_who_applied=request.user)
-    all_apps = EventApplication.objects.filter(event_name = event.id)
+    app = EventApplication.objects.filter(event_name=event.id, user_who_applied=request.user)
+    all_apps = EventApplication.objects.filter(event_name=event.id)
     event_booked = False
     for single_app in all_apps:
-        if single_app.status == True:
+        if single_app.status is True:
             event_booked = True
 
 
@@ -127,7 +120,7 @@ def long_description_event(request, event_id):
                                                      'event_long': event_long,
                                                      'app': app,
                                                      'event_booked': event_booked,
-                                                     })
+                                                    })
 
 
 def long_description_musad(request, ad_id):
@@ -143,11 +136,11 @@ def long_description_musad(request, ad_id):
     end_availability = ad.end_availability
     ad_image = ad.ad_image
     name = ad.musician_name
-    app = AdApplication.objects.filter(ad_name = ad.id, user_who_applied=request.user)
-    all_apps = AdApplication.objects.filter(ad_name = ad.id)
+    app = AdApplication.objects.filter(ad_name=ad.id, user_who_applied=request.user)
+    all_apps = AdApplication.objects.filter(ad_name=ad.id)
     ad_booked = False
     for single_app in all_apps:
-        if single_app.status == True:
+        if single_app.status is True:
             ad_booked = True
 
     return render(request, 'board/ad_long.html', {'name': name,
@@ -159,20 +152,8 @@ def long_description_musad(request, ad_id):
                                                   'ad_image': ad_image,
                                                   'app': app,
                                                   'ad_booked': ad_booked,
-                                                  })
+                                                 })
 
-# ef search_results(request):
-#     """
-#     render a page with the search results
-#     """
-#     query = request.GET.get('q')
-#     all_posts = Event.objects.all().filter(Event.event_name=query)
-#     all_ads = Musician_Advertisement.objects.all().filter(Musician_Advertisement.posting_name=query)
-#
-#     context = {
-#         'all_posts' : all_posts,
-#         'all_ads': all_ads,
-#     }
 
 def search_results(request):
     """
@@ -180,7 +161,7 @@ def search_results(request):
     """
 
     query = request.GET.get('search')
-    all_posts = Event.objects.filter(event_name__icontains = query)
+    all_posts = Event.objects.filter(event_name__icontains=query)
     all_ads = Musician_Advertisement.objects.filter(posting_name__icontains=query)
     context = {
         'all_posts' : all_posts,
@@ -195,75 +176,36 @@ def search_results(request):
 
 
 def apply_for_event(request):
+    '''
+    Apply for an event.
+    '''
+    # pylint: disable=unused-variable
     if request.method == 'POST':
         app_id = request.POST.get("app_event")
         username = request.user
-        application = EventApplication.objects.create(user_who_applied=username, event_name = Event.objects.filter(id = app_id).get())
+        application = EventApplication.objects.create(user_who_applied=username,
+                                                      event_name=Event.objects
+                                                      .filter(id=app_id).get())
         event_ref = Event.objects.get(id=app_id)
         vendor = UserProfile.objects.get(user_id=event_ref.event_user.id)
         vendor_number = vendor.phonenumber
         payload = {'number': vendor_number,
-                   'message': "An application has been submitted to your event: " + event_ref.event_name +
-                   ". Check out all the applications to your events on PITCH!"}
+                   'message': "An application has been submitted to your event: "
+                              + event_ref.event_name +
+                              ". Check out all the applications to your events on PITCH!"}
         requests.post('http://textbelt.com/text', data=payload)
     return render(request, 'board/apply_for_event.html')
 
 def request_musician(request):
+    '''
+    Request a musician's talent from ad.
+    '''
+    # pylint: disable=unused-variable
     if request.method == 'POST':
         app_id = request.POST.get("app_ad")
         username = request.user
         print(app_id)
-        application = AdApplication.objects.create(user_who_applied=username, ad_name = Musician_Advertisement.objects.filter(id = app_id).get())
+        application = AdApplication.objects.create(user_who_applied=username,
+                                                   ad_name=Musician_Advertisement
+                                                   .objects.filter(id=app_id).get())
     return render(request, 'board/apply_for_ad.html')
-
-
-'''
-def job_submit(request):
-    """
-    Allows for the submission of a regular job posting
-    """
-    form_job = JobForm(request.POST or None, request.FILES or None)
-    if form_job.is_valid():
-        instance = form_job.save(commit=False)
-        instance.save()
-        return redirect('board')
-    context = {
-        'form_job': form_job,
-    }
-    return render(request, 'board/job_submit.html', context)
-'''
-
-
-'''
-def job_posts(request):
-    """
-    Renders a page with all the regular job postings
-    """
-    all_jobs = Job_Posting.objects.all()
-    context = {
-        'all_jobs': all_jobs,
-    }
-    return render(request, 'board/job_posts_board.html', context)
-'''
-
-
-'''
-def long_description_job(request, job_id):
-    """
-    A deep dive into a job posting
-    Provides the user with a longer description of the job
-    """
-    job = get_object_or_404(Job_Posting, pk=job_id)
-    name = job.posting_name
-    long_description = job.job_description_long
-    start_date = job.start_date
-    end_date = job.end_date
-    pay = job.pay
-    job_image = job.job_image
-    return render(request, 'board/job_long.html', {'name': name,
-                                                   'long_description': long_description,
-                                                   'start_date': start_date,
-                                                   'end_date': end_date,
-                                                   'pay': pay,
-                                                   'job_image': job_image})
-'''
