@@ -20,6 +20,7 @@ from authentication.forms import UserForm, RegistrationForm
 
 from geocodio import GeocodioClient
 
+#pylint: disable=invalid-name
 client = GeocodioClient('2f48b44cbca3558fcc7888282c4824b54ce88bf')
 
 
@@ -41,6 +42,7 @@ def about(request):
     :param request:
     :return: about page html
     """
+    #pylint: disable=unused-argument
     return render_to_response('about.html')
 
 
@@ -49,6 +51,7 @@ def register(request):
     """
     Register a new user onto the platform
     """
+    #pylint: disable=unused-variable
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -76,6 +79,7 @@ def register_success(request):
     """
     Render the registration success page
     """
+    #pylint: disable=unused-argument
     return render_to_response('registration/success.html')
 
 
@@ -163,6 +167,7 @@ def update_success(request):
     """
     Render the registration success page
     """
+    #pylint: disable=unused-argument
     return render_to_response('registration/update_success.html')
 
 
@@ -223,6 +228,7 @@ def show_applicants_event(request, event_id):
     :param event_id:
     :return:
     """
+    #pylint: disable=unused-variable
     event = Event.objects.filter(id=event_id).get()
     applications = EventApplication.objects.filter(event_name=event_id)
     context = {
@@ -260,6 +266,7 @@ def show_applicants_ad(request, ad_id):
     :param ad_id:
     :return:
     """
+    #pylint: disable=unused-variable
     ad = Musician_Advertisement.objects.filter(id=ad_id).get()
     inqueries = AdApplication.objects.filter(ad_name=ad_id)
     context = {

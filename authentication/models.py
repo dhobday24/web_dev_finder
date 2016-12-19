@@ -38,6 +38,7 @@ def create_profile(sender, **kwargs):
     """
     Basic user profile creation in database
     """
+    # pylint: disable = unused-argument
     user = kwargs["instance"]
     if kwargs["created"]:
         user_profile = UserProfile(user=user)
