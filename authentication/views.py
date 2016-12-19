@@ -2,8 +2,6 @@
 Authentication App views
 """
 from django.shortcuts import render
-from board.models import *
-# Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.views.decorators.csrf import csrf_exempt
@@ -16,9 +14,9 @@ from django.core.exceptions import PermissionDenied
 import simplejson as json
 
 import requests
+from board.models import Event, Musician_Advertisement, EventApplication, AdApplication
 from authentication.models import UserProfile
 from authentication.forms import UserForm, RegistrationForm
-from address.models import Address
 
 from geocodio import GeocodioClient
 
@@ -33,12 +31,18 @@ def index(request):
     ads = Musician_Advertisement.objects.all()
     context = {
         'events': events,
-        'ads':ads,
+        'ads': ads,
     }
     return render(request, 'index.html', context)
 
-def about (request):
+
+def about(request):
+    """
+    :param request:
+    :return: about page html
+    """
     return render_to_response('about.html')
+
 
 @csrf_exempt
 def register(request):
@@ -48,15 +52,13 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            # address = request.POST.get('address')
-            # if address is not "":
             user = User.objects.create_user(
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password1'],
                 email=form.cleaned_data['email'],
-                first_name = form.cleaned_data['first_name'],
-                last_name = form.cleaned_data['last_name'],
-                )
+                first_name=form.cleaned_data['first_name'],
+                last_name=form.cleaned_data['last_name'],
+            )
             return HttpResponseRedirect('/register/success/')
     else:
         form = RegistrationForm()
@@ -99,11 +101,17 @@ def home(request):
     ev = []
     for event in events:
         ev.append({"title": event.event_name, "start": event.event_date.isoformat()})
-      # print(request.user.userprofile.address)
-    return render_to_response('home.html', {'events' :json.dumps(ev), 'user': request.user, 'pk' : request.user.id, 'profile_pic': profile_pic, 'address': address, 'soundcloud_username': soundcloud_username})
+    return render_to_response('home.html', {
+        'events': json.dumps(ev),
+        'user': request.user,
+        'pk': request.user.id,
+        'profile_pic': profile_pic,
+        'address': address,
+        'soundcloud_username': soundcloud_username
+    })
 
 
-@login_required() # only logged in users should access this
+@login_required()  # only logged in users should access this
 def edit_user(request, pk):
     """
     Update the user profile
@@ -134,7 +142,9 @@ def edit_user(request, pk):
             formset = ProfileInlineFormset(request.POST, request.FILES or None, instance=user)
             if user_form.is_valid():
                 created_user = user_form.save(commit=False)
-                formset = ProfileInlineFormset(request.POST, request.FILES or None, instance=created_user)
+                formset = ProfileInlineFormset(request.POST,
+                                               request.FILES or None,
+                                               instance=created_user)
                 if formset.is_valid():
                     created_user.save()
                     formset.save()
@@ -157,15 +167,31 @@ def update_success(request):
 
 
 def get_user_profile(request, username):
+    """
+    get the user values and display them on the profile page
+    :param request:
+    :param username:
+    :return:
+    """
     current_user = request.user
-    print(current_user)
+    # print(current_user)
     user = User.objects.get(username=username)
     soundcloud_username = user.userprofile.soundcloud_username
     profile_pic = user.userprofile.profile_pic
-    return render(request, 'user_profile.html', {"user":user, 'profile_pic': profile_pic, "current_user":current_user, 'soundcloud_username': soundcloud_username})
+    return render(request,
+                  'user_profile.html', {
+                      "user": user,
+                      'profile_pic': profile_pic,
+                      "current_user": current_user,
+                      'soundcloud_username': soundcloud_username})
 
 
 def my_events(request):
+    """
+    lists all the events made by the venue
+    :param request:
+    :return:
+    """
     current_user = request.user
     all_events = Event.objects.all()
     context = {
@@ -176,6 +202,11 @@ def my_events(request):
 
 
 def my_ads(request):
+    """
+    lists all the ads made by a musician
+    :param request:
+    :return:
+    """
     current_user = request.user
     all_ads = Musician_Advertisement.objects.all()
     context = {
@@ -186,10 +217,16 @@ def my_ads(request):
 
 
 def show_applicants_event(request, event_id):
-    event = Event.objects.filter(id = event_id).get()
-    applications = EventApplication.objects.filter(event_name = event_id)
+    """
+    shows all the applicants to an event
+    :param request:
+    :param event_id:
+    :return:
+    """
+    event = Event.objects.filter(id=event_id).get()
+    applications = EventApplication.objects.filter(event_name=event_id)
     context = {
-        'applications' : applications
+        'applications': applications
     }
     if request.method == 'POST':
         app_status = request.POST.get('app_status')
@@ -203,31 +240,40 @@ def show_applicants_event(request, event_id):
             performer = UserProfile.objects.get(user_id=event_performer.id)
             performer_number = performer.phonenumber
             payload = {'number': performer_number,
-                       'message': "Congratulations! You've been selected to perform at: " + event_ref.event_name +
-                                  ". Check out all your other applications to your events on PITCH!"}
+                       'message': "Congratulations! You've been selected to perform at: "
+                                  + event_ref.event_name +
+                                  ". Check out all your other applications "
+                                  "to your events on PITCH!"}
             requests.post('http://textbelt.com/text', data=payload)
         else:
-            cur_app = EventApplication.objects.filter(event_name = event_id, user_who_applied = applicant).get()
+            cur_app = EventApplication.objects.filter(event_name=event_id,
+                                                      user_who_applied=applicant).get()
             cur_app.status = False
             cur_app.save()
     return render(request, 'event_applicants.html', context)
 
 
 def show_applicants_ad(request, ad_id):
-    ad = Musician_Advertisement.objects.filter(id = ad_id).get()
-    inqueries = AdApplication.objects.filter(ad_name = ad_id)
+    """
+    Shows all the requests sent to the musician by the venues
+    :param request:
+    :param ad_id:
+    :return:
+    """
+    ad = Musician_Advertisement.objects.filter(id=ad_id).get()
+    inqueries = AdApplication.objects.filter(ad_name=ad_id)
     context = {
-        'inqueries' : inqueries
+        'inqueries': inqueries
     }
     if request.method == 'POST':
         app_status = request.POST.get('app_status')
         inquery = request.POST.get('inquery')
         if app_status == 'Yes':
-            cur_app = AdApplication.objects.filter(ad_name = ad_id, user_who_applied = inquery).get()
+            cur_app = AdApplication.objects.filter(ad_name=ad_id, user_who_applied=inquery).get()
             cur_app.status = True
             cur_app.save()
         else:
-            cur_app = AdApplication.objects.filter(ad_name = ad_id, user_who_applied = inquery).get()
+            cur_app = AdApplication.objects.filter(ad_name=ad_id, user_who_applied=inquery).get()
             cur_app.status = False
             cur_app.save()
     return render(request, 'ad_applicants.html', context)
