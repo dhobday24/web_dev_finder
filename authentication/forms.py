@@ -38,6 +38,7 @@ class RegistrationForm(forms.Form):
         """
         Check if the user already exists
         """
+        #pylint: disable=unused-variable
         try:
             user = User.objects.get(
                 username__iexact=self.cleaned_data['username'])
