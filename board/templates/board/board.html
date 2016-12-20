@@ -44,13 +44,8 @@
             font-size: 80px;
         }
         .text3{
+          font-family: "monospace";
           font-size: 50px;
-        }
-        img{
-          margin-right: 15px;
-          margin-left: -130px;
-          height:70px;
-          width:110px;
         }
     </style>
 
@@ -62,7 +57,7 @@
         <br><br>
     </div>
     <p class="board">
-        <img src="{% static '/images/arrow.png' %}"><a class="shadow text3" href="/board/events">Events Board</a><br>
+        <a class="shadow text3" href="/board/events">Events Board</a><br>
     </p>
     {% if user.userprofile.type_user == 'Venue' %}
     <p class="board">
@@ -79,7 +74,7 @@
   <p>
   -->
 
-    <p class="board"> <img src="{% static '/images/arrow.png' %}"><a class="shadow text3" href="/board/talent_ads">Talent Ads</a></p>
+    <a class="shadow text3" href="/board/talent_ads">Talent Ads</a></p>
 
     {% if user.userprofile.type_user == 'Musician' %}
     <p class="board">
