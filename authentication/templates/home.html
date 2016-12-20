@@ -17,8 +17,8 @@
     <script>
         $(document).ready(function() {
         data = {{events|safe}};
-
-
+        var date = Date();
+        console.log(date)
         $('#calendar').fullCalendar({
         //<!--Header Section Including Previous,Next and Today-->
         header: {
@@ -28,7 +28,7 @@
         },
 
         //<!--Default Date-->
-        defaultDate: '2016-12-12',
+        defaultDate: date,
         editable: true,
 
         //<!--Event Section-->
