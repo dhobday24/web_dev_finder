@@ -1,34 +1,30 @@
 {% extends 'base.html'%} {% load staticfiles %} {% block content%}
 
 
+<link rel="stylesheet" href="{%static 'css/custom.css' %}">
 
-<div id="about-page" style="margin:  auto; width: 60%; list-style: none; text-anchor: none; margin-top:60px">
+<div id="about-page" >
 
-	<h2> Welcome to Pitch</h2>
-	<h4>What is PITCH</h4>
+	
 
 	<P> PITCH is an online platform that helps musicians find gigs. A venue posts an event that require a musician and musicians can apply to play at that event.</P>
 
-	<h3>How to use Pitch effectively</h3>
+	<h2>How to use Pitch effectively</h2>
 
-	<ul>
-		<h3> Update Profile</h3>
-		<li>Once registered, Please go to your profile and click on update profile.</li>
-		<h3> Select User type</h3>
-		<li>if you are a Venue, please selece <em>Venue</em>	 from Type user drop down menu on update profile page.</li>
-		<ul>
-			<li>This will allow you to submit events on our event board as a Venue and select musicians to play at this event. </li>
-		</ul>
-		<li>if you are a Musician, please selece <em>Musician</em> from Type user drop down menu</li>
-		<ul>
-			<li>
-				This will Allow you to see the events that require a musician and can apply to play at those events.
-				You can also post an Ad if you are available and would like to play at any event.
-			</li>
-		</ul>
-
-	</ul>
-		<button type="button" onclick="window.location.href='/accounts/login/'" class="btn btn-danger btn-lg">Login</button>
+	
+		<p>Once registered, Please go to your profile and click on update profile.</p>
+		<h3>Select User type</h3>
+			<p>If you are a Venue, please selece <em>Venue</em>	 from Type user menu on the update profile page.</p>
+			<p>If you are a Musician, please selece <em>Musician</em> from Type user menu on the update profile page.</p>
+		<h3>Upload a Profile Picture</h3>
+			<p>Let everyone see you.</p>
+		<h3>Update your Location</h3>
+			<p>Available events are based on your location</p>
+<br>
+	
+		<button type="button" onclick="window.location.href='/accounts/login/'" class="btn btn-danger btn-lg">Register</button>
+		<button type="button" onclick="window.location.href='/register/'" class="btn btn-danger btn-lg">Login</button>
 		</div>
+
 </div>
 {% endblock %}
